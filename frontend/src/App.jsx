@@ -422,17 +422,17 @@ export default function App() {
         <div className="luxury-glass luxury-glow rounded-full px-6 py-4 flex items-center justify-between">
           
           <button onClick={() => setCurrentPage('home')} className="flex flex-col items-start gap-0.5 cursor-pointer text-left border-none bg-transparent">
-            <span className="font-serif text-base tracking-[0.25em] font-medium text-neutral-900">L'ÉTOILE HORIZON</span>
-            <span className="text-[7.5px] tracking-[0.32em] uppercase font-bold text-accent-glow">✧ ✧ ✧ molecular culinary suite</span>
+            <span className="font-serif text-lg tracking-[0.25em] font-semibold text-neutral-900">L'ÉTOILE HORIZON</span>
+            <span className="text-[9px] tracking-[0.32em] uppercase font-bold text-accent-glow">✧ ✧ ✧ molecular culinary suite</span>
           </button>
 
           {/* Router Nav tabs */}
-          <div className="hidden lg:flex items-center gap-7 text-[9px] uppercase tracking-[0.22em] font-extrabold text-neutral-500">
+          <div className="hidden lg:flex items-center gap-7 text-[12px] uppercase tracking-[0.20em] font-bold text-neutral-600">
             {['home', 'ai-concierge', 'table-atmosphere', 'build-plate', 'waitlist', 'story', 'menu'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setCurrentPage(tab)}
-                className={`transition-colors cursor-pointer ${currentPage === tab ? 'text-accent-glow font-black border-b border-accent-glow' : 'hover:text-neutral-900'}`}
+                className={`transition-all cursor-pointer ${currentPage === tab ? 'text-accent-glow font-black border-b-2 border-accent-glow pb-0.5' : 'text-neutral-700 hover:text-neutral-950 hover:scale-105'}`}
               >
                 {tab.replace('-', ' ')}
               </button>
@@ -484,7 +484,7 @@ export default function App() {
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.5 }} className="w-full min-h-[80vh] flex flex-col md:flex-row items-center justify-between gap-8 py-8 animate-fade-in">
               
               {/* Left sidebar nav coordinates dial */}
-              <div className="hidden md:flex flex-col gap-4 text-left">
+              <div className="hidden md:flex flex-col gap-5.5 text-left">
                 {[
                   { page: 'home', label: 'HOME', code: '01' },
                   { page: 'ai-concierge', label: 'AI CHEF', code: '02' },
@@ -496,11 +496,11 @@ export default function App() {
                   <button
                     key={idx}
                     onClick={() => setCurrentPage(item.page)}
-                    className="group flex items-center gap-3 cursor-pointer text-left bg-transparent border-none outline-none"
+                    className="group flex items-center gap-3.5 cursor-pointer text-left bg-transparent border-none outline-none hover:scale-105 transition-transform"
                   >
-                    <span className="text-[9px] font-extrabold tracking-widest text-accent-glow/70 group-hover:text-accent-glow transition-all">{item.code}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent-glow/40 group-hover:bg-accent-glow group-hover:scale-150 transition-all duration-300" />
-                    <span className="text-[8px] uppercase tracking-[0.25em] text-neutral-500 group-hover:text-neutral-900 transition-all font-extrabold">{item.label}</span>
+                    <span className="text-[11px] font-black tracking-widest text-accent-glow transition-all">{item.code}</span>
+                    <span className="w-2 h-2 rounded-full bg-accent-glow/45 group-hover:bg-accent-glow group-hover:scale-150 transition-all duration-300" />
+                    <span className="text-[10px] uppercase tracking-[0.25em] text-neutral-700 group-hover:text-neutral-950 transition-all font-extrabold">{item.label}</span>
                   </button>
                 ))}
               </div>
@@ -508,10 +508,10 @@ export default function App() {
               {/* Central Title Details */}
               <div className="flex flex-col items-start text-left gap-6 max-w-xl">
                 <span className="text-[9px] tracking-[0.60em] uppercase font-bold text-accent-glow">AN IMPOSSIBLE LUXURY EXPERIENCE</span>
-                <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.98] tracking-tight font-extralight text-neutral-900">
-                  <span className="bg-gradient-to-b from-[#1c1d21] via-[#635f59] to-accent-glow bg-clip-text text-transparent italic font-light">BEYOND</span>
+                <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.98] tracking-tight font-extralight">
+                  <span className="bg-gradient-to-r from-[#b53cfe] via-[#1c1d21] to-[#f97316] bg-clip-text text-transparent italic font-medium">BEYOND</span>
                   <br />
-                  <span className="text-[1.02em] uppercase font-light tracking-[0.15em] block mt-1">THE ORDINARY</span>
+                  <span className="text-[1.02em] uppercase font-light tracking-[0.15em] block mt-1 text-[#1e2229]">THE ORDINARY</span>
                 </h1>
                 <p className="text-[11px] md:text-xs font-light tracking-[0.14em] max-w-md leading-relaxed text-neutral-600">
                   Step into a world where culinary art meets futuristic imagination. Every detail. Every flavor. Crafted beyond limits.
@@ -1281,7 +1281,7 @@ export default function App() {
                 {[0, 1, 2].map((idx) => (
                   <button key={idx} onClick={() => setStoryScroll(idx)} className="flex items-center gap-2 text-left cursor-pointer border-none bg-transparent">
                     <span className={`w-2.5 h-2.5 rounded-full ${storyScroll === idx ? 'bg-accent-glow scale-125' : 'bg-neutral-300'} transition-all`} />
-                    <span className={`text-[7px] font-bold tracking-widest uppercase ${storyScroll === idx ? 'text-neutral-800' : 'text-neutral-400'}`}>0{idx + 1}</span>
+                    <span className={`text-[10px] font-bold tracking-widest uppercase ${storyScroll === idx ? 'text-neutral-800' : 'text-neutral-500'}`}>0{idx + 1}</span>
                   </button>
                 ))}
               </div>
