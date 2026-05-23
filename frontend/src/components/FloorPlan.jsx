@@ -30,7 +30,7 @@ const TABLES = [
 ];
 
 export default function FloorPlan() {
-  const { selectedTable, selectedZone, setSelectedTable, reservedTables, setReservedTables, isAuthenticated, user, token } = useStore();
+  const { selectedTable, selectedZone, setSelectedTable, reservedTables, setReservedTables, isAuthenticated, user, token, backendApi } = useStore();
   const { emitTableBooking } = useSocket();
 
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', guests: 2, date: '2026-05-23', time: '19:30', notes: '' });
@@ -46,7 +46,7 @@ export default function FloorPlan() {
   useEffect(() => {
     const fetchReservations = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/reservations', {
+        const response = await fetch(`${backendApi}/api/reservations`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const resData = await response.json();
@@ -78,7 +78,7 @@ export default function FloorPlan() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/reservations', {
+      const response = await fetch(`${backendApi}/api/reservations`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

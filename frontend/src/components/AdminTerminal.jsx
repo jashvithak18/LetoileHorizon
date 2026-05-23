@@ -4,7 +4,7 @@ import { X, ShieldCheck, Calendar, Users, Utensils, Check, Ban, Plus, RefreshCw 
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AdminTerminal({ isOpen, onClose }) {
-  const { token } = useStore();
+  const { token, backendApi } = useStore();
   const [activeTab, setActiveTab] = useState('bookings');
   
   const [bookings, setBookings] = useState([]);
@@ -20,7 +20,7 @@ export default function AdminTerminal({ isOpen, onClose }) {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const resResponse = await fetch('http://localhost:5000/api/reservations', {
+      const resResponse = await fetch(`${backendApi}/api/reservations`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const resData = await resResponse.json();
@@ -28,7 +28,7 @@ export default function AdminTerminal({ isOpen, onClose }) {
         setBookings(resData.data);
       }
 
-      const waitResponse = await fetch('http://localhost:5000/api/waitlist');
+      const waitResponse = await fetch(`${backendApi}/api/waitlist`);
       const waitData = await waitResponse.json();
       if (waitData.success && waitData.data) {
         setWaitlist(waitData.data);
@@ -48,7 +48,7 @@ export default function AdminTerminal({ isOpen, onClose }) {
 
   const handleUpdateBooking = async (id, status) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/reservations/${id}`, {
+      const response = await fetch(`${backendApi}/api/reservations/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export default function AdminTerminal({ isOpen, onClose }) {
 
   const handleUpdateWaitlist = async (id, status) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/waitlist/${id}`, {
+      const response = await fetch(`${backendApi}/api/waitlist/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ export default function AdminTerminal({ isOpen, onClose }) {
         pairings: newDish.pairingsStr.split(',').map(s => s.trim()).filter(Boolean)
       };
 
-      const response = await fetch('http://localhost:5000/api/menu', {
+      const response = await fetch(`${backendApi}/api/menu`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

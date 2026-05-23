@@ -1,6 +1,12 @@
 import { create } from 'zustand';
 
 export const useStore = create((set, get) => ({
+  // 0. API Endpoint Configuration
+  backendApi: import.meta.env.VITE_API_URL || 
+    (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:5000'
+      : 'https://letoilehorizon.onrender.com'),
+
   // 1. Authentication State
   user: null,
   token: null,

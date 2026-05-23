@@ -3,7 +3,7 @@ import { useStore } from '../store/useStore';
 import { Compass, User, Mail, Lock, Sparkles, AlertTriangle, ArrowLeft } from 'lucide-react';
 
 export default function AuthPage({ onNavigate }) {
-  const setAuth = useStore((state) => state.setAuth);
+  const { setAuth, backendApi } = useStore();
   
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -18,7 +18,7 @@ export default function AuthPage({ onNavigate }) {
     const endpoint = isLogin ? 'login' : 'register';
 
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/${endpoint}`, {
+      const response = await fetch(`${backendApi}/api/auth/${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

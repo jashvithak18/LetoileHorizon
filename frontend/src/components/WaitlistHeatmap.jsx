@@ -20,7 +20,7 @@ const FALLBACK_LOADS = [
 ];
 
 export default function WaitlistHeatmap({ isOpen, onClose }) {
-  const { mood } = useStore();
+  const { mood, backendApi } = useStore();
   const [mounted, setMounted] = useState(false);
   const [analytics, setAnalytics] = useState({
     currentWaitingCount: 2,
@@ -43,7 +43,7 @@ export default function WaitlistHeatmap({ isOpen, onClose }) {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/waitlist/analytics');
+        const response = await fetch(`${backendApi}/api/waitlist/analytics`);
         const resData = await response.json();
         if (resData.success && resData.data) {
           setAnalytics(resData.data);
@@ -58,7 +58,7 @@ export default function WaitlistHeatmap({ isOpen, onClose }) {
   const handleJoinWaitlist = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/waitlist', {
+      const response = await fetch(`${backendApi}/api/waitlist`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

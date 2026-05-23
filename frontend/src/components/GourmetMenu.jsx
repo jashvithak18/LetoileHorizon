@@ -3,7 +3,7 @@ import { useStore } from '../store/useStore';
 import { Search, Flame, Sparkles, Edit, Trash2, Plus } from 'lucide-react';
 
 export default function GourmetMenu({ onOpenAdmin }) {
-  const { setBaseDish, user, token } = useStore();
+  const { setBaseDish, user, token, backendApi } = useStore();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -12,7 +12,7 @@ export default function GourmetMenu({ onOpenAdmin }) {
   const fetchMenu = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/menu');
+      const response = await fetch(`${backendApi}/api/menu`);
       const resData = await response.json();
       if (resData.success && resData.data) {
         setItems(resData.data);
@@ -31,7 +31,7 @@ export default function GourmetMenu({ onOpenAdmin }) {
   const handleDelete = async (id) => {
     if (!confirm('Are you sure you wish to delete this culinary masterpiece from the active menu?')) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/menu/${id}`, {
+      const response = await fetch(`${backendApi}/api/menu/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

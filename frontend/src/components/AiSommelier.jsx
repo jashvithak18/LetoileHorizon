@@ -13,7 +13,7 @@ export default function AiSommelier({ isOpen, onClose }) {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef(null);
-  const { mood, setBaseDish } = useStore();
+  const { mood, setBaseDish, backendApi } = useStore();
 
   const presets = [
     { label: 'Something Spicy & Rich', text: 'I want something spicy' },
@@ -37,7 +37,7 @@ export default function AiSommelier({ isOpen, onClose }) {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/ai/recommend', {
+      const response = await fetch(`${backendApi}/api/ai/recommend`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: query })
