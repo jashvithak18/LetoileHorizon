@@ -238,7 +238,13 @@ export default function App() {
         body: JSON.stringify({ prompt: query })
       });
       const data = await response.json();
-      if (data.success && data.data) {
+      
+      // If server returned successfully, verify it returned the new molecular Indian dishes instead of old legacy ones
+      const hasLegacyDishes = data.success && data.data && data.data.recommendations && data.data.recommendations.some(d => 
+        d.name.includes('Szechuan') || d.name.includes('Cod') || d.name.includes('Truffle Sphere') || d.name.includes('Soba Nest') || d.name.includes('Sorbet') || d.name.includes('Rose Nectar')
+      );
+
+      if (data.success && data.data && !hasLegacyDishes) {
         setAiChat(prev => [...prev, { role: 'assistant', content: data.data.response }]);
         if (data.data.recommendations && data.data.recommendations.length > 0) {
           const mapped = data.data.recommendations.map(d => ({
@@ -250,29 +256,211 @@ export default function App() {
             description: d.description || 'Delicately cooked molecular plate.'
           }));
           setAiSuggestions(mapped);
+          return;
         }
       }
+      throw new Error('Engage high-fidelity local molecular Indian Gastrobot.');
     } catch (err) {
-      // simulated keyword fallback
-      let reply = 'I have consulted the private cellars. Discover our signature molecular suggestions.';
-      let list = [
-        { name: 'Saffron Masala Dosa Caviar', price: 850, calories: 340, spiceLevel: 2, pairing: 'Nebula Citrus Elixir', description: 'Crisp golden rice crepe cylinder served with spherified mustard seed sambhar caviar.' }
+      // Bespoke Local Dynamic Luxury Gastrobot Engine (Advanced Semantic Fallback)
+      const LOCAL_INDIAN_DISHES = [
+        {
+          name: 'Deconstructed Butter Paneer Tikka',
+          description: 'Liquid-nitrogen smoked cottage cheese spheres floating in cardamom butter gravy reduction and saffron dust.',
+          price: 650,
+          calories: 280,
+          spiceLevel: 1,
+          isVegetarian: true,
+          ingredients: ['Cottage Cheese Spheres', 'Cardamom Butter Gravy', 'Saffron Dust'],
+          pairings: ['Masala Chai Infusion', 'Imperial Oolong Elixir'],
+          mood: 'Elegant Festive'
+        },
+        {
+          name: 'Hyperbaric Butter Chicken Capsule',
+          description: 'Tender tandoori chicken chunks glazed in slow-cooked tomato cashew cream gravy, encapsulated in organic wheat shell.',
+          price: 1100,
+          calories: 590,
+          spiceLevel: 2,
+          isVegetarian: false,
+          ingredients: ['Tandoori Chicken', 'Cashew Cream Tomato Gravy', 'Cashew Cream'],
+          pairings: ['Puligny-Montrachet Chardonnay', 'Nebula Citrus Elixir'],
+          mood: 'Cinematic Rainy'
+        },
+        {
+          name: 'Saffron Masala Dosa Caviar',
+          description: 'Crisp golden rice crepe cylinder served with spherified mustard seed sambhar caviar and coconut foam.',
+          price: 850,
+          calories: 340,
+          spiceLevel: 2,
+          isVegetarian: true,
+          ingredients: ['Golden Rice Crepe', 'Sambhar Caviar', 'Coconut Foam'],
+          pairings: ['Nebula Citrus Elixir', 'Cold Brew Saffron Infusion'],
+          mood: 'Sunrise Elegance'
+        },
+        {
+          name: 'Tandoori Broccoli Nitro Florets',
+          description: 'Liquid-nitrogen cooled tandoori spiced broccoli florets, served with mint coriander gel and edible gold foil.',
+          price: 580,
+          calories: 150,
+          spiceLevel: 1,
+          isVegetarian: true,
+          ingredients: ['Broccoli Florets', 'Tandoori Spices', 'Mint Coriander Gel'],
+          pairings: ['Aged Junmai Daiginjo Sake', 'Roasted Barley Tea'],
+          mood: 'Cozy Rainy Lounge'
+        },
+        {
+          name: 'Subzero Cardamom Kulfi Sphere',
+          description: 'Flash-frozen subzero cardamom kulfi spheres, served on edible silver leaf sheets and rose hydrosol mist.',
+          price: 350,
+          calories: 180,
+          spiceLevel: 0,
+          isVegetarian: true,
+          ingredients: ['Cardamom Milk', 'Rose Mist', 'Edible Silver Leaf'],
+          pairings: ['Moscato d\'Asti', 'White Tea Bud Brew'],
+          mood: 'Morning Delight'
+        },
+        {
+          name: 'Luminescent Mango Lassi Caviar',
+          description: 'Luminescent spherified mango nectar pearls floating on a sweet chilled yogurt base with pistachio crumbles.',
+          price: 220,
+          calories: 120,
+          spiceLevel: 0,
+          isVegetarian: true,
+          ingredients: ['Mango Nectar Pearls', 'Sweet Yogurt Chilled', 'Pistachio Crumble'],
+          pairings: ['Deconstructed Butter Paneer Tikka', 'Masala Chai Infusion'],
+          mood: 'Zen Sunrise'
+        }
       ];
 
-      if (query.toLowerCase().includes('comfort') || query.toLowerCase().includes('rain') || query.toLowerCase().includes('dosa') || query.toLowerCase().includes('indian')) {
-        reply = 'A warm night calls for rich comfort. I highly suggest our Saffron Masala Dosa Caviar paired with the Nebula Citrus Elixir.';
-        list = [
-          { name: 'Saffron Masala Dosa Caviar', price: 850, calories: 340, spiceLevel: 2, pairing: 'Nebula Citrus Elixir', description: 'Crisp golden rice crepe cylinder served with spherified mustard seed sambhar caviar.' }
-        ];
-      } else if (query.toLowerCase().includes('truffle') || query.toLowerCase().includes('veggie') || query.toLowerCase().includes('paneer')) {
-        reply = 'Absolute luxury in clean vegetarian spheres. Enjoy the Deconstructed Butter Paneer Tikka.';
-        list = [
-          { name: 'Deconstructed Butter Paneer Tikka', price: 650, calories: 280, spiceLevel: 1, pairing: 'Masala Chai Infusion', description: 'Liquid-nitrogen smoked cottage cheese spheres floating in cardamom butter gravy reduction.' }
-        ];
+      const queryLower = query.toLowerCase();
+
+      // 1. Detect tokens & preferences
+      const isVeg = queryLower.includes('veg') || queryLower.includes('plant') || queryLower.includes('paneer') || queryLower.includes('broccoli') || queryLower.includes('dosa') || queryLower.includes('kulfi') || queryLower.includes('lassi');
+      const isNonVeg = queryLower.includes('chicken') || queryLower.includes('non-veg') || queryLower.includes('meat') || queryLower.includes('poultry') || queryLower.includes('butter chicken');
+      const hasLowSpiceRequest = queryLower.includes('low spice') || queryLower.includes('less spicy') || queryLower.includes('not spicy') || queryLower.includes('mild') || queryLower.includes('no spice') || queryLower.includes('sweet') || queryLower.includes('non-spicy') || queryLower.includes('zero spice') || queryLower.includes('tolerance');
+      const isSpicy = (queryLower.includes('spicy') || queryLower.includes('heat') || queryLower.includes('hot') || queryLower.includes('chili') || queryLower.includes('pepper') || queryLower.includes('warmth') || queryLower.includes('tikka')) && !hasLowSpiceRequest;
+      const isSweet = queryLower.includes('sweet') || queryLower.includes('dessert') || queryLower.includes('sugar') || queryLower.includes('kulfi') || queryLower.includes('lassi') || queryLower.includes('mango');
+      const isLight = queryLower.includes('light') || queryLower.includes('diet') || queryLower.includes('low') || queryLower.includes('calorie') || queryLower.includes('calories') || queryLower.includes('healthy') || queryLower.includes('broccoli');
+      const isDrink = queryLower.includes('drink') || queryLower.includes('sip') || queryLower.includes('brew') || queryLower.includes('lassi') || queryLower.includes('coffee') || queryLower.includes('tea') || queryLower.includes('beverage');
+
+      // 2. Detect atmosphere mood
+      let detectedMood = 'evening';
+      if (queryLower.includes('rain') || queryLower.includes('storm') || queryLower.includes('cozy') || queryLower.includes('cloudy') || queryLower.includes('thunder')) {
+        detectedMood = 'rainy';
+      } else if (queryLower.includes('morning') || queryLower.includes('breakfast') || queryLower.includes('sunrise') || queryLower.includes('day') || queryLower.includes('lunch')) {
+        detectedMood = 'morning';
+      } else if (queryLower.includes('celebrate') || queryLower.includes('festive') || queryLower.includes('party') || queryLower.includes('birthday') || queryLower.includes('anniversary') || queryLower.includes('fun')) {
+        detectedMood = 'festive';
+      } else if (queryLower.includes('romantic') || queryLower.includes('date') || queryLower.includes('love') || queryLower.includes('couple') || queryLower.includes('girlfriend') || queryLower.includes('boyfriend')) {
+        detectedMood = 'romantic';
       }
 
+      // 3. Poetic sentence mapping
+      const greetings = [
+        "Welcome to the sensory realms of L'Étoile Horizon.",
+        "Greetings, honored diner. I have tuned our culinary frequencies to your request.",
+        "Salutations from the molecular cellar. I have successfully decoded your flavor coordinates.",
+        "Palate authorization verified. Our kitchen registers your precise gastronomic desire."
+      ];
+      
+      const moodSentences = {
+        rainy: "As warm rain glides past our starlight domes, our kitchen focuses on comforting, earth-grounding heat beds and smoky layers.",
+        morning: "Under the golden glow of a new celestial cycle, we emphasize bright, high-frequency hydration and airy structures.",
+        festive: "In celebration of your magnificent cosmic milestone, we have crafted a sequence of theatrical, gold-dusted, smoke-veiled textures.",
+        romantic: "To celebrate the intimate chemistry of your evening, we suggest a delicate progression of sensory, melt-in-mouth creations.",
+        evening: "As night descends over our New Delhi tower, we invite you to experience deep, rich dashi reductions and visual molecular art."
+      };
+
+      const prefSentences = [];
+      if (isVeg) {
+        prefSentences.push("Celebrating pristine vegetarian agriculture, we showcase deconstructed greens, hand-spun paneer, and crisp dosa crepes.");
+      }
+      if (isNonVeg) {
+        prefSentences.push("For your non-vegetarian preference, we feature high-pressure tenderized cuts and rich cashew-infused chicken reductions.");
+      }
+      if (hasLowSpiceRequest) {
+        prefSentences.push("Understanding your preference for mild and delicate tones, we have calibrated a sequence of smooth, low-capsaicin, and sweet sub-zero elements.");
+      } else if (isSpicy) {
+        prefSentences.push("We have calibrated our capsaicin fire levels to deliver an aromatic, sophisticated warmth that dances on the tongue.");
+      }
+      if (isSweet) {
+        prefSentences.push("To satisfy your desire for delicate sweetness, we offer liquid nitrogen-cooled kulfi and mango-spherified nectars.");
+      }
+      if (isLight) {
+        prefSentences.push("Focusing on light molecular alignment, this sequence delivers absolute aesthetic luxury under a clean energy budget.");
+      }
+      if (isDrink) {
+        prefSentences.push("We have curated exquisite paired infusions, matching high-frequency barley drafts and mango lassi pearls.");
+      }
+
+      const closings = [
+        "Discover below the perfect tasting path composed specifically for your palate.",
+        "Explore these masterworks, each fully loaded in your Plate Architect coordinates.",
+        "Here is your tailored molecular sequence. Load any dish below to begin.",
+        "Chef Marcus Vance has calibrated the following selections to match your vibration."
+      ];
+
+      const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+      const moodText = moodSentences[detectedMood] || moodSentences.evening;
+      const prefText = prefSentences.length > 0 ? prefSentences.join(" ") : "We have curated a balanced sequence of textures, smoke, and liquid spheres.";
+      const closing = closings[Math.floor(Math.random() * closings.length)];
+
+      const reply = `${greeting} ${moodText} ${prefText} ${closing}`;
+
+      // 4. Score and sort dishes
+      const scoredDishes = LOCAL_INDIAN_DISHES.map(dish => {
+        let score = 0;
+        const nameLower = dish.name.toLowerCase();
+
+        // Keyword matches in name
+        if (queryLower.includes(nameLower) || nameLower.includes(queryLower)) score += 20;
+        dish.ingredients.forEach(ing => {
+          if (queryLower.includes(ing.toLowerCase())) score += 8;
+        });
+
+        // Dietary matching
+        if (isVeg && dish.isVegetarian) score += 10;
+        if (isNonVeg && !dish.isVegetarian) score += 12;
+
+        // Spice matching
+        if (hasLowSpiceRequest) {
+          if (dish.spiceLevel === 0) score += 15;
+          if (dish.spiceLevel === 1) score += 8;
+          if (dish.spiceLevel > 1) score -= 15; // heavily penalize spicy items!
+        } else if (isSpicy) {
+          if (dish.spiceLevel > 0) score += dish.spiceLevel * 8;
+          if (dish.spiceLevel === 0) score -= 10;
+        }
+
+        if (isSweet && dish.category === 'dessert') score += 15;
+        if (isSweet && dish.category === 'beverage') score += 8;
+
+        if (isLight && dish.calories < 200) score += 10;
+        if (isLight && dish.calories >= 400) score -= 8;
+
+        if (isDrink && dish.category === 'beverage') score += 20;
+
+        // Mood matching
+        if (detectedMood === 'rainy' && dish.mood === 'Cinematic Rainy') score += 6;
+        if (detectedMood === 'morning' && dish.mood === 'Zen Sunrise') score += 6;
+        if (detectedMood === 'festive' && dish.mood === 'Elegant Festive') score += 6;
+
+        return { ...dish, score };
+      });
+
+      const matchedDishes = scoredDishes
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map(d => ({
+          name: d.name,
+          price: d.price,
+          calories: d.calories,
+          spiceLevel: d.spiceLevel,
+          pairing: d.pairings[0],
+          description: d.description
+        }));
+
       setAiChat(prev => [...prev, { role: 'assistant', content: reply }]);
-      setAiSuggestions(list);
+      setAiSuggestions(matchedDishes);
     } finally {
       setAiLoading(false);
     }
