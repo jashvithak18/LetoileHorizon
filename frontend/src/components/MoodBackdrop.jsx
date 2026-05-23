@@ -27,14 +27,14 @@ export default function MoodBackdrop() {
 
     const getParticleConfig = () => {
       switch (mood) {
-        case 'morning': // Aurora Ambient (Teal & Aurora Green)
+        case 'morning': // Neon Electric Blue sparks
           return {
-            color: 'rgba(45, 212, 191, ',
+            color: 'rgba(0, 229, 255, ',
             sizeMin: 1.5,
             sizeMax: 5.0,
             speedY: -0.35,
             speedX: 0.15,
-            glow: 'rgba(45, 212, 191, 0.25)'
+            glow: 'rgba(0, 229, 255, 0.4)'
           };
         case 'rainy': // Titanium Rain (Cool Silver & Smoky Titanium)
           return {
@@ -45,35 +45,35 @@ export default function MoodBackdrop() {
             speedX: -0.5,
             glow: 'rgba(165, 180, 252, 0.08)'
           };
-        case 'festive': // Champagne Shimmer (Muted Champagne Glow)
+        case 'festive': // Neon Electric Pink sparks
           return {
-            color: 'rgba(236, 220, 201, ',
+            color: 'rgba(255, 60, 172, ',
             sizeMin: 2.0,
             sizeMax: 6.0,
             speedY: -0.4,
             speedX: 0.25,
-            glow: 'rgba(236, 220, 201, 0.2)'
+            glow: 'rgba(255, 60, 172, 0.4)'
           };
-        case 'evening': // Burnt Copper Embers (Volcanic Orange & Burnt Copper)
+        case 'evening': // Cosmic Purple sparks (Default)
         default:
           return {
-            color: 'rgba(242, 100, 25, ',
+            color: 'rgba(181, 60, 254, ',
             sizeMin: 1.2,
             sizeMax: 4.5,
             speedY: -0.55,
             speedX: -0.12,
-            glow: 'rgba(242, 100, 25, 0.3)'
+            glow: 'rgba(181, 60, 254, 0.4)'
           };
       }
     };
 
     const getShadowColor = () => {
       switch (mood) {
-        case 'morning': return 'rgba(45, 212, 191, 0.5)';
+        case 'morning': return 'rgba(0, 229, 255, 0.65)';
         case 'rainy': return 'rgba(165, 180, 252, 0.2)';
-        case 'festive': return 'rgba(236, 220, 201, 0.4)';
+        case 'festive': return 'rgba(255, 60, 172, 0.65)';
         case 'evening':
-        default: return 'rgba(242, 100, 25, 0.5)';
+        default: return 'rgba(181, 60, 254, 0.65)';
       }
     };
 
@@ -163,10 +163,10 @@ export default function MoodBackdrop() {
   }, [mood]);
 
   const moodsList = [
-    { id: 'morning', label: 'Aurora Ambient', icon: Sparkles, color: 'text-teal-400' },
-    { id: 'rainy', label: 'Titanium Rain', icon: CloudRain, color: 'text-indigo-300' },
-    { id: 'evening', label: 'Burnt Embers', icon: Flame, color: 'text-orange-500' },
-    { id: 'festive', label: 'Champagne Shimmer', icon: Moon, color: 'text-amber-100' }
+    { id: 'morning', label: 'Electric Blue', icon: Sparkles, color: 'text-electric-blue' },
+    { id: 'rainy', label: 'Titanium Rain', icon: CloudRain, color: 'text-indigo-200' },
+    { id: 'evening', label: 'Cosmic Purple', icon: Flame, color: 'text-cosmic-purple' },
+    { id: 'festive', label: 'Neon Pink', icon: Moon, color: 'text-neon-pink' }
   ];
 
   return (

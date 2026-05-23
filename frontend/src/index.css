@@ -15,6 +15,13 @@
   --color-ember: #f26419;         /* Warm ember orange */
   --color-indigo-atm: #171d31;    /* Atmospheric indigo */
   --color-champagne: #ecdcc9;     /* Muted champagne glow */
+  
+  /* Vibrant & Premium Neon Accents */
+  --color-cosmic-purple: #b53cfe;  /* Cosmic Purple */
+  --color-neon-pink: #ff3cac;      /* Neon Pink */
+  --color-electric-blue: #00e5ff;  /* Electric Blue */
+  --color-warm-gold: #ffb800;      /* Warm Gold */
+  --color-deep-navy: #0a0f1c;      /* Deep Navy */
 }
 
 :root {
@@ -177,4 +184,22 @@ h1, h2, h3, h4, h5, h6, .font-serif {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Premium Neon Ambient Shadows & Borders */
+.neon-purple-glow {
+  box-shadow: 0 0 35px rgba(181, 60, 254, 0.3);
+  border-color: rgba(181, 60, 254, 0.35) !important;
+}
+.neon-pink-glow {
+  box-shadow: 0 0 35px rgba(255, 60, 172, 0.3);
+  border-color: rgba(255, 60, 172, 0.35) !important;
+}
+.neon-blue-glow {
+  box-shadow: 0 0 35px rgba(0, 229, 255, 0.3);
+  border-color: rgba(0, 229, 255, 0.35) !important;
+}
+.neon-gold-glow {
+  box-shadow: 0 0 35px rgba(255, 184, 0, 0.25);
+  border-color: rgba(255, 184, 0, 0.3) !important;
 }

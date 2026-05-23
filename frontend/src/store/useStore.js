@@ -25,6 +25,8 @@ export const useStore = create((set, get) => ({
 
   // 2. UI Dining Mood/Atmosphere State
   mood: 'evening', // default: obsidian evening
+  currentPage: 'home',
+  setCurrentPage: (page) => set({ currentPage: page }),
   setMood: (newMood) => {
     const root = document.documentElement;
     root.classList.remove('mood-morning', 'mood-rainy', 'mood-festive');

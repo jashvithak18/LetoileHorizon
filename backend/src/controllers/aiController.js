@@ -106,12 +106,12 @@ export const getAiRecommendation = async (req, res) => {
                     text: `You are the AI Head Sommelier & Gastronomer at the ultra-premium futuristic restaurant L'Étoile Horizon.
                     Analyze the user prompt: "${query}" and suggest the most matching gourmet dishes from our menu catalog.
                     Select from these items:
-                    - Luminescent Truffle Sphere ($75, tasting, 120 cal, spice 0, veg, elegant)
-                    - Saffron Solar Cod ($95, entree, 420 cal, spice 1, premium fish, morning/evening)
-                    - Hyperbaric Szechuan Duck ($110, entree, 680 cal, spice 3, rich, spicy, evening/rainy)
-                    - Volcanic Soba Nest ($65, entree, 380 cal, spice 2, buckwheat, veg, vegan, rainy/evening)
-                    - Subzero Nebula Sorbet ($40, dessert, 180 cal, spice 0, nitrogen berries, veg, vegan, festive)
-                    - Raindrop Rose Nectar ($25, beverage, 45 cal, spice 0, agar drops, veg, vegan, morning/rainy)`
+                    - Luminescent Truffle Sphere (₹650, tasting, 120 cal, spice 0, veg, elegant)
+                    - Saffron Solar Cod (₹850, entree, 420 cal, spice 1, premium fish, morning/evening)
+                    - Hyperbaric Szechuan Duck (₹1100, entree, 680 cal, spice 3, rich, spicy, evening/rainy)
+                    - Volcanic Soba Nest (₹580, entree, 380 cal, spice 2, buckwheat, veg, vegan, rainy/evening)
+                    - Subzero Nebula Sorbet (₹350, dessert, 180 cal, spice 0, nitrogen berries, veg, vegan, festive)
+                    - Raindrop Rose Nectar (₹220, beverage, 45 cal, spice 0, agar drops, veg, vegan, morning/rainy)`
                   }
                 ]
               }
