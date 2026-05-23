@@ -1,80 +1,80 @@
 // Pre-seeded dishes for AI matching fallback
 const LOCAL_AI_DISHES = [
   {
-    name: 'Luminescent Truffle Sphere',
-    description: 'A liquid-spherified black winter truffle essence, encased in a glowing isomalt veil and dusted with shimmering saffron pollen threads.',
-    calories: 120,
-    spiceLevel: 0,
+    name: 'Deconstructed Butter Paneer Tikka',
+    description: 'Liquid-nitrogen smoked cottage cheese spheres floating in cardamom butter gravy reduction and saffron dust.',
+    calories: 280,
+    spiceLevel: 1,
     isVegetarian: true,
     isVegan: false,
-    isGlutenFree: true,
-    ingredients: ['Black Winter Truffle', 'Isomalt Shell', 'Saffron Shimmer'],
-    pairings: ['Château d\'Yquem 2015', 'Veuve Clicquot Champagne'],
+    isGlutenFree: false,
+    ingredients: ['Cottage Cheese Spheres', 'Cardamom Butter Gravy', 'Saffron Dust'],
+    pairings: ['Masala Chai Infusion', 'Imperial Oolong Elixir'],
     mood: 'Elegant Festive',
     matchScore: 10
   },
   {
-    name: 'Hyperbaric Szechuan Duck',
-    description: 'High-pressure tenderized dry-aged duck breast, glazed with Szechuan plum reductions and rosemary smoke, served with puffed crisp wild rice.',
-    calories: 680,
-    spiceLevel: 3,
+    name: 'Hyperbaric Butter Chicken Capsule',
+    description: 'Tender tandoori chicken chunks glazed in slow-cooked tomato cashew cream gravy, encapsulated in organic wheat shell.',
+    calories: 590,
+    spiceLevel: 2,
     isVegetarian: false,
     isVegan: false,
     isGlutenFree: false,
-    ingredients: ['Dry-Aged Duck', 'Szechuan Plum Glaze', 'Rosemary Smoke'],
-    pairings: ['Napa Valley Cabernet Sauvignon', 'Imperial Oolong Elixir'],
+    ingredients: ['Tandoori Chicken', 'Cashew Cream Tomato Gravy', 'Cashew Cream'],
+    pairings: ['Puligny-Montrachet Chardonnay', 'Nebula Citrus Elixir'],
     mood: 'Cinematic Rainy',
     matchScore: 10
   },
   {
-    name: 'Saffron Solar Cod',
-    description: 'Sous-vide glacier cod bathed in warm saffron-infused seaweed butter, served alongside solar-dried sea parsley tuiles and citrus foam.',
-    calories: 420,
-    spiceLevel: 1,
-    isVegetarian: false,
+    name: 'Saffron Masala Dosa Caviar',
+    description: 'Crisp golden rice crepe cylinder served with spherified mustard seed sambhar caviar and coconut foam.',
+    calories: 340,
+    spiceLevel: 2,
+    isVegetarian: true,
     isVegan: false,
     isGlutenFree: true,
-    ingredients: ['Glacier Cod', 'Saffron Seaweed Butter', 'Citrus Foam'],
-    pairings: ['Puligny-Montrachet Chardonnay', 'Cold Brew Saffron Infusion'],
+    ingredients: ['Golden Rice Crepe', 'Sambhar Caviar', 'Coconut Foam'],
+    pairings: ['Nebula Citrus Elixir', 'Cold Brew Saffron Infusion'],
     mood: 'Sunrise Elegance',
     matchScore: 10
   },
   {
-    name: 'Volcanic Soba Nest',
-    description: 'Hand-pulled buckwheat noodles over a heated volcanic stone, served with hot matcha broth, wild forest chanterelles, and crispy Szechuan chili shreds.',
-    calories: 380,
-    spiceLevel: 2,
+    name: 'Tandoori Broccoli Nitro Florets',
+    description: 'Liquid-nitrogen cooled tandoori spiced broccoli florets, served with mint coriander gel and edible gold foil.',
+    calories: 150,
+    spiceLevel: 1,
     isVegetarian: true,
-    isVegan: true,
-    isGlutenFree: false,
-    ingredients: ['Buckwheat Soba', 'Matcha Dashi', 'Forest Chanterelles', 'Szechuan Chili'],
+    isVegan: false,
+    isGlutenFree: true,
+    ingredients: ['Broccoli Florets', 'Tandoori Spices', 'Mint Coriander Gel'],
     pairings: ['Aged Junmai Daiginjo Sake', 'Roasted Barley Tea'],
     mood: 'Cozy Rainy Lounge',
     matchScore: 10
   },
   {
-    name: 'Subzero Nebula Sorbet',
-    description: 'Flash-frozen liquid nitrogen sorbet made from wild Alpine berries, floating on a sweet champagne mist and rose petal smoke.',
+    name: 'Subzero Cardamom Kulfi Sphere',
+    description: 'Flash-frozen subzero cardamom kulfi spheres, served on edible silver leaf sheets and rose hydrosol mist.',
     calories: 180,
     spiceLevel: 0,
     isVegetarian: true,
-    isVegan: true,
+    isVegan: false,
     isGlutenFree: true,
-    ingredients: ['Alpine Berries', 'Liquid Nitrogen', 'Rose Petals'],
+    ingredients: ['Cardamom Milk', 'Rose Mist', 'Edible Silver Leaf'],
     pairings: ['Moscato d\'Asti', 'White Tea Bud Brew'],
     mood: 'Morning Delight',
     matchScore: 10
   },
   {
-    name: 'Raindrop Rose Nectar',
-    description: 'A completely transparent spherical drop of agar flower nectar, sweetened with elderberry drops and carbonated rose hydrosol.',
-    calories: 45,
+    name: 'Luminescent Mango Lassi Caviar',
+    description: 'Luminescent spherified mango nectar pearls floating on a sweet chilled yogurt base with pistachio crumbles.',
+    calories: 120,
     spiceLevel: 0,
     isVegetarian: true,
-    isVegan: true,
+    isVegan: false,
     isGlutenFree: true,
-    ingredients: ['Agar-Agar Rose Hydro', 'Elderberry Drop', 'Mint Sparkle'],
-    pairings: ['Luminescent Truffle Sphere', 'White Tea'],
+    ingredients: ['Mango Nectar Pearls', 'Sweet Yogurt Chilled', 'Pistachio Crumble'],
+    pairings: ['Deconstructed Butter Paneer Tikka', 'Masala Chai Infusion'],
     mood: 'Zen Sunrise',
     matchScore: 10
   }
@@ -106,12 +106,12 @@ export const getAiRecommendation = async (req, res) => {
                     text: `You are the AI Head Sommelier & Gastronomer at the ultra-premium futuristic restaurant L'Étoile Horizon.
                     Analyze the user prompt: "${query}" and suggest the most matching gourmet dishes from our menu catalog.
                     Select from these items:
-                    - Luminescent Truffle Sphere (₹650, tasting, 120 cal, spice 0, veg, elegant)
-                    - Saffron Solar Cod (₹850, entree, 420 cal, spice 1, premium fish, morning/evening)
-                    - Hyperbaric Szechuan Duck (₹1100, entree, 680 cal, spice 3, rich, spicy, evening/rainy)
-                    - Volcanic Soba Nest (₹580, entree, 380 cal, spice 2, buckwheat, veg, vegan, rainy/evening)
-                    - Subzero Nebula Sorbet (₹350, dessert, 180 cal, spice 0, nitrogen berries, veg, vegan, festive)
-                    - Raindrop Rose Nectar (₹220, beverage, 45 cal, spice 0, agar drops, veg, vegan, morning/rainy)`
+                    - Deconstructed Butter Paneer Tikka (₹650, tasting, 280 cal, spice 1, veg, elegant)
+                    - Saffron Masala Dosa Caviar (₹850, entree, 340 cal, spice 2, golden crepe cylinder, sambhar caviar, morning/evening)
+                    - Hyperbaric Butter Chicken Capsule (₹1100, entree, 590 cal, spice 2, rich butter chicken in wheat shell, evening/rainy)
+                    - Tandoori Broccoli Nitro Florets (₹580, entree, 150 cal, spice 1, tandoori spiced veg, rainy/evening)
+                    - Subzero Cardamom Kulfi Sphere (₹350, dessert, 180 cal, spice 0, nitrogen cardamom, veg, festive)
+                    - Luminescent Mango Lassi Caviar (₹220, beverage, 120 cal, spice 0, spherified mango pearls, veg, morning/rainy)`
                   }
                 ]
               }
@@ -176,13 +176,13 @@ export const getAiRecommendation = async (req, res) => {
       matchedDishes = LOCAL_AI_DISHES.filter(d => d.isVegetarian);
       introResponse = 'An ode to nature’s pristine offerings. Discover our handcrafted plant-focused masterpieces designed to deliver clean, intense flavors.';
     } else if (query.includes('coffee') || query.includes('drink') || query.includes('sip') || query.includes('brew') || query.includes('hydrosol')) {
-      matchedDishes = LOCAL_AI_DISHES.filter(d => d.name.includes('Nectar') || d.name.includes('Sphere'));
+      matchedDishes = LOCAL_AI_DISHES.filter(d => d.name.includes('Lassi') || d.name.includes('Tikka'));
       introResponse = 'Elevate your senses. Here is our curated selection of liquid infusions and micro-spherifications designed to complement premium roasts and cold brews.';
     } else if (query.includes('calories') || query.includes('light') || query.includes('low') || query.includes('diet') || query.includes('300') || query.includes('500')) {
       matchedDishes = LOCAL_AI_DISHES.filter(d => d.calories < 400);
       introResponse = 'A light, ethereal selection crafted with molecular precision. Absolute luxury without heaviness, capturing clean culinary structures.';
-    } else if (query.includes('sweet') || query.includes('dessert') || query.includes('berry') || query.includes('sorbet')) {
-      matchedDishes = LOCAL_AI_DISHES.filter(d => d.name.includes('Sorbet') || d.name.includes('Nectar'));
+    } else if (query.includes('sweet') || query.includes('dessert') || query.includes('berry') || query.includes('sorbet') || query.includes('kulfi')) {
+      matchedDishes = LOCAL_AI_DISHES.filter(d => d.name.includes('Kulfi') || d.name.includes('Lassi'));
       introResponse = 'Indulge in sweet sub-zero artistry, where temperature meets sugar in beautiful gaseous clouds of liquid nitrogen.';
     } else {
       matchedDishes = [LOCAL_AI_DISHES[0], LOCAL_AI_DISHES[1], LOCAL_AI_DISHES[4]];

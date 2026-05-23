@@ -35,7 +35,7 @@ export default function App() {
 
   // 6-Step Build Your Plate wizard states
   const [customizerStep, setCustomizerStep] = useState(1); // 1: Base, 2: Toppings, 3: Sauces, 4: Spice, 5: Sides, 6: Drinks
-  const [plateBase, setPlateBase] = useState('Luminescent Truffle Sphere');
+  const [plateBase, setPlateBase] = useState('Deconstructed Butter Paneer Tikka');
   const [plateToppings, setPlateToppings] = useState([]);
   const [plateSauce, setPlateSauce] = useState('Cream Sauce');
   const [plateSpice, setPlateSpice] = useState(1);
@@ -47,12 +47,12 @@ export default function App() {
   const [aiInput, setAiInput] = useState('');
   const [aiLoading, setAiLoading] = useState(false);
   const [aiChat, setAiChat] = useState([
-    { role: 'assistant', content: 'Salutations. I am Aura, your AI dining concierge. Whisper your culinary desires—be it capsaicin heat, comforting broths, or something paired with premium mocktails.' }
+    { role: 'assistant', content: 'Salutations. I am Aura, your AI dining concierge. Whisper your culinary desires—be it spicy masala creations, comforting warm dosas, or something paired with premium infusions.' }
   ]);
   const [aiSuggestions, setAiSuggestions] = useState([
-    { name: 'Spicy Ramen Bowl', price: 650, calories: 380, spiceLevel: 3, pairing: 'Cold Brew Coffee', description: 'Hand-pulled wheat noodles bathed in volcanic Szechuan dashi glaze.' },
-    { name: 'Kung Pao Cottage Cheese', price: 580, calories: 410, spiceLevel: 2, pairing: 'Citrus Mocktail', description: 'Sautéed organic paneer cubes tossed in ginger-soy glaze.' },
-    { name: 'Peri Peri Avocado Bowl', price: 720, calories: 280, spiceLevel: 3, pairing: 'Citrus Mocktail', description: 'Fresh avocado chunks glazed with hot birds-eye peri chili sauce.' }
+    { name: 'Saffron Masala Dosa Caviar', price: 850, calories: 340, spiceLevel: 2, pairing: 'Nebula Citrus Elixir', description: 'Crisp golden rice crepe cylinder served with spherified mustard seed sambhar caviar.' },
+    { name: 'Deconstructed Butter Paneer Tikka', price: 650, calories: 280, spiceLevel: 1, pairing: 'Masala Chai Infusion', description: 'Liquid-nitrogen smoked cottage cheese spheres floating in cardamom butter gravy reduction.' },
+    { name: 'Hyperbaric Butter Chicken Capsule', price: 1100, calories: 590, spiceLevel: 2, pairing: 'Nebula Citrus Elixir', description: 'Tender tandoori chicken chunks glazed in slow-cooked tomato cashew cream gravy.' }
   ]);
 
   // Seating Booking input states
@@ -108,9 +108,9 @@ export default function App() {
         else throw new Error();
       } catch (err) {
         setMenuItems([
-          { _id: '1', name: 'Luminescent Truffle Sphere', price: 650, calories: 120, spiceLevel: 0, pairings: ['Château d\'Yquem', 'Cold Brew Coffee'], description: 'A liquid-spherified truffle essence encased in an isomalt veil.', isVegetarian: true },
-          { _id: '2', name: 'Saffron Solar Cod', price: 850, calories: 420, spiceLevel: 1, pairings: ['Citrus Mocktail'], description: 'Sous-vide glacier cod in saffron seaweed butter with blood orange foam.' },
-          { _id: '3', name: 'Hyperbaric Szechuan Duck', price: 1100, calories: 680, spiceLevel: 3, pairings: ['Jasmine Tea'], description: 'Pressure tenderized dry-aged duck breast glazed with Szechuan plum reductions.' }
+          { _id: '1', name: 'Deconstructed Butter Paneer Tikka', price: 650, calories: 280, spiceLevel: 1, pairings: ['Masala Chai Infusion', 'Cold Brew Coffee'], description: 'Liquid-nitrogen smoked cottage cheese spheres floating in cardamom butter gravy reduction.', isVegetarian: true },
+          { _id: '2', name: 'Saffron Masala Dosa Caviar', price: 850, calories: 340, spiceLevel: 2, pairings: ['Nebula Citrus Elixir'], description: 'Crisp golden rice crepe cylinder served with spherified mustard seed sambhar caviar.', isVegetarian: true },
+          { _id: '3', name: 'Hyperbaric Butter Chicken Capsule', price: 1100, calories: 590, spiceLevel: 2, pairings: ['Nebula Citrus Elixir'], description: 'Tender tandoori chicken chunks glazed in slow-cooked tomato cashew cream gravy.', isVegetarian: false }
         ]);
       }
     };
@@ -256,18 +256,18 @@ export default function App() {
       // simulated keyword fallback
       let reply = 'I have consulted the private cellars. Discover our signature molecular suggestions.';
       let list = [
-        { name: 'Spicy Ramen Bowl', price: 650, calories: 380, spiceLevel: 3, pairing: 'Cold Brew Coffee', description: 'Hand-pulled wheat noodles bathed in volcanic Szechuan dashi glaze.' }
+        { name: 'Saffron Masala Dosa Caviar', price: 850, calories: 340, spiceLevel: 2, pairing: 'Nebula Citrus Elixir', description: 'Crisp golden rice crepe cylinder served with spherified mustard seed sambhar caviar.' }
       ];
 
-      if (query.toLowerCase().includes('comfort') || query.toLowerCase().includes('rain')) {
-        reply = 'A stormy night calls for comforting warmth. I highly suggest Saffron Solar Cod paired with a Citrus Mocktail.';
+      if (query.toLowerCase().includes('comfort') || query.toLowerCase().includes('rain') || query.toLowerCase().includes('dosa') || query.toLowerCase().includes('indian')) {
+        reply = 'A warm night calls for rich comfort. I highly suggest our Saffron Masala Dosa Caviar paired with the Nebula Citrus Elixir.';
         list = [
-          { name: 'Saffron Solar Cod', price: 850, calories: 420, spiceLevel: 1, pairing: 'Citrus Mocktail', description: 'Sous-vide glacier cod in saffron seaweed butter with blood orange foam.' }
+          { name: 'Saffron Masala Dosa Caviar', price: 850, calories: 340, spiceLevel: 2, pairing: 'Nebula Citrus Elixir', description: 'Crisp golden rice crepe cylinder served with spherified mustard seed sambhar caviar.' }
         ];
-      } else if (query.toLowerCase().includes('truffle') || query.toLowerCase().includes('veggie')) {
-        reply = 'Absolute luxury in clean vegetarian spheres. Enjoy the Luminescent Truffle Sphere.';
+      } else if (query.toLowerCase().includes('truffle') || query.toLowerCase().includes('veggie') || query.toLowerCase().includes('paneer')) {
+        reply = 'Absolute luxury in clean vegetarian spheres. Enjoy the Deconstructed Butter Paneer Tikka.';
         list = [
-          { name: 'Luminescent Truffle Sphere', price: 650, calories: 120, spiceLevel: 0, pairing: 'Cold Brew Coffee', description: 'A liquid-spherified truffle essence encased in an isomalt veil.' }
+          { name: 'Deconstructed Butter Paneer Tikka', price: 650, calories: 280, spiceLevel: 1, pairing: 'Masala Chai Infusion', description: 'Liquid-nitrogen smoked cottage cheese spheres floating in cardamom butter gravy reduction.' }
         ];
       }
 
@@ -384,8 +384,8 @@ export default function App() {
 
   const calculateCustomPlatePrice = () => {
     let basePrice = 650;
-    if (plateBase === 'Saffron Solar Cod') basePrice = 850;
-    if (plateBase === 'Hyperbaric Szechuan Duck') basePrice = 1100;
+    if (plateBase === 'Saffron Masala Dosa Caviar') basePrice = 850;
+    if (plateBase === 'Hyperbaric Butter Chicken Capsule') basePrice = 1100;
     
     let toppingsPrice = plateToppings.length * 120;
     let sidePrice = plateSide === 'None' ? 0 : 120;
@@ -533,7 +533,7 @@ export default function App() {
 
                   {/* Redesigned luxurious champagne porcelain molecular plate */}
                   <div className="w-[190px] h-[190px] lg:w-[250px] lg:h-[250px] rounded-full overflow-hidden border border-white/80 bg-gradient-to-b from-white via-[#faf6f0] to-[#ecdcc9] shadow-2xl relative flex items-center justify-center">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Molecular Course" className="object-cover w-full h-full opacity-95 rotate-12 scale-110 mix-blend-multiply" />
+                    <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80" alt="Gourmet Dosa Plating" className="object-cover w-full h-full opacity-95 scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#ecdcc9]/30 via-transparent to-white/20" />
                   </div>
                 </motion.div>
@@ -816,7 +816,7 @@ export default function App() {
                     <div className="space-y-3 animate-fade-in">
                       <p className="text-[13px] text-neutral-700 font-medium">Select the master base molecular course from our current catalog:</p>
                       <div className="grid grid-cols-1 gap-2.5">
-                        {['Luminescent Truffle Sphere', 'Saffron Solar Cod', 'Hyperbaric Szechuan Duck'].map((dish) => (
+                        {['Deconstructed Butter Paneer Tikka', 'Saffron Masala Dosa Caviar', 'Hyperbaric Butter Chicken Capsule'].map((dish) => (
                           <button
                             key={dish}
                             onClick={() => setPlateBase(dish)}
@@ -828,7 +828,7 @@ export default function App() {
                           >
                             <div className="flex justify-between items-center">
                               <span>{dish}</span>
-                              <span className="font-extrabold text-neon-pink">₹{dish === 'Luminescent Truffle Sphere' ? '650' : dish === 'Saffron Solar Cod' ? '850' : '1100'}</span>
+                              <span className="font-extrabold text-neon-pink">₹{dish === 'Deconstructed Butter Paneer Tikka' ? '650' : dish === 'Saffron Masala Dosa Caviar' ? '850' : '1100'}</span>
                             </div>
                           </button>
                         ))}
@@ -1210,7 +1210,7 @@ export default function App() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[7.5px] uppercase tracking-widest text-neutral-500 font-black block mb-1">Vault Keyphrase</label>
+                    <label className="text-[7.5px] uppercase tracking-widest text-neutral-500 font-black block mb-1">Password</label>
                     <input
                       type="password"
                       required
@@ -1228,7 +1228,7 @@ export default function App() {
 
                 <div className="border-t border-white/10 pt-4 text-center text-[9px] uppercase tracking-widest text-neutral-500">
                   {isLoginView ? (
-                    <p>New coordinates? <button onClick={() => setIsLoginView(false)} className="text-accent-glow font-black hover:text-neutral-900 cursor-pointer bg-transparent border-none">Create credentials</button></p>
+                    <p>New coordinates? <button onClick={() => setIsLoginView(false)} className="text-accent-glow font-black hover:text-neutral-900 cursor-pointer bg-transparent border-none">Sign Up</button></p>
                   ) : (
                     <p>Have secure keys? <button onClick={() => setIsLoginView(true)} className="text-accent-glow font-black hover:text-neutral-900 cursor-pointer bg-transparent border-none">Log In</button></p>
                   )}
@@ -1578,9 +1578,9 @@ export default function App() {
                 {/* Listing of delivery items */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
                   {[
-                    { name: 'Saffron Net Cod Capsule', desc: 'Cod in warm saffron glaze', price: 1250 },
-                    { name: 'Smoked Truffle Tofu Capsule', desc: 'Liquid-nitrogen infused tofu', price: 890 },
-                    { name: 'Nebula Citrus Elixir', desc: 'Shifting hydration nectar', price: 420 }
+                    { name: 'Butter Chicken Capsule', desc: 'Tandoori chicken in tomato gravy', price: 1250 },
+                    { name: 'Butter Paneer Tikka Sphere', desc: 'Cottage cheese in cardamom reduction', price: 890 },
+                    { name: 'Nebula Mango Lassi Capsule', desc: 'Foamed mango cardamom nectar', price: 420 }
                   ].map((capsule, i) => (
                     <div key={i} className="p-3.5 bg-white/70 border border-white/80 shadow-sm rounded-2xl flex flex-col justify-between">
                       <div>

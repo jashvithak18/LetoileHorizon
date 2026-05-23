@@ -110,7 +110,7 @@ export default function AuthPage({ onNavigate }) {
           </div>
 
           <div>
-            <label className="text-[9px] uppercase tracking-widest text-gray-500 font-bold block mb-1.5">Secret Keyphrase</label>
+            <label className="text-[9px] uppercase tracking-widest text-gray-500 font-bold block mb-1.5">Password</label>
             <div className="relative">
               <Lock className="w-4 h-4 text-gray-600 absolute left-4.5 top-1/2 -translate-y-1/2" />
               <input
@@ -142,7 +142,7 @@ export default function AuthPage({ onNavigate }) {
                 onClick={() => setIsLogin(false)}
                 className="text-gold font-bold hover:text-white cursor-pointer"
               >
-                Create Credentials
+                Sign Up
               </button>
             </p>
           ) : (

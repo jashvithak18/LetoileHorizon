@@ -127,7 +127,7 @@ export default function GourmetMenu({ onOpenAdmin }) {
                 />
                 
                 <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-gold/30 text-[10px] font-bold text-gold-light">
-                  ${item.price}
+                  ₹{item.price}
                 </div>
               </div>
 

@@ -4,31 +4,31 @@ import { Sparkles, Flame, Check } from 'lucide-react';
 import { useState } from 'react';
 
 const TOPPINGS_CATALOG = [
-  { id: 'gold', name: '24k Gold Leaf Dust', price: 15, calories: 0, category: 'shimmer', color: 'bg-yellow-400' },
-  { id: 'truffle', name: 'Smoked Truffle Foam', price: 25, calories: 30, category: 'foam', color: 'bg-stone-300' },
-  { id: 'saffron', name: 'Saffron Tuile Net', price: 20, calories: 15, category: 'crunch', color: 'bg-amber-600' },
-  { id: 'balsamic', name: 'Aged Balsamic Pearls', price: 10, calories: 10, category: 'sphere', color: 'bg-zinc-800' },
-  { id: 'shiso', name: 'Golden Shiso Sprouts', price: 8, calories: 2, category: 'herb', color: 'bg-lime-500' }
+  { id: 'gold', name: '24k Gold Leaf Dust', price: 120, calories: 0, category: 'shimmer', color: 'bg-yellow-400' },
+  { id: 'truffle', name: 'Smoked Truffle Foam', price: 150, calories: 30, category: 'foam', color: 'bg-stone-300' },
+  { id: 'saffron', name: 'Saffron Tuile Net', price: 120, calories: 15, category: 'crunch', color: 'bg-amber-600' },
+  { id: 'balsamic', name: 'Aged Balsamic Pearls', price: 100, calories: 10, category: 'sphere', color: 'bg-zinc-800' },
+  { id: 'shiso', name: 'Golden Shiso Sprouts', price: 80, calories: 2, category: 'herb', color: 'bg-lime-500' }
 ];
 
 export default function PlateBuilder() {
   const { customPlate, setSpiceLevel, toggleTopping, mood } = useStore();
   const [isOrdered, setIsOrdered] = useState(false);
 
-  const basePrice = customPlate.baseDish === 'Saffron Solar Cod' ? 95 
-                  : customPlate.baseDish === 'Hyperbaric Szechuan Duck' ? 110 
-                  : customPlate.baseDish === 'Volcanic Soba Nest' ? 65
-                  : 75;
+  const basePrice = customPlate.baseDish === 'Saffron Masala Dosa Caviar' ? 850 
+                  : customPlate.baseDish === 'Hyperbaric Butter Chicken Capsule' ? 1100 
+                  : customPlate.baseDish === 'Tandoori Broccoli Nitro Florets' ? 580
+                  : 650;
 
   const totalPrice = basePrice + customPlate.toppings.reduce((sum, tName) => {
     const topping = TOPPINGS_CATALOG.find(tc => tc.name === tName);
     return sum + (topping ? topping.price : 0);
   }, 0);
 
-  const totalCalories = (customPlate.baseDish === 'Saffron Solar Cod' ? 420 
-                      : customPlate.baseDish === 'Hyperbaric Szechuan Duck' ? 680 
-                      : customPlate.baseDish === 'Volcanic Soba Nest' ? 380
-                      : 120) + customPlate.toppings.reduce((sum, tName) => {
+  const totalCalories = (customPlate.baseDish === 'Saffron Masala Dosa Caviar' ? 340 
+                      : customPlate.baseDish === 'Hyperbaric Butter Chicken Capsule' ? 590 
+                      : customPlate.baseDish === 'Tandoori Broccoli Nitro Florets' ? 150
+                      : 280) + customPlate.toppings.reduce((sum, tName) => {
     const topping = TOPPINGS_CATALOG.find(tc => tc.name === tName);
     return sum + (topping ? topping.calories : 0);
   }, 0);
@@ -71,7 +71,7 @@ export default function PlateBuilder() {
             >
               <div className="absolute inset-0 bg-radial-[circle_at_center,_rgba(197,160,89,0.35)_0%,_transparent_80%] rounded-full mix-blend-screen" />
               <div className="w-24 h-24 rounded-full bg-radial-[circle_at_center,_rgba(15,15,15,1)_0%,_rgba(40,40,40,1)_100%] border-2 border-gold/40 flex items-center justify-center text-center p-3 text-[10px] uppercase font-bold tracking-widest text-gold-light shadow-xl">
-                {customPlate.baseDish || 'Luminescent Truffle Sphere'}
+                {customPlate.baseDish || 'Deconstructed Butter Paneer Tikka'}
               </div>
             </motion.div>
 
@@ -125,7 +125,7 @@ export default function PlateBuilder() {
           <div className="mb-6">
             <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-2">Base Culinary Anchor</label>
             <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-300 flex items-center justify-between">
-              <span className="font-semibold text-gold-light">{customPlate.baseDish || 'Luminescent Truffle Sphere'}</span>
+              <span className="font-semibold text-gold-light">{customPlate.baseDish || 'Deconstructed Butter Paneer Tikka'}</span>
               <span className="text-[10px] text-gray-500">Preset Anchor</span>
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function PlateBuilder() {
                       <span className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
                       <span className="text-xs">{item.name}</span>
                     </div>
-                    <span className="text-[9px] text-gold-light">+${item.price}</span>
+                    <span className="text-[9px] text-gold-light">+₹{item.price}</span>
                   </button>
                 );
               })}
@@ -187,7 +187,7 @@ export default function PlateBuilder() {
             </div>
             <div>
               <span className="text-[9px] uppercase tracking-widest text-gray-500 font-semibold block mb-1">Tasting Value</span>
-              <span className="text-lg font-bold text-gold-light">${totalPrice}</span>
+              <span className="text-lg font-bold text-gold-light">₹{totalPrice}</span>
             </div>
           </div>
 

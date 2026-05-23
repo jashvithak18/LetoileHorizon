@@ -62,7 +62,7 @@ export default function AiSommelier({ isOpen, onClose }) {
     } catch (err) {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'I have lost contact with the central cellar logs, but I remain. For a lighter touch, try our Luminescent Truffle Sphere paired with dry champagne.' }
+        { role: 'assistant', content: 'I have lost contact with the central cellar logs, but I remain. For a lighter touch, try our Deconstructed Butter Paneer Tikka paired with Masala Chai Infusion.' }
       ]);
     } finally {
       setIsLoading(false);
