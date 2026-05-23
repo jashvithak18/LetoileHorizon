@@ -407,7 +407,7 @@ export default function App() {
   const activeZoneTable = selectedZone ? ZONE_METADATA[selectedZone] : ZONE_METADATA.rooftop;
 
   return (
-    <div className="w-full min-h-screen overflow-x-hidden no-scrollbar bg-radial-[circle_at_center,_var(--bg-glow-color-1)_0%,_var(--bg-glow-color-2)_100%] text-[#e6e8ea] select-none relative pb-36 pt-4 md:pt-8">
+    <div className="w-full min-h-screen overflow-x-hidden no-scrollbar bg-radial-[circle_at_center,_var(--bg-glow-color-1)_0%,_var(--bg-glow-color-2)_100%] text-[#e6e8ea] select-none relative pb-36 pt-1 md:pt-2">
       
       {/* Background modulators particles */}
       <MoodBackdrop />
@@ -418,7 +418,7 @@ export default function App() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] rounded-full border border-white/5 bg-radial-[circle_at_center,_rgba(230,232,234,0.03)_0%,_transparent_75%] pointer-events-none mix-blend-screen opacity-40 z-0 animate-atmospheric-shift" />
 
       {/* TOP HEADER */}
-      <header className="sticky top-8 md:top-10 left-0 right-0 w-[92%] max-w-7xl mx-auto z-40 pointer-events-auto">
+      <header className="sticky top-3 md:top-4 left-0 right-0 w-[92%] max-w-7xl mx-auto z-40 pointer-events-auto">
         <div className="luxury-glass luxury-glow rounded-full px-6 py-4 flex items-center justify-between">
           
           <button onClick={() => setCurrentPage('home')} className="flex flex-col items-start gap-0.5 cursor-pointer text-left border-none bg-transparent">
@@ -1940,49 +1940,6 @@ export default function App() {
         </section>
       )}
 
-      {/* ========================================================
-          FLOATING GLASS FOOTER NAVIGATION BAR (Sticky at Bottom)
-          ======================================================== */}
-      <footer className="fixed bottom-6 left-0 right-0 w-[92%] max-w-7xl mx-auto z-40 pointer-events-auto">
-        <div className="luxury-glass luxury-glow rounded-full px-5 py-3 flex items-center justify-between shadow-2xl">
-          
-          {/* Main Footer pages tabs */}
-          <div className="flex items-center gap-4 sm:gap-6 text-[8px] sm:text-[9.5px] uppercase tracking-wider font-extrabold text-gray-500">
-            {[
-              { page: 'home', label: 'HOME' },
-              { page: 'ai-concierge', label: 'AI CONCIERGE' },
-              { page: 'table-atmosphere', label: 'LIVE TABLE' },
-              { page: 'build-plate', label: 'BUILD PLATE' },
-              { page: 'waitlist', label: 'WAITLIST' },
-              { page: 'story', label: 'OUR STORY' },
-              { page: 'menu', label: 'MENU' }
-            ].map((tab) => (
-              <button
-                key={tab.page}
-                onClick={() => {
-                  setCurrentPage(tab.page);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className={`transition-all hover:text-white cursor-pointer px-1 py-1 ${
-                  currentPage === tab.page ? 'text-accent-glow font-black border-b border-accent-glow animate-pulse' : ''
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          {/* OTHER PAGES Spatial grid dials (Right side footer) */}
-          <div className="flex items-center gap-2.5 border-l border-white/10 pl-4 sm:pl-6 text-[7.5px] sm:text-[8.5px] uppercase font-bold text-gray-400">
-            <button onClick={() => setCurrentPage('reservations')} className="hover:text-white cursor-pointer transition-colors">Domes</button>
-            <button onClick={() => setCurrentPage('profile')} className="hover:text-white cursor-pointer transition-colors">Profile</button>
-            <button onClick={() => setCurrentPage('about-chef')} className="hover:text-white cursor-pointer transition-colors">Chef</button>
-            <button onClick={() => setCurrentPage('gallery')} className="hover:text-white cursor-pointer transition-colors">Gallery</button>
-            <button onClick={() => setCurrentPage('contact')} className="hover:text-white cursor-pointer transition-colors">Contact</button>
-          </div>
-
-        </div>
-      </footer>
 
       {/* ========================================================
           ADMINISTRATIVE CONTROL DRAWER
