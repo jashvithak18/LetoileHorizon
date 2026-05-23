@@ -8,6 +8,8 @@ import MoodBackdrop from './components/MoodBackdrop';
 // Custom Area/Bar Charts for Waitlist Analytics (Vite safe)
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'https://letoilehorizon.onrender.com';
+
 const HOURLY_LOADS = [
   { hour: '9AM', occupancy: 20 },
   { hour: '12PM', occupancy: 50 },
@@ -71,7 +73,7 @@ export default function App() {
     loadAuthFromStorage();
     const fetchMenu = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/menu');
+        const res = await fetch(`${API_BASE}/api/menu`);
         const data = await res.json();
         if (data.success && data.data.length > 0) setMenuItems(data.data);
         else throw new Error();
@@ -90,7 +92,7 @@ export default function App() {
   useEffect(() => {
     const fetchReservations = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/reservations', {
+        const response = await fetch(`${API_BASE}/api/reservations`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const resData = await response.json();
@@ -154,7 +156,7 @@ export default function App() {
     setAiLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/ai/recommend', {
+      const response = await fetch(`${API_BASE}/api/ai/recommend`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: query })
@@ -208,7 +210,7 @@ export default function App() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/reservations', {
+      const response = await fetch(`${API_BASE}/api/reservations`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -245,7 +247,7 @@ export default function App() {
   const handleWaitlistRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/waitlist', {
+      const response = await fetch(`${API_BASE}/api/waitlist`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...waitlistFormData, ambienceZone: selectedZone })
@@ -265,13 +267,13 @@ export default function App() {
   const handleOpenAdminTerminal = async () => {
     setAdminOpen(true);
     try {
-      const resResponse = await fetch('http://localhost:5000/api/reservations', {
+      const resResponse = await fetch(`${API_BASE}/api/reservations`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const resData = await resResponse.json();
       if (resData.success) setAdminBookings(resData.data);
 
-      const waitRes = await fetch('http://localhost:5000/api/waitlist');
+      const waitRes = await fetch(`${API_BASE}/api/waitlist`);
       const waitData = await waitRes.json();
       if (waitData.success) setAdminWaitlist(waitData.data);
     } catch (err) {
@@ -281,7 +283,7 @@ export default function App() {
 
   const handleUpdateAdminBooking = async (id, status) => {
     try {
-      await fetch(`http://localhost:5000/api/reservations/${id}`, {
+      await fetch(`${API_BASE}/api/reservations/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ status })
@@ -300,7 +302,7 @@ export default function App() {
         ingredients: newDish.ingredientsStr.split(',').map(s => s.trim()).filter(Boolean),
         pairings: newDish.pairingsStr.split(',').map(s => s.trim()).filter(Boolean)
       };
-      await fetch('http://localhost:5000/api/menu', {
+      await fetch(`${API_BASE}/api/menu`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(payload)
