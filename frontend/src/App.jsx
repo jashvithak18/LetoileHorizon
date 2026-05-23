@@ -139,33 +139,33 @@ export default function App() {
     if (token) fetchReservations();
   }, [token, setReservedTables]);
 
-  // Dynamic Neon Background Accent lights shifter
+  // Dynamic Space Background Accent lights shifter (Premium Light Cinematic Gradients)
   useEffect(() => {
     const root = document.documentElement;
-    let glow1 = '#0a0f1c'; // Deep Navy
-    let glow2 = '#04060c'; // Obsidian blue-black
-    let accent = 'rgba(181, 60, 254, 0.2)'; // Cosmic Purple
+    let glow1 = '#faf6f0'; // Warm Ivory
+    let glow2 = '#f2ede4'; // Champagne
+    let accent = 'rgba(181, 60, 254, 0.08)'; // Cosmic Purple
     let fgAccent = '#b53cfe';
 
     if (currentPage === 'ai-concierge') {
-      glow1 = '#061320'; // Electric Blue theme
-      glow2 = '#02060b';
-      accent = 'rgba(0, 229, 255, 0.25)';
-      fgAccent = '#00e5ff';
+      glow1 = '#e2eafc'; // Moonlight Blue
+      glow2 = '#d0d8f0';
+      accent = 'rgba(6, 182, 212, 0.1)';
+      fgAccent = '#06b6d4';
     } else if (currentPage === 'table-atmosphere') {
-      glow1 = '#150620'; // Neon Purple theme
-      glow2 = '#04020a';
-      accent = 'rgba(181, 60, 254, 0.28)';
+      glow1 = '#f3e8ff'; // Soft Lavender
+      glow2 = '#e8d5ff';
+      accent = 'rgba(181, 60, 254, 0.1)';
       fgAccent = '#b53cfe';
     } else if (currentPage === 'build-plate') {
-      glow1 = '#200615'; // Neon Pink theme
-      glow2 = '#080205';
-      accent = 'rgba(255, 60, 172, 0.28)';
+      glow1 = '#fce7f3'; // Soft Rose Gold
+      glow2 = '#fbcfe8';
+      accent = 'rgba(255, 60, 172, 0.1)';
       fgAccent = '#ff3cac';
     } else if (currentPage === 'story') {
-      glow1 = '#281a05'; // Volcanic / Warm Gold theme
-      glow2 = '#0c0802';
-      accent = 'rgba(255, 184, 0, 0.25)';
+      glow1 = '#faf6f0'; // Warm Ivory
+      glow2 = '#ecdcc9'; // Soft Champagne
+      accent = 'rgba(255, 184, 0, 0.08)';
       fgAccent = '#ffb800';
     }
 
@@ -407,7 +407,7 @@ export default function App() {
   const activeZoneTable = selectedZone ? ZONE_METADATA[selectedZone] : ZONE_METADATA.rooftop;
 
   return (
-    <div className="w-full min-h-screen overflow-x-hidden no-scrollbar bg-radial-[circle_at_center,_var(--bg-glow-color-1)_0%,_var(--bg-glow-color-2)_100%] text-[#e6e8ea] select-none relative pb-36 pt-1 md:pt-2">
+    <div className="w-full min-h-screen overflow-x-hidden no-scrollbar bg-radial-[circle_at_center,_var(--bg-glow-color-1)_0%,_var(--bg-glow-color-2)_100%] text-neutral-800 select-none relative pb-36 pt-1 md:pt-2">
       
       {/* Background modulators particles */}
       <MoodBackdrop />
@@ -428,7 +428,7 @@ export default function App() {
 
           {/* Router Nav tabs */}
           <div className="hidden lg:flex items-center gap-7 text-[12px] uppercase tracking-[0.20em] font-bold text-neutral-600">
-            {['home', 'ai-concierge', 'table-atmosphere', 'build-plate', 'waitlist', 'story', 'menu'].map((tab) => (
+            {['home', 'ai-concierge', 'table-atmosphere', 'build-plate', 'story', 'menu'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setCurrentPage(tab)}
@@ -490,8 +490,7 @@ export default function App() {
                   { page: 'ai-concierge', label: 'AI CHEF', code: '02' },
                   { page: 'table-atmosphere', label: 'LIVE MAP', code: '03' },
                   { page: 'build-plate', label: 'BUILD PLATE', code: '04' },
-                  { page: 'waitlist', label: 'WAITLIST', code: '05' },
-                  { page: 'story', label: 'STORY', code: '06' }
+                  { page: 'story', label: 'STORY', code: '05' }
                 ].map((item, idx) => (
                   <button
                     key={idx}
@@ -1068,110 +1067,7 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* PAGE 5: SMART WAITLIST */}
-          {currentPage === 'waitlist' && (
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.5 }} className="w-full min-h-[75vh] grid grid-cols-1 lg:grid-cols-12 gap-8 py-6">
-              
-              {/* Left Smart Waitlist Heatmap & Recharts */}
-              <div className="lg:col-span-7 luxury-glass p-6 rounded-[32px] flex flex-col gap-6 text-left relative overflow-hidden">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <span className="text-[8px] uppercase tracking-[0.25em] text-accent-glow font-black block">05 Smart Waitlist matrix</span>
-                    <h2 className="font-serif text-xl sm:text-2xl text-neutral-900 font-medium tracking-wide">Waitlist Insights</h2>
-                  </div>
-                  
-                  {/* Live occupancy percentage */}
-                  <div className="px-3.5 py-2 bg-accent-glow/10 border border-accent-glow/20 rounded-full flex flex-col items-center shadow-sm">
-                    <span className="text-[7px] text-accent-glow uppercase tracking-wider block font-bold">Live load</span>
-                    <span className="text-xs font-black text-neutral-900">78%</span>
-                  </div>
-                </div>
 
-                {/* Heatmap Area Chart */}
-                <div className="h-36 w-full p-2 bg-white/60 rounded-xl border border-white/80 shadow-sm">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={HOURLY_LOADS} margin={{ top: 0, right: 0, left: -40, bottom: 0 }}>
-                      <defs>
-                        <linearGradient id="neonG" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#b53cfe" stopOpacity={0.2}/>
-                          <stop offset="95%" stopColor="#b53cfe" stopOpacity={0}/>
-                        </linearGradient>
-                      </defs>
-                      <XAxis dataKey="hour" stroke="#888" fontSize={7} axisLine={false} tickLine={false} />
-                      <YAxis stroke="#888" fontSize={7} axisLine={false} tickLine={false} />
-                      <Area type="monotone" dataKey="occupancy" stroke="#b53cfe" fill="url(#neonG)" strokeWidth={1.5} />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-
-                <div className="grid grid-cols-3 gap-3 text-center">
-                  <div className="p-3 bg-white/60 rounded-xl border border-white/80 space-y-1 shadow-sm">
-                    <span className="text-[7.5px] uppercase tracking-widest text-neutral-500 font-black block">Current Wait</span>
-                    <span className="text-xs font-extrabold text-neutral-900">25-30 Mins</span>
-                  </div>
-                  <div className="p-3 bg-white/60 rounded-xl border border-white/80 space-y-1 shadow-sm">
-                    <span className="text-[7.5px] uppercase tracking-widest text-neutral-500 font-black block">People Ahead</span>
-                    <span className="text-xs font-extrabold text-neutral-900">14</span>
-                  </div>
-                  <div className="p-3 bg-white/60 rounded-xl border border-white/80 space-y-1 shadow-sm">
-                    <span className="text-[7.5px] uppercase tracking-widest text-neutral-500 font-black block">Estimated Table</span>
-                    <span className="text-xs font-extrabold text-neutral-900">8:45 PM</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Waitlist form registry inputs */}
-              <div className="lg:col-span-5 flex flex-col justify-center text-left">
-                {isWaitSubmitted ? (
-                  <div className="p-6 bg-white/60 rounded-[32px] border border-white/80 text-center space-y-3 flex flex-col items-center shadow-sm">
-                    <Check className="w-6 h-6 text-accent-glow animate-bounce" />
-                    <h4 className="font-serif text-lg text-neutral-900 font-medium tracking-wide">Queue Registry Confirmed</h4>
-                    <p className="text-[10px] text-neutral-600 font-light leading-relaxed">
-                      We have secured your profile inside virtual queues. We will send notifications when Table Dome ID aligns with party size.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleWaitlistRegister} className="p-6 bg-white/60 rounded-[32px] border border-white/80 space-y-4 shadow-sm">
-                    <div className="space-y-1 border-b border-white/10 pb-3">
-                      <h4 className="font-serif text-base text-neutral-900 font-medium tracking-wide">Register Virtual Queue</h4>
-                      <p className="text-[8px] uppercase tracking-widest text-accent-glow font-black">Smart Waitlist Queue</p>
-                    </div>
-
-                    <input
-                      type="text"
-                      required
-                      placeholder="Diner Name"
-                      value={waitlistFormData.name}
-                      onChange={(e) => setWaitlistFormData({ ...waitlistFormData, name: e.target.value })}
-                      className="w-full bg-white/80 border border-white/80 rounded-xl px-3 py-2.5 text-xs text-neutral-800 placeholder-neutral-400 outline-none focus:border-accent-glow/40 shadow-inner"
-                    />
-                    <input
-                      type="tel"
-                      required
-                      placeholder="Phone Line coordinates"
-                      value={waitlistFormData.phone}
-                      onChange={(e) => setWaitlistFormData({ ...waitlistFormData, phone: e.target.value })}
-                      className="w-full bg-white/80 border border-white/80 rounded-xl px-3 py-2.5 text-xs text-neutral-800 placeholder-neutral-400 outline-none shadow-inner"
-                    />
-                    <select
-                      value={waitlistFormData.partySize}
-                      onChange={(e) => setWaitlistFormData({ ...waitlistFormData, partySize: parseInt(e.target.value) })}
-                      className="w-full bg-white/80 border border-white/80 rounded-xl px-3 py-2.5 text-xs text-neutral-800 outline-none shadow-inner"
-                    >
-                      <option value="2">Party of 2 Guests</option>
-                      <option value="4">Party of 4 Guests</option>
-                      <option value="6">Party of 6 Guests</option>
-                    </select>
-
-                    <button type="submit" className="w-full py-3.5 bg-gradient-to-r from-accent-glow to-accent-glow/90 text-white rounded-xl text-[9px] font-extrabold uppercase tracking-widest shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 transition-all hover:scale-103 duration-300 cursor-pointer">
-                      Commit Queue Registry
-                    </button>
-                  </form>
-                )}
-              </div>
-
-            </motion.div>
-          )}
 
           {/* PAGE 6: OUR STORY (CINEMATIC SCROLLYTELLING OVERLAY) */}
           {currentPage === 'story' && (
