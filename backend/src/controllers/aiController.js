@@ -90,7 +90,7 @@ export const getAiRecommendation = async (req, res) => {
   const query = prompt.toLowerCase();
   const apiKey = process.env.GEMINI_API_KEY || 'AIzaSyBIHlfk6a_isHIN4caGKY5mQ76Mp5FAmvk';
 
-  if (apiKey) {
+  if (apiKey && apiKey !== 'AIzaSyBIHlfk6a_isHIN4caGKY5mQ76Mp5FAmvk') {
     try {
       console.log('🌌 Calling Google Gemini 2.5 Flash model for structured culinary content...');
       const response = await fetch(
@@ -157,43 +157,138 @@ export const getAiRecommendation = async (req, res) => {
         const parsedJson = JSON.parse(textResult);
         return res.json({ success: true, data: parsedJson });
       } else {
-        console.warn('Gemini response format error. Engaging local simulation fallback.');
+        if (data.error && data.error.message) {
+          console.warn(`⚠️ Gemini API error [${data.error.code}]: ${data.error.message}`);
+        } else {
+          console.warn('Gemini response format error. Engaging local simulation fallback.');
+        }
       }
     } catch (geminiError) {
       console.warn('Gemini invocation error:', geminiError.message);
     }
+  } else {
+    console.log('💡 Note: Default leaked Gemini API Key detected. Using local high-fidelity Gastronomer AI Engine. Provide a new GEMINI_API_KEY in backend/.env to unlock cloud-powered LLM generation.');
   }
 
-  // Bespoke Local Luxury Gastrobot Engine (Resilient offline fallback)
+  // Bespoke Local Dynamic Luxury Gastrobot Engine (Advanced Semantic Fallback)
   try {
-    let matchedDishes = [...LOCAL_AI_DISHES];
-    let introResponse = '';
+    // 1. Detect tokens & preferences
+    const isVeg = query.includes('veg') || query.includes('plant') || query.includes('paneer') || query.includes('broccoli') || query.includes('dosa') || query.includes('kulfi') || query.includes('lassi');
+    const isNonVeg = query.includes('chicken') || query.includes('non-veg') || query.includes('meat') || query.includes('poultry') || query.includes('butter chicken');
+    const isSpicy = query.includes('spicy') || query.includes('heat') || query.includes('hot') || query.includes('chili') || query.includes('pepper') || query.includes('warmth') || query.includes('tikka');
+    const isSweet = query.includes('sweet') || query.includes('dessert') || query.includes('sugar') || query.includes('kulfi') || query.includes('lassi') || query.includes('mango');
+    const isLight = query.includes('light') || query.includes('diet') || query.includes('low') || query.includes('calorie') || query.includes('calories') || query.includes('healthy') || query.includes('broccoli');
+    const isDrink = query.includes('drink') || query.includes('sip') || query.includes('brew') || query.includes('lassi') || query.includes('coffee') || query.includes('tea') || query.includes('beverage');
 
-    if (query.includes('spicy') || query.includes('heat') || query.includes('szechuan') || query.includes('hot')) {
-      matchedDishes = LOCAL_AI_DISHES.filter(d => d.spiceLevel > 0);
-      introResponse = 'For your palate that craves sophisticated warmth, our Chef recommends an exquisite journey defined by aromatic spice and balanced fires.';
-    } else if (query.includes('veg') || query.includes('plant') || query.includes('meatless') || query.includes('greens')) {
-      matchedDishes = LOCAL_AI_DISHES.filter(d => d.isVegetarian);
-      introResponse = 'An ode to nature’s pristine offerings. Discover our handcrafted plant-focused masterpieces designed to deliver clean, intense flavors.';
-    } else if (query.includes('coffee') || query.includes('drink') || query.includes('sip') || query.includes('brew') || query.includes('hydrosol')) {
-      matchedDishes = LOCAL_AI_DISHES.filter(d => d.name.includes('Lassi') || d.name.includes('Tikka'));
-      introResponse = 'Elevate your senses. Here is our curated selection of liquid infusions and micro-spherifications designed to complement premium roasts and cold brews.';
-    } else if (query.includes('calories') || query.includes('light') || query.includes('low') || query.includes('diet') || query.includes('300') || query.includes('500')) {
-      matchedDishes = LOCAL_AI_DISHES.filter(d => d.calories < 400);
-      introResponse = 'A light, ethereal selection crafted with molecular precision. Absolute luxury without heaviness, capturing clean culinary structures.';
-    } else if (query.includes('sweet') || query.includes('dessert') || query.includes('berry') || query.includes('sorbet') || query.includes('kulfi')) {
-      matchedDishes = LOCAL_AI_DISHES.filter(d => d.name.includes('Kulfi') || d.name.includes('Lassi'));
-      introResponse = 'Indulge in sweet sub-zero artistry, where temperature meets sugar in beautiful gaseous clouds of liquid nitrogen.';
-    } else {
-      matchedDishes = [LOCAL_AI_DISHES[0], LOCAL_AI_DISHES[1], LOCAL_AI_DISHES[4]];
-      introResponse = 'Welcome to L\'Étoile Horizon. I have composed a premium tasting sequence representing the absolute pinnacle of our current molecular gastronomy collection.';
+    // 2. Detect atmosphere mood
+    let detectedMood = 'evening';
+    if (query.includes('rain') || query.includes('storm') || query.includes('cozy') || query.includes('cloudy') || query.includes('thunder')) {
+      detectedMood = 'rainy';
+    } else if (query.includes('morning') || query.includes('breakfast') || query.includes('sunrise') || query.includes('day') || query.includes('lunch')) {
+      detectedMood = 'morning';
+    } else if (query.includes('celebrate') || query.includes('festive') || query.includes('party') || query.includes('birthday') || query.includes('anniversary') || query.includes('fun')) {
+      detectedMood = 'festive';
+    } else if (query.includes('romantic') || query.includes('date') || query.includes('love') || query.includes('couple') || query.includes('girlfriend') || query.includes('boyfriend')) {
+      detectedMood = 'romantic';
     }
+
+    // 3. Poetic sentence mapping
+    const greetings = [
+      "Welcome to the sensory realms of L'Étoile Horizon.",
+      "Greetings, honored diner. I have tuned our culinary frequencies to your request.",
+      "Salutations from the molecular cellar. I have successfully decoded your flavor coordinates.",
+      "Palate authorization verified. Our kitchen registers your precise gastronomic desire."
+    ];
+    
+    const moodSentences = {
+      rainy: "As warm rain glides past our starlight domes, our kitchen focuses on comforting, earth-grounding heat beds and smoky layers.",
+      morning: "Under the golden glow of a new celestial cycle, we emphasize bright, high-frequency hydration and airy structures.",
+      festive: "In celebration of your magnificent cosmic milestone, we have crafted a sequence of theatrical, gold-dusted, smoke-veiled textures.",
+      romantic: "To celebrate the intimate chemistry of your evening, we suggest a delicate progression of sensory, melt-in-mouth creations.",
+      evening: "As night descends over our New Delhi tower, we invite you to experience deep, rich dashi reductions and visual molecular art."
+    };
+
+    const prefSentences = [];
+    if (isVeg) {
+      prefSentences.push("Celebrating pristine vegetarian agriculture, we showcase deconstructed greens, hand-spun paneer, and crisp dosa crepes.");
+    }
+    if (isNonVeg) {
+      prefSentences.push("For your non-vegetarian preference, we feature high-pressure tenderized cuts and rich cashew-infused chicken reductions.");
+    }
+    if (isSpicy) {
+      prefSentences.push("We have calibrated our capsaicin fire levels to deliver an aromatic, sophisticated warmth that dances on the tongue.");
+    }
+    if (isSweet) {
+      prefSentences.push("To satisfy your desire for delicate sweetness, we offer liquid nitrogen-cooled kulfi and mango-spherified nectars.");
+    }
+    if (isLight) {
+      prefSentences.push("Focusing on light molecular alignment, this sequence delivers absolute aesthetic luxury under a clean energy budget.");
+    }
+    if (isDrink) {
+      prefSentences.push("We have curated exquisite paired infusions, matching high-frequency barley drafts and mango lassi pearls.");
+    }
+
+    const closings = [
+      "Discover below the perfect tasting path composed specifically for your palate.",
+      "Explore these masterworks, each fully loaded in your Plate Architect coordinates.",
+      "Here is your tailored molecular sequence. Load any dish below to begin.",
+      "Chef Marcus Vance has calibrated the following selections to match your vibration."
+    ];
+
+    const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+    const moodText = moodSentences[detectedMood] || moodSentences.evening;
+    const prefText = prefSentences.length > 0 ? prefSentences.join(" ") : "We have curated a balanced sequence of textures, smoke, and liquid spheres.";
+    const closing = closings[Math.floor(Math.random() * closings.length)];
+
+    const introResponse = `${greeting} ${moodText} ${prefText} ${closing}`;
+
+    // 4. Score and sort dishes
+    const scoredDishes = LOCAL_AI_DISHES.map(dish => {
+      let score = 0;
+      const nameLower = dish.name.toLowerCase();
+      const descLower = dish.description.toLowerCase();
+
+      // Keyword matches in name or description
+      if (query.includes(nameLower) || nameLower.includes(query)) score += 20;
+      dish.ingredients.forEach(ing => {
+        if (query.includes(ing.toLowerCase())) score += 8;
+      });
+
+      // Dietary matching
+      if (isVeg && dish.isVegetarian) score += 10;
+      if (isNonVeg && !dish.isVegetarian) score += 12;
+
+      // Flavor & category matching
+      if (isSpicy && dish.spiceLevel > 0) score += dish.spiceLevel * 5;
+      if (isSpicy && dish.spiceLevel === 0) score -= 5;
+
+      if (isSweet && dish.category === 'dessert') score += 15;
+      if (isSweet && dish.category === 'beverage') score += 8;
+
+      if (isLight && dish.calories < 200) score += 10;
+      if (isLight && dish.calories >= 400) score -= 8;
+
+      if (isDrink && dish.category === 'beverage') score += 20;
+
+      // Mood matching
+      if (detectedMood === 'rainy' && dish.mood === 'Cinematic Rainy') score += 6;
+      if (detectedMood === 'morning' && dish.mood === 'Zen Sunrise') score += 6;
+      if (detectedMood === 'festive' && dish.mood === 'Elegant Festive') score += 6;
+
+      return { ...dish, score };
+    });
+
+    // Sort descending by score, take top 3
+    const matchedDishes = scoredDishes
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3)
+      .map(({ score, ...rest }) => rest);
 
     res.json({
       success: true,
       data: {
         response: introResponse,
-        recommendations: matchedDishes.slice(0, 3)
+        recommendations: matchedDishes
       }
     });
   } catch (err) {
