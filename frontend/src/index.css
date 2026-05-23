@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Outfit', sans-serif;
+  
+  /* Highly original cinematic color palette */
+  --color-graphite: #1c1d21;      /* Deep graphite metallic */
+  --color-moonlight: #e6e8ea;     /* Moonlight silver */
+  --color-obsidian-blue: #080b11; /* Obsidian blue-black */
+  --color-copper: #c87a53;        /* Burnt copper */
+  --color-titanium: #2e3037;      /* Smoky titanium */
+  --color-espresso: #110e0c;      /* Deep espresso */
+  --color-ember: #f26419;         /* Warm ember orange */
+  --color-indigo-atm: #171d31;    /* Atmospheric indigo */
+  --color-champagne: #ecdcc9;     /* Muted champagne glow */
+}
+
+:root {
+  /* Dynamic Volumetric Space variables (LERPed on scroll) */
+  --bg-glow-color-1: #171d31;
+  --bg-glow-color-2: #080b11;
+  --accent-glow-color: rgba(230, 232, 234, 0.15);
+  --fg-accent-color: #e6e8ea;
+  
+  --glass-blur: 24px;
+}
+
+body {
+  background-color: var(--bg-glow-color-2) !important;
+  color: #e6e8ea !important;
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+  transition: background-color 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Premium Sci-fi Smoked Glass luxury Panel */
+.luxury-glass {
+  background: rgba(10, 12, 16, 0.65);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(230, 232, 234, 0.08);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px rgba(255, 255, 255, 0.04);
+  transition: background 1.5s ease, border 1.5s ease, box-shadow 1.5s ease;
+}
+
+/* Highly immersive Smoked Glass custom panels */
+.smoked-glass {
+  background: rgba(17, 15, 14, 0.75);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(200, 122, 83, 0.12);
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(255, 255, 255, 0.06);
+}
+
+/* Volumetric soft dynamic illumination glow */
+.luxury-glow {
+  box-shadow: 0 0 50px var(--accent-glow-color);
+  transition: box-shadow 1.5s ease;
+}
+
+/* Text Accent lighting transitions */
+.text-accent-glow {
+  color: var(--fg-accent-color);
+  transition: color 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.border-accent-glow {
+  border-color: var(--fg-accent-color);
+  transition: border-color 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-stroke-titanium {
+  -webkit-text-stroke: 1px rgba(230, 232, 234, 0.25);
+  color: transparent;
+}
+
+/* Cinematic corner vignette shroud for space cockpit / sensory theatre look */
+.cinematic-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(5, 7, 12, 0.85) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Volumetric slow-moving fog texture */
+.volumetric-fog {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.12;
+  mix-blend-mode: screen;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(242, 100, 25, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(77, 144, 254, 0.08) 0%, transparent 50%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
+  animation: fogDrift 35s infinite alternate ease-in-out;
+}
+
+@keyframes fogDrift {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.15);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translate(-30px, 20px) scale(0.95);
+    opacity: 0.08;
+  }
+}
+
+/* Dynamic moving light reflections keyframes */
+@keyframes atmosphericShift {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translate(100px, -150px) scale(1.3) rotate(20deg);
+    opacity: 0.55;
+  }
+  66% {
+    transform: translate(-60px, 80px) scale(0.85) rotate(-20deg);
+    opacity: 0.35;
+  }
+}
+
+.animate-atmospheric-shift {
+  animation: atmosphericShift 30s infinite alternate ease-in-out;
+}
+
+/* Premium micro-shimmer hover effect on buttons */
+.metallic-reflection {
+  position: relative;
+  overflow: hidden;
+}
+.metallic-reflection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(230, 232, 234, 0.18) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.metallic-reflection:hover::before {
+  left: 150%;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
