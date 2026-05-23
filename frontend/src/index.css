@@ -203,3 +203,8 @@ h1, h2, h3, h4, h5, h6, .font-serif {
   box-shadow: 0 0 35px rgba(255, 184, 0, 0.25);
   border-color: rgba(255, 184, 0, 0.3) !important;
 }
+
+.neon-swiggy-glow {
+  box-shadow: 0 0 35px rgba(255, 82, 0, 0.35);
+  border-color: rgba(255, 82, 0, 0.4) !important;
+}

@@ -67,6 +67,25 @@ export default function App() {
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [contactSubmitted, setContactSubmitted] = useState(false);
 
+  // Swiggy Hyperspeed dispatch states
+  const [swiggyDispatched, setSwiggyDispatched] = useState(false);
+  const [swiggyTimer, setSwiggyTimer] = useState(30);
+
+  useEffect(() => {
+    let interval;
+    if (swiggyDispatched && swiggyTimer > 0) {
+      interval = setInterval(() => {
+        setSwiggyTimer((prev) => prev - 1);
+      }, 1000);
+    } else if (swiggyTimer === 0) {
+      setTimeout(() => {
+        setSwiggyDispatched(false);
+        setSwiggyTimer(30);
+      }, 4000);
+    }
+    return () => clearInterval(interval);
+  }, [swiggyDispatched, swiggyTimer]);
+
   // Admin and menus list
   const [menuItems, setMenuItems] = useState([]);
   const [adminBookings, setAdminBookings] = useState([]);
@@ -388,7 +407,7 @@ export default function App() {
   const activeZoneTable = selectedZone ? ZONE_METADATA[selectedZone] : ZONE_METADATA.rooftop;
 
   return (
-    <div className="w-full min-h-screen overflow-x-hidden no-scrollbar bg-radial-[circle_at_center,_var(--bg-glow-color-1)_0%,_var(--bg-glow-color-2)_100%] text-[#e6e8ea] select-none relative pb-28">
+    <div className="w-full min-h-screen overflow-x-hidden no-scrollbar bg-radial-[circle_at_center,_var(--bg-glow-color-1)_0%,_var(--bg-glow-color-2)_100%] text-[#e6e8ea] select-none relative pb-36 pt-4 md:pt-8">
       
       {/* Background modulators particles */}
       <MoodBackdrop />
@@ -399,7 +418,7 @@ export default function App() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] rounded-full border border-white/5 bg-radial-[circle_at_center,_rgba(230,232,234,0.03)_0%,_transparent_75%] pointer-events-none mix-blend-screen opacity-40 z-0 animate-atmospheric-shift" />
 
       {/* TOP HEADER */}
-      <header className="sticky top-6 left-0 right-0 w-[92%] max-w-7xl mx-auto z-40 pointer-events-auto">
+      <header className="sticky top-8 md:top-10 left-0 right-0 w-[92%] max-w-7xl mx-auto z-40 pointer-events-auto">
         <div className="luxury-glass luxury-glow rounded-full px-6 py-4 flex items-center justify-between">
           
           <button onClick={() => setCurrentPage('home')} className="flex flex-col items-start gap-0.5 cursor-pointer text-left border-none bg-transparent">
@@ -1663,6 +1682,263 @@ export default function App() {
 
         </AnimatePresence>
       </div>
+
+      {/* ========================================================
+          BRAND EXPERIENCE MASTER FOOTER & DELIVERY PORTAL
+          ======================================================== */}
+      {currentPage !== 'build-plate' && currentPage !== 'table-atmosphere' && currentPage !== 'story' && (
+        <section className="w-full max-w-7xl mx-auto px-6 mt-24 mb-32 relative z-20 border-t border-white/5 pt-16 text-left">
+          
+          {/* Header of Master Footer */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end mb-16">
+            <div>
+              <span className="text-[9px] tracking-[0.5em] uppercase font-bold text-accent-glow block mb-2">✦ COGNITIVE CULINARY SUITE</span>
+              <h2 className="font-serif text-3xl md:text-4xl text-white font-light tracking-wide leading-tight">
+                An Atmosphere Crafted <br />
+                <span className="italic text-[#ecdcc9]">Beyond the Physical Dimension.</span>
+              </h2>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6 justify-start md:justify-end text-xs text-gray-400 font-light">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
+                <span>Atmospheric Shields: Stable</span>
+              </div>
+              <div className="flex items-center gap-2 border-l border-white/10 pl-0 sm:pl-6">
+                <span className="w-2 h-2 rounded-full bg-accent-glow animate-pulse" />
+                <span>Drone Dispatches Active: India Grid</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CULINARY REVIEWS AND TESTIMONIALS */}
+          <div className="space-y-6 mb-20">
+            <div>
+              <span className="text-[8px] tracking-[0.4em] uppercase font-extrabold text-gray-500 block">✧ SECTOR CRITIC CHRONICLES</span>
+              <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-white block mt-0.5">ELITE GASTRONOMY LOGS</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Review 1 */}
+              <div className="luxury-glass neon-purple-glow rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-1 text-accent-glow">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-xs">✦</span>
+                    ))}
+                  </div>
+                  <p className="text-xs text-gray-300 font-light tracking-wide leading-relaxed italic">
+                    "L'Étoile Horizon is not merely a meal; it is a profound journey into the 2045 frontier of molecular physics. The levitating courses are a sensory climax."
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
+                  <span className="text-white">THE MICHELIN GUIDE</span>
+                  <span className="text-accent-glow font-extrabold">✦ ✦ ✦</span>
+                </div>
+              </div>
+
+              {/* Review 2 */}
+              <div className="luxury-glass neon-blue-glow rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-1 text-accent-glow">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-xs">✦</span>
+                    ))}
+                  </div>
+                  <p className="text-xs text-gray-300 font-light tracking-wide leading-relaxed italic">
+                    "A breathtaking synthesis of luxury sci-fi lounge architecture and flavor chemistry. Aura, the AI sommelier, selected a pairing that redefined my palate."
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
+                  <span className="text-white">GALACTIC EPICUREAN REPORT</span>
+                  <span className="text-accent-glow">NEW DELHI</span>
+                </div>
+              </div>
+
+              {/* Review 3 */}
+              <div className="luxury-glass neon-gold-glow rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-1 text-[#ffb800]">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-xs">✦</span>
+                    ))}
+                  </div>
+                  <p className="text-xs text-gray-300 font-light tracking-wide leading-relaxed italic">
+                    "Chef Marcus Vance has created a molecular sanctuary. The Saffron Net Tuiles and truffle bubble net are masterpieces that belong in a digital museum."
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
+                  <span className="text-white">LE MONDE GASTRONOMIQUE</span>
+                  <span className="text-[#ffb800]">PARIS</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* SWIGGY DELIVERY INTEGRATION MODULE */}
+          <div className="luxury-glass neon-swiggy-glow rounded-[32px] p-6 sm:p-8 relative overflow-hidden mb-16">
+            
+            {/* Ambient background decoration glows */}
+            <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#FF5200]/15 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-accent-glow/5 blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              
+              {/* Left col - swiggy info / capsules */}
+              <div className="lg:col-span-7 space-y-6 text-left">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-gradient-to-r from-[#FF5200] to-[#FF7E00] text-black font-extrabold text-[8px] uppercase tracking-widest px-2 py-0.5 rounded-md animate-pulse">
+                      Live Delivery Dispatch
+                    </span>
+                    <span className="text-[8.5px] uppercase tracking-[0.3em] font-bold text-gray-400">✧ Order on Swiggy</span>
+                  </div>
+                  <h3 className="font-serif text-2xl sm:text-3xl text-white font-medium tracking-wide">
+                    Transmit Tasting Capsules to Your Coordinates
+                  </h3>
+                  <p className="text-xs font-light text-gray-400 leading-relaxed max-w-xl">
+                    Experience our three-starred Michelin tasting program in the comfort of your private space block. Dispatched in thermal-stabilized magnetic shield capsules directly through our priority Swiggy courier drones.
+                  </p>
+                </div>
+
+                {/* Listing of delivery items */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+                  {[
+                    { name: 'Saffron Net Cod Capsule', desc: 'Cod in warm saffron glaze', price: 1250 },
+                    { name: 'Smoked Truffle Tofu Capsule', desc: 'Liquid-nitrogen infused tofu', price: 890 },
+                    { name: 'Nebula Citrus Elixir', desc: 'Shifting hydration nectar', price: 420 }
+                  ].map((capsule, i) => (
+                    <div key={i} className="p-3.5 bg-white/3 border border-white/5 rounded-2xl flex flex-col justify-between">
+                      <div>
+                        <span className="text-[9.5px] font-bold text-white block text-left">{capsule.name}</span>
+                        <span className="text-[8.5px] text-gray-500 font-light block mt-0.5 text-left">{capsule.desc}</span>
+                      </div>
+                      <span className="text-[10px] font-bold text-[#FF7E00] block mt-3 text-left">₹{capsule.price}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right col - Swiggy controls */}
+              <div className="lg:col-span-5 w-full bg-black/35 rounded-2xl border border-white/5 p-5.5 space-y-4">
+                
+                {/* Visual interface for dispatching */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center text-[9px] uppercase tracking-wider font-bold">
+                    <span className="text-gray-500">Destination Coordinate</span>
+                    <span className="text-accent-glow animate-pulse">Auto-Locking Grid</span>
+                  </div>
+                  <div className="bg-white/5 border border-white/8 rounded-xl px-4 py-2.5 flex items-center justify-between text-xs text-white">
+                    <span className="font-mono text-[10px] tracking-widest text-[#FF7E00]">DELHI-NCR // SUITE-2045-A</span>
+                    <MapPin className="w-3.5 h-3.5 text-[#FF7E00] animate-bounce" />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-[8px] uppercase tracking-widest font-extrabold text-gray-500">
+                    <span>Drone Containment Shields</span>
+                    <span>100% Calibrated</span>
+                  </div>
+                  <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                    <motion.div animate={{ width: ['20%', '100%'] }} transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }} className="h-full bg-gradient-to-r from-[#FF5200] to-[#FF7E00] rounded-full" />
+                  </div>
+                </div>
+
+                {/* Action button */}
+                <div className="pt-2">
+                  {!swiggyDispatched ? (
+                    <button
+                      onClick={() => {
+                        setSwiggyDispatched(true);
+                        setSwiggyTimer(30);
+                      }}
+                      className="w-full py-4.5 bg-gradient-to-r from-[#FF5200] to-[#FF7E00] hover:from-[#FF7E00] hover:to-[#FF5200] text-black font-extrabold uppercase text-[10px] tracking-widest rounded-xl transition-all hover:scale-103 duration-300 cursor-pointer shadow-lg shadow-[#FF5200]/15 flex items-center justify-center gap-2"
+                    >
+                      <Sparkles className="w-3.5 h-3.5 animate-spin-slow text-black" />
+                      DISPATCH ORDER ON SWIGGY
+                    </button>
+                  ) : (
+                    <div className="p-4 bg-[#FF5200]/10 border border-[#FF5200]/30 rounded-xl text-center space-y-2.5">
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="w-2 h-2 bg-[#FF5200] rounded-full animate-ping" />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-[#FF7E00] animate-pulse">
+                          Transmission Dispatched!
+                        </span>
+                      </div>
+                      
+                      {swiggyTimer > 0 ? (
+                        <p className="text-[10.5px] text-white font-light">
+                          Hyper-Drone Launch Complete. Flight countdown: <span className="font-mono font-bold text-[#FF7E00] bg-white/5 px-2 py-0.5 rounded ml-1">{swiggyTimer}s</span>
+                        </p>
+                      ) : (
+                        <div className="space-y-1">
+                          <p className="text-[10.5px] text-green-400 font-bold uppercase tracking-wide text-center">
+                            ✓ Capsule Deployed Successfully!
+                          </p>
+                          <p className="text-[9px] text-gray-400 font-light text-center">
+                            Atmospheric seals broke. Dispatched at New Delhi Coordinates.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <p className="text-[8px] text-gray-500 text-center font-bold tracking-widest uppercase">
+                  ✧ Please consume molecular dishes within 25 standard time cycles.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* BOTTOM DETAILED CO-ORDINATES INFO */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-white/5 text-xs text-gray-500 font-light">
+            <div className="space-y-3">
+              <span className="text-[9px] uppercase tracking-widest text-white font-bold block">Physical Coordinates</span>
+              <p className="leading-relaxed">
+                Suite 2045, Horizon Tower,<br />
+                Vasant Kunj, New Delhi,<br />
+                India Grid
+              </p>
+            </div>
+            
+            <div className="space-y-3">
+              <span className="text-[9px] uppercase tracking-widest text-white font-bold block">Temporal Cycles</span>
+              <p className="leading-relaxed">
+                Daily Operations: 18:00 - 24:00<br />
+                Reservations Lock: 2 Cycles Prior<br />
+                Seating Capacities Locked
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <span className="text-[9px] uppercase tracking-widest text-white font-bold block">Subsystems</span>
+              <div className="flex flex-col gap-1.5 font-bold uppercase text-[8px] tracking-widest text-accent-glow">
+                <button onClick={() => setCurrentPage('reservations')} className="hover:text-white text-left transition-colors cursor-pointer">DOME STATUS</button>
+                <button onClick={() => setCurrentPage('about-chef')} className="hover:text-white text-left transition-colors cursor-pointer">THE CREATIVE HEARTH</button>
+                <button onClick={() => setCurrentPage('menu')} className="hover:text-white text-left transition-colors cursor-pointer">MOLECULAR CATALOG</button>
+              </div>
+            </div>
+
+            <div className="space-y-3 flex flex-col justify-between items-start">
+              <div>
+                <span className="text-[9px] uppercase tracking-widest text-white font-bold block mb-1">Accréditation</span>
+                <span className="px-2.5 py-0.5 border border-white/10 rounded-full text-[8.5px] uppercase tracking-widest text-gray-400 block w-fit">
+                  Security Checked
+                </span>
+              </div>
+              <span className="text-[8px] uppercase tracking-widest text-gray-600 block mt-4 font-bold">
+                L'ÉTOILE HORIZON © 2045
+              </span>
+            </div>
+          </div>
+
+        </section>
+      )}
 
       {/* ========================================================
           FLOATING GLASS FOOTER NAVIGATION BAR (Sticky at Bottom)
