@@ -139,34 +139,34 @@ export default function App() {
     if (token) fetchReservations();
   }, [token, setReservedTables]);
 
-  // Dynamic Neon Background Accent lights shifter
+  // Dynamic Light Background Accent shifter
   useEffect(() => {
     const root = document.documentElement;
-    let glow1 = '#0a0f1c'; // Deep Navy
-    let glow2 = '#04060c'; // Obsidian blue-black
-    let accent = 'rgba(181, 60, 254, 0.2)'; // Cosmic Purple
-    let fgAccent = '#b53cfe';
+    let glow1 = '#f0f4ff'; // Frost
+    let glow2 = '#faf6f0'; // Ivory
+    let accent = 'rgba(168, 85, 247, 0.08)';
+    let fgAccent = '#a855f7';
 
     if (currentPage === 'ai-concierge') {
-      glow1 = '#061320'; // Electric Blue theme
-      glow2 = '#02060b';
-      accent = 'rgba(0, 229, 255, 0.25)';
-      fgAccent = '#00e5ff';
+      glow1 = '#e2eafc'; // Moonlight Blue
+      glow2 = '#f0f4ff';
+      accent = 'rgba(6, 182, 212, 0.1)';
+      fgAccent = '#06b6d4';
     } else if (currentPage === 'table-atmosphere') {
-      glow1 = '#150620'; // Neon Purple theme
-      glow2 = '#04020a';
-      accent = 'rgba(181, 60, 254, 0.28)';
-      fgAccent = '#b53cfe';
+      glow1 = '#f3e8ff'; // Lavender
+      glow2 = '#f8f9fa';
+      accent = 'rgba(168, 85, 247, 0.1)';
+      fgAccent = '#a855f7';
     } else if (currentPage === 'build-plate') {
-      glow1 = '#200615'; // Neon Pink theme
-      glow2 = '#080205';
-      accent = 'rgba(255, 60, 172, 0.28)';
-      fgAccent = '#ff3cac';
+      glow1 = '#fce7f3'; // Rose
+      glow2 = '#faf6f0';
+      accent = 'rgba(236, 72, 153, 0.1)';
+      fgAccent = '#ec4899';
     } else if (currentPage === 'story') {
-      glow1 = '#281a05'; // Volcanic / Warm Gold theme
-      glow2 = '#0c0802';
-      accent = 'rgba(255, 184, 0, 0.25)';
-      fgAccent = '#ffb800';
+      glow1 = '#fef3c7'; // Warm Champagne
+      glow2 = '#faf6f0';
+      accent = 'rgba(249, 115, 22, 0.08)';
+      fgAccent = '#f97316';
     }
 
     root.style.setProperty('--bg-glow-color-1', glow1);
@@ -407,7 +407,7 @@ export default function App() {
   const activeZoneTable = selectedZone ? ZONE_METADATA[selectedZone] : ZONE_METADATA.rooftop;
 
   return (
-    <div className="w-full min-h-screen overflow-x-hidden no-scrollbar bg-radial-[circle_at_center,_var(--bg-glow-color-1)_0%,_var(--bg-glow-color-2)_100%] text-[#e6e8ea] select-none relative pb-36 pt-1 md:pt-2">
+    <div className="w-full min-h-screen overflow-x-hidden no-scrollbar bg-gradient-to-b from-[var(--bg-glow-color-1)] via-white to-[var(--bg-glow-color-2)] text-gray-800 select-none relative pb-36 pt-1 md:pt-2">
       
       {/* Background modulators particles */}
       <MoodBackdrop />
@@ -415,14 +415,14 @@ export default function App() {
       <div className="cinematic-vignette" />
 
       {/* Floating Center Glow Shifter */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] rounded-full border border-white/5 bg-radial-[circle_at_center,_rgba(230,232,234,0.03)_0%,_transparent_75%] pointer-events-none mix-blend-screen opacity-40 z-0 animate-atmospheric-shift" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] rounded-full border border-gray-200/30 bg-radial-[circle_at_center,_rgba(168,85,247,0.03)_0%,_transparent_75%] pointer-events-none opacity-40 z-0 animate-atmospheric-shift" />
 
       {/* TOP HEADER */}
       <header className="sticky top-3 md:top-4 left-0 right-0 w-[92%] max-w-7xl mx-auto z-40 pointer-events-auto">
         <div className="luxury-glass luxury-glow rounded-full px-6 py-4 flex items-center justify-between">
           
           <button onClick={() => setCurrentPage('home')} className="flex flex-col items-start gap-0.5 cursor-pointer text-left border-none bg-transparent">
-            <span className="font-serif text-base tracking-[0.25em] font-medium text-white">L'ÉTOILE HORIZON</span>
+            <span className="font-serif text-base tracking-[0.25em] font-medium text-gray-800">L'ÉTOILE HORIZON</span>
             <span className="text-[7.5px] tracking-[0.32em] uppercase font-semibold text-accent-glow">✧ ✧ ✧ molecular culinary suite</span>
           </button>
 
@@ -432,7 +432,7 @@ export default function App() {
               <button
                 key={tab}
                 onClick={() => setCurrentPage(tab)}
-                className={`transition-colors cursor-pointer ${currentPage === tab ? 'text-accent-glow font-bold animate-pulse' : 'hover:text-white'}`}
+                className={`transition-colors cursor-pointer ${currentPage === tab ? 'text-accent-glow font-bold' : 'hover:text-gray-800'}`}
               >
                 {tab.replace('-', ' ')}
               </button>
@@ -442,7 +442,7 @@ export default function App() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setCurrentPage('table-atmosphere')}
-              className="flex items-center gap-1.5 border border-accent-glow/40 hover:border-accent-glow px-4.5 py-2 rounded-full font-medium tracking-wider text-[9px] uppercase text-accent-glow hover:bg-white/5 transition-all hover:scale-105 cursor-pointer"
+              className="flex items-center gap-1.5 border border-accent-glow/40 hover:border-accent-glow px-4.5 py-2 rounded-full font-medium tracking-wider text-[9px] uppercase text-accent-glow hover:bg-accent-glow/5 transition-all hover:scale-105 cursor-pointer"
             >
               <Calendar className="w-3 h-3 text-accent-glow" />
               Reserve Table
@@ -450,22 +450,22 @@ export default function App() {
 
             {isAuthenticated ? (
               <div className="flex items-center gap-2.5">
-                <button onClick={() => setCurrentPage('profile')} className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[8.5px] uppercase tracking-wider text-gray-300 cursor-pointer">
+                <button onClick={() => setCurrentPage('profile')} className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/60 border border-gray-200 text-[8.5px] uppercase tracking-wider text-gray-600 cursor-pointer">
                   <User className="w-2.8 h-2.8 text-accent-glow" />
                   <span>{user?.name.split(' ')[0]}</span>
                 </button>
                 {user?.role === 'admin' && (
-                  <button onClick={handleOpenAdminTerminal} className="p-2 rounded-full hover:bg-white/5 border border-accent-glow/20 text-accent-glow cursor-pointer">
+                  <button onClick={handleOpenAdminTerminal} className="p-2 rounded-full hover:bg-accent-glow/5 border border-accent-glow/20 text-accent-glow cursor-pointer">
                     <Terminal className="w-3.5 h-3.5" />
                   </button>
                 )}
-                <button onClick={logout} className="p-2 rounded-full hover:bg-white/5 border border-red-500/20 text-red-400 cursor-pointer">
+                <button onClick={logout} className="p-2 rounded-full hover:bg-red-50 border border-red-200 text-red-400 cursor-pointer">
                   <LogOut className="w-3.5 h-3.5" />
                 </button>
               </div>
             ) : (
-              <button onClick={() => setCurrentPage('login')} className="bg-gradient-to-r from-accent-glow/85 to-accent-glow text-black px-4 py-2 rounded-full font-bold uppercase tracking-wider text-[8.5px] transition-all hover:scale-105 cursor-pointer shadow-md shadow-accent-glow/5">
-                Accréditation
+              <button onClick={() => setCurrentPage('login')} className="bg-gradient-to-r from-accent-glow to-accent-glow/85 text-white px-4 py-2 rounded-full font-bold uppercase tracking-wider text-[8.5px] transition-all hover:scale-105 cursor-pointer shadow-md shadow-accent-glow/15">
+                Sign In
               </button>
             )}
           </div>
@@ -500,7 +500,7 @@ export default function App() {
                   >
                     <span className="text-[9px] font-extrabold tracking-widest text-accent-glow/55 group-hover:text-accent-glow transition-all">{item.code}</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-glow/30 group-hover:bg-accent-glow group-hover:scale-150 transition-all duration-300" />
-                    <span className="text-[8px] uppercase tracking-[0.25em] text-gray-500 group-hover:text-white transition-all font-bold">{item.label}</span>
+                    <span className="text-[8px] uppercase tracking-[0.25em] text-gray-400 group-hover:text-gray-800 transition-all font-bold">{item.label}</span>
                   </button>
                 ))}
               </div>
@@ -508,19 +508,19 @@ export default function App() {
               {/* Central Title Details */}
               <div className="flex flex-col items-start text-left gap-6 max-w-xl">
                 <span className="text-[9px] tracking-[0.60em] uppercase font-bold text-accent-glow animate-pulse">AN IMPOSSIBLE LUXURY EXPERIENCE</span>
-                <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.98] tracking-tight font-extralight text-white">
-                  <span className="bg-gradient-to-b from-[#e6e8ea] via-[#ecdcc9] to-accent-glow bg-clip-text text-transparent italic font-light">BEYOND</span>
+                <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.98] tracking-tight font-extralight text-gray-800">
+                  <span className="bg-gradient-to-b from-gray-800 via-[#ecdcc9] to-accent-glow bg-clip-text text-transparent italic font-light">BEYOND</span>
                   <br />
                   <span className="text-[1.02em] uppercase font-light tracking-[0.15em] block mt-1">THE ORDINARY</span>
                 </h1>
-                <p className="text-[11px] md:text-xs font-light tracking-[0.14em] max-w-md leading-relaxed text-gray-400">
+                <p className="text-[11px] md:text-xs font-light tracking-[0.14em] max-w-md leading-relaxed text-gray-500">
                   Step into a world where culinary art meets futuristic imagination. Every detail. Every flavor. Crafted beyond limits.
                 </p>
                 <div className="flex gap-4 items-center mt-2 pointer-events-auto">
-                  <button onClick={() => setCurrentPage('table-atmosphere')} className="flex items-center gap-2 bg-gradient-to-r from-accent-glow/85 to-accent-glow text-black px-6 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] shadow-2xl transition-all hover:scale-105 cursor-pointer hover:shadow-accent-glow/15">
+                  <button onClick={() => setCurrentPage('table-atmosphere')} className="flex items-center gap-2 bg-gradient-to-r from-accent-glow to-accent-glow/85 text-white px-6 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] shadow-2xl transition-all hover:scale-105 cursor-pointer hover:shadow-accent-glow/20">
                     Explore Experience
                   </button>
-                  <button onClick={() => setCurrentPage('story')} className="flex items-center gap-2 bg-white/5 text-accent-glow border border-accent-glow/30 hover:border-accent-glow px-6 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] backdrop-blur-md transition-all hover:scale-105 cursor-pointer">
+                  <button onClick={() => setCurrentPage('story')} className="flex items-center gap-2 bg-white/60 text-accent-glow border border-accent-glow/30 hover:border-accent-glow px-6 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] backdrop-blur-md transition-all hover:scale-105 cursor-pointer">
                     <Play className="w-3.5 h-3.5 fill-current" />
                     Begin Story
                   </button>
@@ -529,24 +529,24 @@ export default function App() {
 
               {/* Center levitating dish plate */}
               <div className="relative flex-1 max-w-md h-[400px] flex items-center justify-center">
-                <div className="absolute w-[200px] h-[15px] bg-black/60 rounded-full blur-md bottom-12 animate-pulse opacity-50" />
+                <div className="absolute w-[200px] h-[15px] bg-gray-300/40 rounded-full blur-md bottom-12 animate-pulse opacity-50" />
                 <motion.div animate={{ y: [0, -18, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="relative z-10 w-[260px] h-[260px] lg:w-[320px] lg:h-[320px] flex items-center justify-center">
                   <div className="absolute inset-0 rounded-full border border-accent-glow/20 animate-spin-slow scale-105" />
                   <div className="absolute inset-2.5 rounded-full border border-dashed border-accent-glow/30 animate-pulse scale-95" />
                   
-                  <div className="absolute top-4 left-10 w-2 h-2 rounded-full bg-white/30 blur-[1px] animate-bounce opacity-40" />
-                  <div className="absolute bottom-10 right-4 w-1.5 h-1.5 rounded-full bg-white/20 blur-[1px] animate-pulse opacity-50" />
+                  <div className="absolute top-4 left-10 w-2 h-2 rounded-full bg-accent-glow/30 blur-[1px] animate-bounce opacity-40" />
+                  <div className="absolute bottom-10 right-4 w-1.5 h-1.5 rounded-full bg-accent-glow/20 blur-[1px] animate-pulse opacity-50" />
 
-                  <div className="w-[190px] h-[190px] lg:w-[250px] lg:h-[250px] rounded-full overflow-hidden border border-white/15 bg-radial-[circle_at_center,_rgba(0,0,0,0.85)_0%,_rgba(10,10,10,1)_95%] shadow-2xl relative">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Molecular Course" className="object-cover w-full h-full opacity-85 rotate-12 scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/10" />
+                  <div className="w-[190px] h-[190px] lg:w-[250px] lg:h-[250px] rounded-full overflow-hidden border border-white/40 bg-gradient-to-b from-white/80 to-gray-100 shadow-2xl relative">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Molecular Course" className="object-cover w-full h-full opacity-90 rotate-12 scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-white/10" />
                   </div>
                 </motion.div>
               </div>
 
               {/* Sound wave waves bottom left */}
               <div className="absolute bottom-8 left-12 flex items-center gap-3.5 pointer-events-auto z-30">
-                <button onClick={() => setSoundOn(!soundOn)} className="flex items-center gap-2 bg-white/5 border border-white/10 hover:border-accent-glow/40 px-3.5 py-2.5 rounded-full text-accent-glow hover:text-white transition-all cursor-pointer">
+                <button onClick={() => setSoundOn(!soundOn)} className="flex items-center gap-2 bg-white/60 border border-gray-200 hover:border-accent-glow/40 px-3.5 py-2.5 rounded-full text-accent-glow hover:text-gray-800 transition-all cursor-pointer">
                   <Music className="w-3.5 h-3.5" />
                   <span className="text-[8px] uppercase tracking-widest font-bold">Sound {soundOn ? 'ON' : 'OFF'}</span>
                 </button>
@@ -566,26 +566,26 @@ export default function App() {
               
               {/* Left conversational chat logs */}
               <div className="lg:col-span-7 luxury-glass neon-blue-glow p-6 rounded-[32px] flex flex-col justify-between min-h-[500px] text-left relative overflow-hidden">
-                <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-4">
+                <div className="flex items-center justify-between border-b border-gray-200 pb-4 mb-4">
                   <div className="flex items-center gap-3">
                     {/* Animated Holographic AI Orb */}
-                    <div className="relative w-12 h-12 rounded-full border border-electric-blue/40 flex items-center justify-center bg-black/60 overflow-hidden shadow-lg shadow-electric-blue/10">
+                    <div className="relative w-12 h-12 rounded-full border border-holographic-blue/40 flex items-center justify-center bg-gradient-to-br from-holographic-blue/10 to-white/60 overflow-hidden shadow-lg shadow-holographic-blue/10">
                       <div className="absolute w-[80%] h-[80%] rounded-full border border-dashed border-electric-blue/35 animate-spin-slow" />
                       <div className="w-6 h-6 rounded-full bg-radial-[circle_at_center,_rgba(0,229,255,0.75)_0%,_transparent_65%] animate-pulse" />
                     </div>
                     <div>
-                      <h3 className="font-serif text-base tracking-wider text-white">Aura AI</h3>
+                      <h3 className="font-serif text-base tracking-wider text-gray-800">Aura AI</h3>
                       <p className="text-[7.5px] tracking-widest text-electric-blue uppercase font-bold">Molecular Sommelier</p>
                     </div>
                   </div>
-                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[8px] uppercase tracking-wider font-semibold text-gray-300">Live Concierge</span>
+                  <span className="px-3 py-1 bg-gray-50/80 border border-gray-200 rounded-full text-[8px] uppercase tracking-wider font-semibold text-gray-500">Live Concierge</span>
                 </div>
 
                 <div className="flex-1 overflow-y-auto space-y-4 pr-2 no-scrollbar max-h-[300px]">
                   {aiChat.map((msg, idx) => (
                     <div key={idx} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'} gap-1`}>
                       <span className="text-[8px] uppercase tracking-widest text-gray-500 font-bold">{msg.role === 'user' ? 'Your Palate' : 'Aura'}</span>
-                      <div className={`p-3.5 rounded-2xl max-w-[85%] text-[10.5px] leading-relaxed text-left ${msg.role === 'user' ? 'bg-electric-blue/15 text-white border border-electric-blue/20' : 'bg-white/5 border border-white/5 text-gray-300'}`}>
+                      <div className={`p-3.5 rounded-2xl max-w-[85%] text-[10.5px] leading-relaxed text-left ${msg.role === 'user' ? 'bg-electric-blue/15 text-gray-800 border border-electric-blue/20' : 'bg-white/40 border border-gray-200 text-gray-600'}`}>
                         {msg.content}
                       </div>
                     </div>
@@ -593,14 +593,14 @@ export default function App() {
                   {aiLoading && <div className="text-left text-[8px] text-electric-blue uppercase tracking-widest animate-pulse font-bold">Decoding gastronomic nodes...</div>}
                 </div>
 
-                <form onSubmit={handleAiAsk} className="flex gap-2 border-t border-white/5 pt-4 mt-4">
+                <form onSubmit={handleAiAsk} className="flex gap-2 border-t border-gray-200 pt-4 mt-4">
                   <input
                     type="text"
                     required
                     value={aiInput}
                     onChange={(e) => setAiInput(e.target.value)}
                     placeholder="Tell Aura your mood or capsaicin cravings..."
-                    className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white placeholder-gray-600 outline-none focus:border-electric-blue/40 transition-all"
+                    className="flex-1 bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-3 text-xs text-gray-800 placeholder-gray-400 outline-none focus:border-electric-blue/40 transition-all"
                   />
                   <button type="submit" className="p-3 bg-electric-blue text-black rounded-xl hover:bg-electric-blue/90 transition-all cursor-pointer">
                     <Send className="w-4 h-4" />
@@ -614,13 +614,13 @@ export default function App() {
 
                 <div className="grid grid-cols-1 gap-3.5 overflow-y-auto no-scrollbar max-h-[460px] pr-1">
                   {aiSuggestions.map((rec, rIdx) => (
-                    <div key={rIdx} className="p-4 bg-black/45 rounded-2xl border border-white/5 relative overflow-hidden flex flex-col justify-between gap-3 group">
+                    <div key={rIdx} className="p-4 bg-white/50 border border-gray-200 relative overflow-hidden flex flex-col justify-between gap-3 group">
                       
                       <div className="flex justify-between items-start gap-4">
                         <div className="space-y-1">
-                          <h4 className="font-serif text-sm sm:text-base text-white tracking-wide">{rec.name}</h4>
+                          <h4 className="font-serif text-sm sm:text-base text-gray-800 tracking-wide">{rec.name}</h4>
                           <div className="flex flex-wrap gap-1.5">
-                            <span className="text-[7px] bg-red-950/40 border border-red-500/20 px-1.5 py-0.5 rounded font-bold text-red-400 uppercase tracking-widest">
+                            <span className="text-[7px] bg-red-50 border border-red-200 px-1.5 py-0.5 rounded font-bold text-red-500 uppercase tracking-widest">
                               ✧ Spicy
                             </span>
                             <span className="text-[7px] bg-white/5 px-1.5 py-0.5 rounded text-gray-400 font-semibold">
@@ -635,7 +635,7 @@ export default function App() {
                         {rec.description}
                       </p>
 
-                      <div className="border-t border-white/5 pt-2.5 flex items-center justify-between">
+                      <div className="border-t border-gray-200 pt-2.5 flex items-center justify-between">
                         <span className="text-[8px] text-accent-glow font-bold uppercase tracking-wider">Pairing: {rec.pairing}</span>
                         <button
                           onClick={() => {
@@ -643,7 +643,7 @@ export default function App() {
                             setCurrentPage('build-plate');
                             setCustomizerStep(2);
                           }}
-                          className="text-[7.5px] uppercase tracking-widest text-white hover:text-electric-blue font-bold cursor-pointer transition-colors"
+                          className="text-[7.5px] uppercase tracking-widest text-gray-800 hover:text-electric-blue font-bold cursor-pointer transition-colors"
                         >
                           Load to Builder →
                         </button>
@@ -665,7 +665,7 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div className="space-y-1">
                     <span className="text-[8px] uppercase tracking-[0.25em] text-cosmic-purple font-bold block">03 Live Seating Blueprint</span>
-                    <h2 className="font-serif text-xl sm:text-2xl text-white font-light tracking-wide">Choose Your Vibe</h2>
+                    <h2 className="font-serif text-xl sm:text-2xl text-gray-800 font-light tracking-wide">Choose Your Vibe</h2>
                   </div>
 
                   <div className="flex flex-wrap gap-1">
@@ -681,8 +681,8 @@ export default function App() {
                         onClick={() => setSelectedTable(null, v.id)}
                         className={`px-3 py-1.5 rounded-full border text-[7.5px] uppercase tracking-widest font-bold cursor-pointer transition-all ${
                           selectedZone === v.id
-                            ? 'bg-cosmic-purple/20 border-cosmic-purple text-white shadow-lg shadow-cosmic-purple/10'
-                            : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'
+                            ? 'bg-cosmic-purple/20 border-cosmic-purple text-gray-800 shadow-lg shadow-cosmic-purple/10'
+                            : 'bg-white/5 border-white/10 text-gray-500 hover:text-gray-800'
                         }`}
                       >
                         {v.name}
@@ -718,7 +718,7 @@ export default function App() {
                 </div>
 
                 {/* Noise meters logs */}
-                <div className="p-3 bg-black/40 rounded-xl border border-white/5 flex items-center justify-between text-[8px]">
+                <div className="p-3 bg-white/40 border border-gray-200 flex items-center justify-between text-[8px]">
                   <span className="uppercase text-gray-400 font-semibold tracking-wider">Atmosphere noise</span>
                   <span className="text-cosmic-purple font-bold uppercase">{activeZoneTable.decibels} DB ({activeZoneTable.crowd})</span>
                 </div>
@@ -727,9 +727,9 @@ export default function App() {
               {/* Right Booking coordinates details */}
               <div className="lg:col-span-5 flex flex-col justify-center text-left">
                 {selectedTable ? (
-                  <div className="p-6 bg-black/35 rounded-[32px] border border-white/5 space-y-4">
+                  <div className="p-6 bg-white/40 rounded-[32px] border border-gray-200 space-y-4">
                     <div className="space-y-1">
-                      <h4 className="font-serif text-lg text-white font-medium">Coordinate Seating {selectedTable}</h4>
+                      <h4 className="font-serif text-lg text-gray-800 font-medium">Coordinate Seating {selectedTable}</h4>
                       <p className="text-[7.5px] uppercase tracking-widest text-cosmic-purple font-bold">Atmosphere: {activeZoneTable.name}</p>
                     </div>
 
@@ -749,7 +749,7 @@ export default function App() {
                           placeholder="Registered Name"
                           value={bookingFormData.name}
                           onChange={(e) => setBookingFormData({ ...bookingFormData, name: e.target.value })}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-[10px] text-white outline-none focus:border-cosmic-purple/40"
+                          className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-3 py-2 text-[10px] text-gray-800 outline-none focus:border-cosmic-purple/40"
                         />
                         <div className="grid grid-cols-2 gap-2">
                           <input
@@ -757,12 +757,12 @@ export default function App() {
                             required
                             value={bookingFormData.time}
                             onChange={(e) => setBookingFormData({ ...bookingFormData, time: e.target.value })}
-                            className="bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-[10px] text-white outline-none"
+                            className="bg-gray-50/80 border border-gray-200 rounded-xl px-3 py-2 text-[10px] text-gray-800 outline-none"
                           />
                           <select
                             value={bookingFormData.guests}
                             onChange={(e) => setBookingFormData({ ...bookingFormData, guests: parseInt(e.target.value) })}
-                            className="bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-[10px] text-white outline-none"
+                            className="bg-gray-50/80 border border-gray-200 rounded-xl px-3 py-2 text-[10px] text-gray-800 outline-none"
                           >
                             <option value="2">2 Guests</option>
                             <option value="4">4 Guests</option>
@@ -777,7 +777,7 @@ export default function App() {
                     )}
                   </div>
                 ) : (
-                  <div className="p-8 bg-black/25 rounded-[32px] border border-dashed border-white/5 text-center text-gray-500 space-y-3">
+                  <div className="p-8 bg-white/30 rounded-[32px] border border-dashed border-gray-200 text-center text-gray-500 space-y-3">
                     <Users className="w-8 h-8 mx-auto text-cosmic-purple/20" />
                     <h4 className="text-[10px] uppercase tracking-widest text-cosmic-purple/50 font-bold">No Seating Selected</h4>
                     <p className="text-[10.5px] text-gray-400 font-light">Click any coordinate in the blueprint floor map on the left to initialize live reservation.</p>
@@ -796,10 +796,10 @@ export default function App() {
               <div className="lg:col-span-7 luxury-glass neon-pink-glow p-6 rounded-[32px] flex flex-col justify-between min-h-[500px] text-left">
                 
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between border-b border-white/5 pb-3">
+                  <div className="flex items-center justify-between border-b border-gray-200 pb-3">
                     <div>
                       <span className="text-[8px] uppercase tracking-[0.25em] text-neon-pink font-bold block">04 Build Your Plate Wizard</span>
-                      <h3 className="font-serif text-xl sm:text-2xl text-white font-light tracking-wide">Step {customizerStep} of 6: {
+                      <h3 className="font-serif text-xl sm:text-2xl text-gray-800 font-light tracking-wide">Step {customizerStep} of 6: {
                         customizerStep === 1 && 'Base Dish Selection' ||
                         customizerStep === 2 && 'Custom toppings' ||
                         customizerStep === 3 && 'Aromatic Sauces' ||
@@ -827,8 +827,8 @@ export default function App() {
                             onClick={() => setPlateBase(dish)}
                             className={`p-4 rounded-xl border text-[10.5px] text-left cursor-pointer transition-all ${
                               plateBase === dish
-                                ? 'bg-neon-pink/15 border-neon-pink text-white font-bold'
-                                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'
+                                ? 'bg-neon-pink/15 border-neon-pink text-gray-800 font-bold'
+                                : 'bg-white/5 border-white/10 text-gray-500 hover:text-gray-800'
                             }`}
                           >
                             <div className="flex justify-between items-center">
@@ -854,8 +854,8 @@ export default function App() {
                               onClick={() => handlePlateToppingToggle(item.name)}
                               className={`p-3 rounded-xl border text-[9.5px] text-left cursor-pointer transition-all ${
                                 active
-                                  ? 'bg-neon-pink/15 border-neon-pink text-white font-bold'
-                                  : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'
+                                  ? 'bg-neon-pink/15 border-neon-pink text-gray-800 font-bold'
+                                  : 'bg-white/5 border-white/10 text-gray-500 hover:text-gray-800'
                               }`}
                             >
                               <div className="flex justify-between items-center">
@@ -880,8 +880,8 @@ export default function App() {
                             onClick={() => setPlateSauce(sauce)}
                             className={`p-3.5 rounded-xl border text-[10px] text-left cursor-pointer transition-all ${
                               plateSauce === sauce
-                                ? 'bg-neon-pink/15 border-neon-pink text-white font-bold'
-                                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'
+                                ? 'bg-neon-pink/15 border-neon-pink text-gray-800 font-bold'
+                                : 'bg-white/5 border-white/10 text-gray-500 hover:text-gray-800'
                             }`}
                           >
                             {sauce}
@@ -895,10 +895,10 @@ export default function App() {
                   {customizerStep === 4 && (
                     <div className="space-y-4 animate-fade-in">
                       <p className="text-[10px] text-gray-400 font-light">Adjust capsaicin heat monitors on volcanic stone beds:</p>
-                      <div className="flex justify-between items-center p-5 bg-black/40 rounded-2xl border border-white/5">
+                      <div className="flex justify-between items-center p-5 bg-white/40 rounded-2xl border border-gray-200">
                         <div className="text-left space-y-1">
                           <span className="text-[8px] uppercase tracking-widest text-gray-500 font-bold">Capsaicin fire</span>
-                          <span className="text-sm font-bold text-white uppercase block">
+                          <span className="text-sm font-bold text-gray-800 uppercase block">
                             {plateSpice === 0 && 'Whisper of pepper'}
                             {plateSpice === 1 && 'Solar warmth'}
                             {plateSpice === 2 && 'Nitrogen shock'}
@@ -928,8 +928,8 @@ export default function App() {
                             onClick={() => setPlateSide(side)}
                             className={`p-3.5 rounded-xl border text-[10px] text-left cursor-pointer transition-all ${
                               plateSide === side
-                                ? 'bg-neon-pink/15 border-neon-pink text-white font-bold'
-                                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'
+                                ? 'bg-neon-pink/15 border-neon-pink text-gray-800 font-bold'
+                                : 'bg-white/5 border-white/10 text-gray-500 hover:text-gray-800'
                             }`}
                           >
                             <div className="flex justify-between items-center">
@@ -953,8 +953,8 @@ export default function App() {
                             onClick={() => setPlateDrink(drink)}
                             className={`p-3.5 rounded-xl border text-[10px] text-left cursor-pointer transition-all ${
                               plateDrink === drink
-                                ? 'bg-neon-pink/15 border-neon-pink text-white font-bold'
-                                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'
+                                ? 'bg-neon-pink/15 border-neon-pink text-gray-800 font-bold'
+                                : 'bg-white/5 border-white/10 text-gray-500 hover:text-gray-800'
                             }`}
                           >
                             <div className="flex justify-between items-center">
@@ -970,11 +970,11 @@ export default function App() {
                 </div>
 
                 {/* Wizard navigation indicators */}
-                <div className="flex justify-between items-center border-t border-white/5 pt-4 mt-4">
+                <div className="flex justify-between items-center border-t border-gray-200 pt-4 mt-4">
                   <button
                     disabled={customizerStep === 1}
                     onClick={() => setCustomizerStep(prev => Math.max(1, prev - 1))}
-                    className="flex items-center gap-1 bg-white/5 hover:bg-white/10 text-gray-300 px-4 py-2.5 rounded-full font-bold uppercase tracking-widest text-[8px] disabled:opacity-30 cursor-pointer"
+                    className="flex items-center gap-1 bg-white/5 hover:bg-white/70 text-gray-300 px-4 py-2.5 rounded-full font-bold uppercase tracking-widest text-[8px] disabled:opacity-30 cursor-pointer"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
                     Back
@@ -1011,10 +1011,10 @@ export default function App() {
                 <span className="text-[9px] uppercase tracking-widest text-gray-500 font-bold block mb-1">Visual Plate Assembler</span>
                 
                 {/* 3D styled plate render */}
-                <div className="relative w-full aspect-[4/3] rounded-[32px] border border-white/5 bg-gradient-to-b from-neutral-900 to-black overflow-hidden flex items-center justify-center shadow-2xl">
+                <div className="relative w-full aspect-[4/3] rounded-[32px] border border-gray-200 bg-gradient-to-b from-gray-100 to-white overflow-hidden flex items-center justify-center shadow-2xl">
                   <div className="absolute w-[70%] h-[70%] rounded-full border border-dashed border-neon-pink/20 animate-spin-slow" />
                   
-                  <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative z-10 w-36 h-36 rounded-full bg-radial-[circle_at_center,_rgba(15,15,15,1)_0%,_rgba(40,40,40,1)_100%] border border-neon-pink/40 flex flex-col items-center justify-center text-center p-3 text-[9px] uppercase font-bold tracking-widest text-white shadow-2xl">
+                  <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative z-10 w-36 h-36 rounded-full bg-gradient-to-br from-white to-gray-100 border border-aurora-pink/40 flex flex-col items-center justify-center text-center p-3 text-[9px] uppercase font-bold tracking-widest text-gray-800 shadow-2xl">
                     <span className="text-[7px] text-neon-pink mb-1">Base dish</span>
                     <span className="leading-tight">{plateBase}</span>
                   </motion.div>
@@ -1046,8 +1046,8 @@ export default function App() {
                 </div>
 
                 {/* Itemized Order summary */}
-                <div className="p-5 bg-black/45 rounded-3xl border border-white/5 space-y-3">
-                  <div className="flex justify-between items-center border-b border-white/5 pb-2.5">
+                <div className="p-5 bg-white/50 rounded-3xl border border-gray-200 space-y-3">
+                  <div className="flex justify-between items-center border-b border-gray-200 pb-2.5">
                     <span className="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Your Order</span>
                     <span className="text-base text-neon-pink font-semibold">₹{calculateCustomPlatePrice()}</span>
                   </div>
@@ -1076,18 +1076,18 @@ export default function App() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
                     <span className="text-[8px] uppercase tracking-[0.25em] text-accent-glow font-bold block">05 Smart Waitlist matrix</span>
-                    <h2 className="font-serif text-xl sm:text-2xl text-white font-light tracking-wide font-medium">Waitlist Insights</h2>
+                    <h2 className="font-serif text-xl sm:text-2xl text-gray-800 font-light tracking-wide font-medium">Waitlist Insights</h2>
                   </div>
                   
                   {/* Live occupancy percentage */}
                   <div className="px-3.5 py-2 bg-accent-glow/10 border border-accent-glow/20 rounded-full flex flex-col items-center">
                     <span className="text-[7px] text-accent-glow uppercase tracking-wider block">Live load</span>
-                    <span className="text-xs font-bold text-white">78%</span>
+                    <span className="text-xs font-bold text-gray-800">78%</span>
                   </div>
                 </div>
 
                 {/* Heatmap Area Chart */}
-                <div className="h-36 w-full p-2 bg-black/40 rounded-xl border border-white/5">
+                <div className="h-36 w-full p-2 bg-white/40 border border-gray-200">
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={HOURLY_LOADS} margin={{ top: 0, right: 0, left: -40, bottom: 0 }}>
                       <defs>
@@ -1104,17 +1104,17 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 text-center">
-                  <div className="p-3 bg-black/40 rounded-xl border border-white/5 space-y-1">
+                  <div className="p-3 bg-white/40 border border-gray-200 space-y-1">
                     <span className="text-[7.5px] uppercase tracking-widest text-gray-500 font-bold block">Current Wait</span>
-                    <span className="text-xs font-bold text-white">25-30 Mins</span>
+                    <span className="text-xs font-bold text-gray-800">25-30 Mins</span>
                   </div>
-                  <div className="p-3 bg-black/40 rounded-xl border border-white/5 space-y-1">
+                  <div className="p-3 bg-white/40 border border-gray-200 space-y-1">
                     <span className="text-[7.5px] uppercase tracking-widest text-gray-500 font-bold block">People Ahead</span>
-                    <span className="text-xs font-bold text-white">14</span>
+                    <span className="text-xs font-bold text-gray-800">14</span>
                   </div>
-                  <div className="p-3 bg-black/40 rounded-xl border border-white/5 space-y-1">
+                  <div className="p-3 bg-white/40 border border-gray-200 space-y-1">
                     <span className="text-[7.5px] uppercase tracking-widest text-gray-500 font-bold block">Estimated Table</span>
-                    <span className="text-xs font-bold text-white">8:45 PM</span>
+                    <span className="text-xs font-bold text-gray-800">8:45 PM</span>
                   </div>
                 </div>
               </div>
@@ -1122,17 +1122,17 @@ export default function App() {
               {/* Right Waitlist form registry inputs */}
               <div className="lg:col-span-5 flex flex-col justify-center text-left">
                 {isWaitSubmitted ? (
-                  <div className="p-6 bg-black/35 rounded-[32px] border border-white/5 text-center space-y-3 flex flex-col items-center">
+                  <div className="p-6 bg-white/40 rounded-[32px] border border-gray-200 text-center space-y-3 flex flex-col items-center">
                     <Check className="w-6 h-6 text-accent-glow animate-bounce" />
-                    <h4 className="font-serif text-lg text-white tracking-wide">Queue Registry Confirmed</h4>
+                    <h4 className="font-serif text-lg text-gray-800 tracking-wide">Queue Registry Confirmed</h4>
                     <p className="text-[10px] text-gray-400 font-light leading-relaxed">
                       We have secured your profile inside virtual queues. We will send notifications when Table Dome ID aligns with party size.
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleWaitlistRegister} className="p-6 bg-black/35 rounded-[32px] border border-white/5 space-y-4">
-                    <div className="space-y-1 border-b border-white/5 pb-3">
-                      <h4 className="font-serif text-base text-white tracking-wide">Register Virtual Queue</h4>
+                  <form onSubmit={handleWaitlistRegister} className="p-6 bg-white/40 rounded-[32px] border border-gray-200 space-y-4">
+                    <div className="space-y-1 border-b border-gray-200 pb-3">
+                      <h4 className="font-serif text-base text-gray-800 tracking-wide">Register Virtual Queue</h4>
                       <p className="text-[8px] uppercase tracking-widest text-accent-glow font-bold">Smart Waitlist Queue</p>
                     </div>
 
@@ -1142,7 +1142,7 @@ export default function App() {
                       placeholder="Diner Name"
                       value={waitlistFormData.name}
                       onChange={(e) => setWaitlistFormData({ ...waitlistFormData, name: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-accent-glow/40"
+                      className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-800 outline-none focus:border-accent-glow/40"
                     />
                     <input
                       type="tel"
@@ -1150,12 +1150,12 @@ export default function App() {
                       placeholder="Phone Line coordinates"
                       value={waitlistFormData.phone}
                       onChange={(e) => setWaitlistFormData({ ...waitlistFormData, phone: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white outline-none"
+                      className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-800 outline-none"
                     />
                     <select
                       value={waitlistFormData.partySize}
                       onChange={(e) => setWaitlistFormData({ ...waitlistFormData, partySize: parseInt(e.target.value) })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white outline-none"
+                      className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-800 outline-none"
                     >
                       <option value="2">Party of 2 Guests</option>
                       <option value="4">Party of 4 Guests</option>
@@ -1178,7 +1178,7 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full min-h-[75vh] flex flex-col justify-center items-center relative overflow-hidden bg-black/40 rounded-[32px] border border-white/5 p-8"
+              className="w-full min-h-[75vh] flex flex-col justify-center items-center relative overflow-hidden bg-white/40 rounded-[32px] border border-gray-200 p-8"
               onWheel={handleStoryScroll}
             >
               
@@ -1198,7 +1198,7 @@ export default function App() {
                   <div className="max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-left">
                     <div className="md:col-span-7 space-y-5 text-left">
                       <span className="text-[8.5px] uppercase tracking-[0.4em] text-accent-glow font-bold">Chapter I: Cosmic Rhythm</span>
-                      <h3 className="font-serif text-4xl sm:text-6xl text-white font-extralight leading-tight">
+                      <h3 className="font-serif text-4xl sm:text-6xl text-gray-800 font-extralight leading-tight">
                         Sustenance Meets <br />
                         <span className="italic text-accent-glow font-light">Meteorology</span>
                       </h3>
@@ -1208,7 +1208,7 @@ export default function App() {
                     </div>
                     
                     <div className="md:col-span-5 flex justify-center">
-                      <div className="w-56 h-72 rounded-[24px] overflow-hidden border border-accent-glow/20 shadow-2xl bg-neutral-900">
+                      <div className="w-56 h-72 rounded-[24px] overflow-hidden border border-accent-glow/20 shadow-2xl bg-neutral-50">
                         <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600&q=80" alt="chef" className="w-full h-full object-cover grayscale opacity-75" />
                       </div>
                     </div>
@@ -1229,7 +1229,7 @@ export default function App() {
                     <div className="md:col-span-5 flex justify-center">
                       <div className="relative w-64 h-64 flex items-center justify-center">
                         <div className="absolute inset-0 rounded-full border border-dashed border-accent-glow/15 animate-spin-slow" />
-                        <div className="w-44 h-44 rounded-full overflow-hidden border border-white/10 shadow-2xl bg-neutral-900">
+                        <div className="w-44 h-44 rounded-full overflow-hidden border border-white/10 shadow-2xl bg-neutral-50">
                           <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="ingredient" className="w-full h-full object-cover" />
                         </div>
                       </div>
@@ -1237,7 +1237,7 @@ export default function App() {
 
                     <div className="md:col-span-7 space-y-5 text-left">
                       <span className="text-[8.5px] uppercase tracking-[0.4em] text-accent-glow font-bold">Chapter II: Saffron Nets</span>
-                      <h3 className="font-serif text-4xl sm:text-6xl text-white font-extralight leading-tight">
+                      <h3 className="font-serif text-4xl sm:text-6xl text-gray-800 font-extralight leading-tight">
                         Forged as <br />
                         <span className="italic text-accent-glow font-light">Digital Shards</span>
                       </h3>
@@ -1260,7 +1260,7 @@ export default function App() {
                 >
                   <div className="max-w-2xl text-center space-y-5 mx-auto flex flex-col items-center">
                     <span className="text-[8.5px] uppercase tracking-[0.4em] text-accent-glow font-bold">Chapter III: Gastronomic Climax</span>
-                    <h3 className="font-serif text-5xl sm:text-6xl text-white font-extralight leading-tight">
+                    <h3 className="font-serif text-5xl sm:text-6xl text-gray-800 font-extralight leading-tight">
                       Beyond <br />
                       <span className="italic text-accent-glow font-light">Sustenance</span>
                     </h3>
@@ -1280,7 +1280,7 @@ export default function App() {
                 {[0, 1, 2].map((idx) => (
                   <button key={idx} onClick={() => setStoryScroll(idx)} className="flex items-center gap-2 text-left cursor-pointer border-none bg-transparent">
                     <span className={`w-2.5 h-2.5 rounded-full ${storyScroll === idx ? 'bg-accent-glow scale-125' : 'bg-neutral-800'} transition-all`} />
-                    <span className={`text-[7px] font-bold tracking-widest uppercase ${storyScroll === idx ? 'text-white' : 'text-gray-600'}`}>0{idx + 1}</span>
+                    <span className={`text-[7px] font-bold tracking-widest uppercase ${storyScroll === idx ? 'text-gray-800' : 'text-gray-400'}`}>0{idx + 1}</span>
                   </button>
                 ))}
               </div>
@@ -1299,26 +1299,26 @@ export default function App() {
               
               <div className="space-y-1">
                 <span className="text-[8px] uppercase tracking-[0.25em] text-accent-glow font-bold block">Gourmet Catalogue</span>
-                <h2 className="font-serif text-2xl sm:text-4xl text-white font-light tracking-wide">Molecular Masterpieces</h2>
+                <h2 className="font-serif text-2xl sm:text-4xl text-gray-800 font-light tracking-wide">Molecular Masterpieces</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {menuItems.map((item) => (
-                  <div key={item._id} className="p-4 rounded-3xl luxury-glass border-white/5 flex flex-col justify-between min-h-[290px] relative overflow-hidden">
-                    <div className="aspect-[16/10] rounded-2xl overflow-hidden mb-4 border border-white/10 bg-neutral-900 relative">
+                  <div key={item._id} className="p-4 rounded-3xl luxury-glass border-gray-200 flex flex-col justify-between min-h-[290px] relative overflow-hidden">
+                    <div className="aspect-[16/10] rounded-2xl overflow-hidden mb-4 border border-white/10 bg-neutral-50 relative">
                       <img src={item.image || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80'} alt={item.name} className="object-cover w-full h-full opacity-80" />
                       <span className="absolute top-4 right-4 bg-black/85 px-3 py-1.5 rounded-lg border border-accent-glow/30 text-[10px] font-bold text-accent-glow">₹{item.price}</span>
                     </div>
 
                     <div className="space-y-2">
                       <div className="flex justify-between items-center gap-2">
-                        <h4 className="font-serif text-base text-white tracking-wide">{item.name}</h4>
+                        <h4 className="font-serif text-base text-gray-800 tracking-wide">{item.name}</h4>
                         {item.calories > 0 && <span className="text-[7.5px] bg-white/5 px-2 py-0.5 rounded text-gray-400 font-semibold">{item.calories} Cal</span>}
                       </div>
                       
                       <p className="text-[9.5px] text-gray-400 font-light leading-relaxed h-12 overflow-hidden">{item.description}</p>
                       
-                      <div className="border-t border-white/5 pt-3 flex items-center justify-between">
+                      <div className="border-t border-gray-200 pt-3 flex items-center justify-between">
                         <div className="flex gap-0.5 text-accent-glow">
                           {[...Array(3)].map((_, i) => (
                             <Flame key={i} className={`w-3.5 h-3.5 ${i < item.spiceLevel ? 'text-red-400 fill-red-400' : 'text-gray-700'}`} />
@@ -1331,7 +1331,7 @@ export default function App() {
                             setCurrentPage('build-plate');
                             setCustomizerStep(2);
                           }}
-                          className="text-[7.5px] uppercase tracking-widest text-accent-glow hover:text-white font-extrabold cursor-pointer transition-colors"
+                          className="text-[7.5px] uppercase tracking-widest text-accent-glow hover:text-gray-800 font-extrabold cursor-pointer transition-colors"
                         >
                           Load base dish
                         </button>
@@ -1350,11 +1350,11 @@ export default function App() {
               
               <div className="space-y-1">
                 <span className="text-[8px] uppercase tracking-[0.25em] text-accent-glow font-bold block">Diner Workspace</span>
-                <h2 className="font-serif text-2xl sm:text-4xl text-white font-light tracking-wide">My Active Domes</h2>
+                <h2 className="font-serif text-2xl sm:text-4xl text-gray-800 font-light tracking-wide">My Active Domes</h2>
               </div>
 
               {!isAuthenticated ? (
-                <div className="p-8 text-center bg-black/25 rounded-[32px] border border-white/5 space-y-3 flex flex-col items-center justify-center min-h-[300px]">
+                <div className="p-8 text-center bg-black/25 rounded-[32px] border border-gray-200 space-y-3 flex flex-col items-center justify-center min-h-[300px]">
                   <ShieldAlert className="w-8 h-8 text-accent-glow animate-pulse" />
                   <p className="text-[9px] uppercase tracking-widest text-accent-glow font-bold">Verification coordinates missing</p>
                   <button onClick={() => setCurrentPage('login')} className="px-6 py-3 bg-accent-glow text-black rounded-full text-[8.5px] font-bold uppercase tracking-widest">Login via Accreditation</button>
@@ -1364,10 +1364,10 @@ export default function App() {
                   {Object.keys(reservedTables).map((tableId) => {
                     const r = reservedTables[tableId];
                     return (
-                      <div key={tableId} className="p-5 bg-black/35 rounded-3xl border border-white/5 flex items-center justify-between">
+                      <div key={tableId} className="p-5 bg-white/40 rounded-3xl border border-gray-200 flex items-center justify-between">
                         <div className="space-y-1 text-left">
                           <span className="text-[8px] uppercase tracking-widest text-accent-glow font-bold">Dome coordinates: Table {tableId}</span>
-                          <h4 className="font-serif text-base text-white tracking-wide">{r.name || user.name}</h4>
+                          <h4 className="font-serif text-base text-gray-800 tracking-wide">{r.name || user.name}</h4>
                           <p className="text-[9.5px] text-gray-400 font-light">Guests: {r.guests || 2} ✧ Hour: {r.time || '19:30'} ✧ Date: {r.date || '2026-05-23'}</p>
                         </div>
                         <button
@@ -1398,12 +1398,12 @@ export default function App() {
               <div className="w-full max-w-sm luxury-glass p-8 rounded-3xl text-center space-y-6 relative pointer-events-auto">
                 <div className="space-y-1">
                   <Compass className="w-8 h-8 text-accent-glow mx-auto mb-2 animate-spin-slow" />
-                  <h2 className="font-serif text-2xl text-white tracking-wide">{isLoginView ? 'Accréditation' : 'Establish Profile'}</h2>
+                  <h2 className="font-serif text-2xl text-gray-800 tracking-wide">{isLoginView ? 'Accréditation' : 'Establish Profile'}</h2>
                   <p className="text-[8px] tracking-widest text-accent-glow uppercase font-bold">Claim secure credentials</p>
                 </div>
 
                 {authError && (
-                  <div className="p-3 bg-red-950/20 border border-red-500/20 text-red-400 rounded-xl text-[9px] uppercase tracking-wider font-semibold text-center flex items-center justify-center gap-1.5">
+                  <div className="p-3 bg-red-100/50 border border-red-500/20 text-red-600 rounded-xl text-[9px] uppercase tracking-wider font-semibold text-center flex items-center justify-center gap-1.5">
                     <AlertTriangle className="w-3.5 h-3.5" />
                     <span>{authError}</span>
                   </div>
@@ -1419,7 +1419,7 @@ export default function App() {
                         value={authFormData.name}
                         onChange={(e) => setAuthFormData({ ...authFormData, name: e.target.value })}
                         placeholder="Maitre Vance"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-600 outline-none"
+                        className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 placeholder-gray-400 outline-none"
                       />
                     </div>
                   )}
@@ -1432,7 +1432,7 @@ export default function App() {
                       value={authFormData.email}
                       onChange={(e) => setAuthFormData({ ...authFormData, email: e.target.value })}
                       placeholder="admin@letoile.com"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-600 outline-none"
+                      className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 placeholder-gray-400 outline-none"
                     />
                   </div>
 
@@ -1444,7 +1444,7 @@ export default function App() {
                       value={authFormData.password}
                       onChange={(e) => setAuthFormData({ ...authFormData, password: e.target.value })}
                       placeholder="••••••••••••"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none"
+                      className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 outline-none"
                     />
                   </div>
 
@@ -1453,11 +1453,11 @@ export default function App() {
                   </button>
                 </form>
 
-                <div className="border-t border-white/5 pt-4 text-center text-[9px] uppercase tracking-widest text-gray-400">
+                <div className="border-t border-gray-200 pt-4 text-center text-[9px] uppercase tracking-widest text-gray-400">
                   {isLoginView ? (
-                    <p>New coordinates? <button onClick={() => setIsLoginView(false)} className="text-accent-glow font-bold hover:text-white cursor-pointer bg-transparent border-none">Create credentials</button></p>
+                    <p>New coordinates? <button onClick={() => setIsLoginView(false)} className="text-accent-glow font-bold hover:text-gray-800 cursor-pointer bg-transparent border-none">Create credentials</button></p>
                   ) : (
-                    <p>Have secure keys? <button onClick={() => setIsLoginView(true)} className="text-accent-glow font-bold hover:text-white cursor-pointer bg-transparent border-none">Log In</button></p>
+                    <p>Have secure keys? <button onClick={() => setIsLoginView(true)} className="text-accent-glow font-bold hover:text-gray-800 cursor-pointer bg-transparent border-none">Log In</button></p>
                   )}
                 </div>
               </div>
@@ -1468,10 +1468,10 @@ export default function App() {
           {currentPage === 'profile' && (
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.5 }} className="w-full min-h-[75vh] py-6 text-left space-y-6">
               
-              <div className="flex justify-between items-center border-b border-white/5 pb-4">
+              <div className="flex justify-between items-center border-b border-gray-200 pb-4">
                 <div className="space-y-1">
                   <span className="text-[8px] uppercase tracking-[0.25em] text-accent-glow font-bold block">Diner Profile Portal</span>
-                  <h2 className="font-serif text-2xl sm:text-4xl text-white font-light tracking-wide">{user?.name || 'Maitre Vance'}</h2>
+                  <h2 className="font-serif text-2xl sm:text-4xl text-gray-800 font-light tracking-wide">{user?.name || 'Maitre Vance'}</h2>
                   <p className="text-[9px] text-gray-400 font-light">{user?.email || 'admin@letoile.com'} ✧ Role: {user?.role || 'Guest Admin'}</p>
                 </div>
                 <button onClick={logout} className="flex items-center gap-2 border border-red-500/20 hover:border-red-500/50 hover:bg-red-500/5 px-4 py-2 rounded-full font-bold uppercase tracking-widest text-[8px] text-red-400 cursor-pointer">
@@ -1488,9 +1488,9 @@ export default function App() {
                   {Object.keys(reservedTables).map((tableId) => {
                     const r = reservedTables[tableId];
                     return (
-                      <div key={tableId} className="p-4 bg-black/35 rounded-2xl border border-white/5 flex justify-between items-center">
+                      <div key={tableId} className="p-4 bg-white/40 rounded-2xl border border-gray-200 flex justify-between items-center">
                         <div className="text-left space-y-1">
-                          <h4 className="text-sm font-semibold text-white">Table {tableId}</h4>
+                          <h4 className="text-sm font-semibold text-gray-800">Table {tableId}</h4>
                           <p className="text-[9px] text-gray-400 font-light">Guests: {r.guests || 2} ✧ Hour: {r.time || '19:30'} ✧ Date: {r.date || '2026-05-23'}</p>
                         </div>
                         <span className="text-[7.5px] uppercase tracking-widest text-accent-glow font-bold">✧ Active</span>
@@ -1498,20 +1498,20 @@ export default function App() {
                     );
                   })}
                   {Object.keys(reservedTables).length === 0 && (
-                    <div className="p-6 bg-black/20 rounded-2xl border border-dashed border-white/5 text-center text-gray-500 text-[10px] font-light">No reservations registered.</div>
+                    <div className="p-6 bg-white/30 rounded-2xl border border-dashed border-gray-200 text-center text-gray-500 text-[10px] font-light">No reservations registered.</div>
                   )}
                 </div>
 
                 {/* Custom customized plates profiles */}
                 <div className="space-y-4">
                   <span className="text-[9px] uppercase tracking-widest text-gray-500 font-bold block">Customized Taste Profiles</span>
-                  <div className="p-5 bg-black/35 rounded-[32px] border border-white/5 space-y-3.5">
+                  <div className="p-5 bg-white/40 rounded-[32px] border border-gray-200 space-y-3.5">
                     <div className="flex justify-between items-center">
-                      <span className="font-serif text-base text-white tracking-wide">{plateBase}</span>
+                      <span className="font-serif text-base text-gray-800 tracking-wide">{plateBase}</span>
                       <span className="text-xs text-accent-glow font-bold">₹{calculateCustomPlatePrice()}</span>
                     </div>
 
-                    <div className="text-[9.5px] text-gray-400 font-light space-y-1 leading-relaxed border-t border-white/5 pt-3">
+                    <div className="text-[9.5px] text-gray-400 font-light space-y-1 leading-relaxed border-t border-gray-200 pt-3">
                       <div><span>Sauce base: {plateSauce}</span></div>
                       <div><span>Spice rating: Level {plateSpice}</span></div>
                       <div><span>Extra sides: {plateSide}</span></div>
@@ -1519,7 +1519,7 @@ export default function App() {
                       {plateToppings.length > 0 && <div><span>Added toppings: {plateToppings.join(', ')}</span></div>}
                     </div>
 
-                    <button onClick={() => setCurrentPage('build-plate')} className="w-full py-2 bg-white/5 hover:bg-white/10 rounded-xl text-[8px] uppercase tracking-widest font-bold text-center block text-accent-glow transition-all">Modify Custom Plate</button>
+                    <button onClick={() => setCurrentPage('build-plate')} className="w-full py-2 bg-white/5 hover:bg-white/70 rounded-xl text-[8px] uppercase tracking-widest font-bold text-center block text-accent-glow transition-all">Modify Custom Plate</button>
                   </div>
                 </div>
 
@@ -1538,7 +1538,7 @@ export default function App() {
                   <span className="text-[8px] uppercase tracking-[0.4em] text-accent-glow font-bold">The Philosophy</span>
                 </div>
                 
-                <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-extralight leading-tight">
+                <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-gray-800 font-extralight leading-tight">
                   Chef Marcus Vance: <br />
                   <span className="italic text-accent-glow font-light">Taste as Architecture</span>
                 </h2>
@@ -1547,7 +1547,7 @@ export default function App() {
                   Under the direction of Culinary Director Chef Marcus Vance, ingredients align with solar moisture meters. We tenderize dry-aged duck breast glided with rosemary plum reductions over heated volcanic stones. Sustenance forged as digital fine-dining architecture, awarded with three Michelin Star credentials for visual concept boundaries.
                 </p>
 
-                <div className="p-4 rounded-xl border border-white/5 bg-black/30 flex items-center gap-3 max-w-md">
+                <div className="p-4 rounded-xl border border-gray-200 bg-white/30 flex items-center gap-3 max-w-md">
                   <span className="text-accent-glow text-lg animate-pulse">✧ ✧ ✧</span>
                   <p className="text-[9.5px] text-gray-400 font-light leading-normal">Bespoke molecular creations matching high-frequency acoustic decibels.</p>
                 </div>
@@ -1555,12 +1555,12 @@ export default function App() {
 
               <div className="lg:col-span-5 flex justify-center">
                 <div className="w-64 sm:w-72 rounded-[32px] overflow-hidden luxury-glass border-white/10 p-3 shadow-2xl relative">
-                  <div className="aspect-[3/4] rounded-[24px] overflow-hidden bg-neutral-900">
+                  <div className="aspect-[3/4] rounded-[24px] overflow-hidden bg-neutral-50">
                     <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=800&q=80" alt="chef vance" className="w-full h-full object-cover grayscale opacity-75" />
                   </div>
                   <div className="absolute bottom-6 left-6 text-left">
                     <span className="text-[7.5px] uppercase tracking-widest text-accent-glow font-bold block mb-0.5">Chef Marcus Vance</span>
-                    <span className="font-serif text-xs text-white">Culinary Director</span>
+                    <span className="font-serif text-xs text-gray-800">Culinary Director</span>
                   </div>
                 </div>
               </div>
@@ -1574,7 +1574,7 @@ export default function App() {
               
               <div className="space-y-1">
                 <span className="text-[8px] uppercase tracking-[0.25em] text-accent-glow font-bold block">Sensory visual Showcase</span>
-                <h2 className="font-serif text-2xl sm:text-4xl text-white font-light tracking-wide">Atmosphere Gallery</h2>
+                <h2 className="font-serif text-2xl sm:text-4xl text-gray-800 font-light tracking-wide">Atmosphere Gallery</h2>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1583,12 +1583,12 @@ export default function App() {
                   { title: 'Tasting Plating', img: 'https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600&q=80', desc: 'Molecular dry-aged duck glided with plum foam.' },
                   { title: 'Volcanic Buckwheat Soba', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80', desc: 'Hand-pulled Szechuan noodles over volcanic stones.' }
                 ].map((item, idx) => (
-                  <div key={idx} className="p-3 bg-black/40 rounded-[32px] border border-white/5 space-y-3 group overflow-hidden relative">
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 relative">
+                  <div key={idx} className="p-3 bg-black/40 rounded-[32px] border border-gray-200 space-y-3 group overflow-hidden relative">
+                    <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-50 border border-white/10 relative">
                       <img src={item.img} alt={item.title} className="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-700" />
                     </div>
                     <div className="space-y-1 px-2 text-left">
-                      <h4 className="font-serif text-base text-white tracking-wide">{item.title}</h4>
+                      <h4 className="font-serif text-base text-gray-800 tracking-wide">{item.title}</h4>
                       <p className="text-[9px] text-gray-400 font-light">{item.desc}</p>
                     </div>
                   </div>
@@ -1604,15 +1604,15 @@ export default function App() {
               
               {/* Form panel */}
               <div className="lg:col-span-7 luxury-glass p-6 rounded-[32px] text-left relative overflow-hidden">
-                <div className="space-y-1 border-b border-white/5 pb-3 mb-4">
+                <div className="space-y-1 border-b border-gray-200 pb-3 mb-4">
                   <span className="text-[8px] uppercase tracking-[0.25em] text-accent-glow font-bold block">Contact Coordinates</span>
-                  <h3 className="font-serif text-xl sm:text-2xl text-white font-light tracking-wide">Touch L'Étoile Horizon</h3>
+                  <h3 className="font-serif text-xl sm:text-2xl text-gray-800 font-light tracking-wide">Touch L'Étoile Horizon</h3>
                 </div>
 
                 {contactSubmitted ? (
                   <div className="p-8 text-center space-y-2 flex flex-col items-center justify-center">
                     <Check className="w-6 h-6 text-accent-glow animate-bounce" />
-                    <h4 className="font-serif text-base text-white tracking-wide">Coordinates stage submitted</h4>
+                    <h4 className="font-serif text-base text-gray-800 tracking-wide">Coordinates stage submitted</h4>
                     <p className="text-[10px] text-gray-400 font-light leading-relaxed max-w-sm">We have cataloged your coordinates and messages. A molecular assistant will trace you soon.</p>
                   </div>
                 ) : (
@@ -1630,7 +1630,7 @@ export default function App() {
                         placeholder="Your Name"
                         value={contactForm.name}
                         onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-accent-glow/40"
+                        className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 outline-none focus:border-accent-glow/40"
                       />
                       <input
                         type="email"
@@ -1638,7 +1638,7 @@ export default function App() {
                         placeholder="Mail Coordinate"
                         value={contactForm.email}
                         onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none"
+                        className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 outline-none"
                       />
                     </div>
                     <textarea
@@ -1646,7 +1646,7 @@ export default function App() {
                       placeholder="Whisper message coordinates..."
                       value={contactForm.message}
                       onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none h-24 resize-none"
+                      className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 outline-none h-24 resize-none"
                     />
 
                     <button type="submit" className="w-full py-3.5 bg-gradient-to-r from-accent-glow/85 to-accent-glow text-black rounded-xl text-[9px] font-bold uppercase tracking-widest shadow-md">
@@ -1658,12 +1658,12 @@ export default function App() {
 
               {/* Right Coordinate location details */}
               <div className="lg:col-span-5 text-left space-y-6">
-                <div className="p-5 bg-black/45 rounded-[32px] border border-white/5 space-y-4">
+                <div className="p-5 bg-white/50 rounded-[32px] border border-gray-200 space-y-4">
                   <div className="flex items-center gap-3">
                     <MapPin className="w-5 h-5 text-accent-glow animate-pulse" />
                     <div>
                       <h4 className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block">Galactic Location</h4>
-                      <p className="text-xs text-white font-light mt-0.5">Suite 2045, Horizon Tower, New Delhi, India</p>
+                      <p className="text-xs text-gray-800 mt-0.5">Suite 2045, Horizon Tower, New Delhi, India</p>
                     </div>
                   </div>
 
@@ -1671,7 +1671,7 @@ export default function App() {
                     <Clock className="w-5 h-5 text-accent-glow" />
                     <div>
                       <h4 className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block"> Ticking hours</h4>
-                      <p className="text-xs text-white font-light mt-0.5">Every cycle: 18:00 - 24:00 (Reservations required)</p>
+                      <p className="text-xs text-gray-800 mt-0.5">Every cycle: 18:00 - 24:00 (Reservations required)</p>
                     </div>
                   </div>
                 </div>
@@ -1687,15 +1687,15 @@ export default function App() {
           BRAND EXPERIENCE MASTER FOOTER & DELIVERY PORTAL
           ======================================================== */}
       {currentPage !== 'build-plate' && currentPage !== 'table-atmosphere' && currentPage !== 'story' && (
-        <section className="w-full max-w-7xl mx-auto px-6 mt-24 mb-32 relative z-20 border-t border-white/5 pt-16 text-left">
+        <section className="w-full max-w-7xl mx-auto px-6 mt-24 mb-32 relative z-20 border-t border-gray-200 pt-16 text-left">
           
           {/* Header of Master Footer */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end mb-16">
             <div>
               <span className="text-[9px] tracking-[0.5em] uppercase font-bold text-accent-glow block mb-2">✦ COGNITIVE CULINARY SUITE</span>
-              <h2 className="font-serif text-3xl md:text-4xl text-white font-light tracking-wide leading-tight">
+              <h2 className="font-serif text-3xl md:text-4xl text-gray-800 font-light tracking-wide leading-tight">
                 An Atmosphere Crafted <br />
-                <span className="italic text-[#ecdcc9]">Beyond the Physical Dimension.</span>
+                <span className="italic text-accent-glow">Beyond the Physical Dimension.</span>
               </h2>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center gap-6 justify-start md:justify-end text-xs text-gray-400 font-light">
@@ -1703,7 +1703,7 @@ export default function App() {
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
                 <span>Atmospheric Shields: Stable</span>
               </div>
-              <div className="flex items-center gap-2 border-l border-white/10 pl-0 sm:pl-6">
+              <div className="flex items-center gap-2 border-l border-gray-200 pl-0 sm:pl-6">
                 <span className="w-2 h-2 rounded-full bg-accent-glow animate-pulse" />
                 <span>Drone Dispatches Active: India Grid</span>
               </div>
@@ -1714,61 +1714,61 @@ export default function App() {
           <div className="space-y-6 mb-20">
             <div>
               <span className="text-[8px] tracking-[0.4em] uppercase font-extrabold text-gray-500 block">✧ SECTOR CRITIC CHRONICLES</span>
-              <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-white block mt-0.5">ELITE GASTRONOMY LOGS</span>
+              <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-gray-800 block mt-0.5">ELITE GASTRONOMY LOGS</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
               {/* Review 1 */}
-              <div className="luxury-glass neon-purple-glow rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+              <div className="bg-white/50 border border-gray-200 rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
                 <div className="space-y-4">
                   <div className="flex items-center gap-1 text-accent-glow">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-xs">✦</span>
                     ))}
                   </div>
-                  <p className="text-xs text-gray-300 font-light tracking-wide leading-relaxed italic">
+                  <p className="text-xs text-gray-600 font-light tracking-wide leading-relaxed italic">
                     "L'Étoile Horizon is not merely a meal; it is a profound journey into the 2045 frontier of molecular physics. The levitating courses are a sensory climax."
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
-                  <span className="text-white">THE MICHELIN GUIDE</span>
+                <div className="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
+                  <span className="text-gray-800">THE MICHELIN GUIDE</span>
                   <span className="text-accent-glow font-extrabold">✦ ✦ ✦</span>
                 </div>
               </div>
 
               {/* Review 2 */}
-              <div className="luxury-glass neon-blue-glow rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+              <div className="bg-white/50 border border-gray-200 rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
                 <div className="space-y-4">
                   <div className="flex items-center gap-1 text-accent-glow">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-xs">✦</span>
                     ))}
                   </div>
-                  <p className="text-xs text-gray-300 font-light tracking-wide leading-relaxed italic">
+                  <p className="text-xs text-gray-600 font-light tracking-wide leading-relaxed italic">
                     "A breathtaking synthesis of luxury sci-fi lounge architecture and flavor chemistry. Aura, the AI sommelier, selected a pairing that redefined my palate."
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
-                  <span className="text-white">GALACTIC EPICUREAN REPORT</span>
+                <div className="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
+                  <span className="text-gray-800">GALACTIC EPICUREAN REPORT</span>
                   <span className="text-accent-glow">NEW DELHI</span>
                 </div>
               </div>
 
               {/* Review 3 */}
-              <div className="luxury-glass neon-gold-glow rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+              <div className="bg-white/50 border border-gray-200 rounded-3xl p-6.5 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
                 <div className="space-y-4">
                   <div className="flex items-center gap-1 text-[#ffb800]">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-xs">✦</span>
                     ))}
                   </div>
-                  <p className="text-xs text-gray-300 font-light tracking-wide leading-relaxed italic">
+                  <p className="text-xs text-gray-600 font-light tracking-wide leading-relaxed italic">
                     "Chef Marcus Vance has created a molecular sanctuary. The Saffron Net Tuiles and truffle bubble net are masterpieces that belong in a digital museum."
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
-                  <span className="text-white">LE MONDE GASTRONOMIQUE</span>
+                <div className="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
+                  <span className="text-gray-800">LE MONDE GASTRONOMIQUE</span>
                   <span className="text-[#ffb800]">PARIS</span>
                 </div>
               </div>
@@ -1777,10 +1777,10 @@ export default function App() {
           </div>
 
           {/* SWIGGY DELIVERY INTEGRATION MODULE */}
-          <div className="luxury-glass neon-swiggy-glow rounded-[32px] p-6 sm:p-8 relative overflow-hidden mb-16">
+          <div className="bg-white/70 border border-gray-200 rounded-[32px] p-6 sm:p-8 relative overflow-hidden mb-16">
             
             {/* Ambient background decoration glows */}
-            <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#FF5200]/15 blur-3xl pointer-events-none" />
+            <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-accent-glow/5 blur-3xl pointer-events-none" />
             <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-accent-glow/5 blur-3xl pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -1792,12 +1792,12 @@ export default function App() {
                     <span className="bg-gradient-to-r from-[#FF5200] to-[#FF7E00] text-black font-extrabold text-[8px] uppercase tracking-widest px-2 py-0.5 rounded-md animate-pulse">
                       Live Delivery Dispatch
                     </span>
-                    <span className="text-[8.5px] uppercase tracking-[0.3em] font-bold text-gray-400">✧ Order on Swiggy</span>
+                    <span className="text-[8.5px] uppercase tracking-[0.3em] font-bold text-gray-500">✧ Order on Swiggy</span>
                   </div>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-white font-medium tracking-wide">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-gray-800 font-medium tracking-wide">
                     Transmit Tasting Capsules to Your Coordinates
                   </h3>
-                  <p className="text-xs font-light text-gray-400 leading-relaxed max-w-xl">
+                  <p className="text-xs font-light text-gray-500 leading-relaxed max-w-xl">
                     Experience our three-starred Michelin tasting program in the comfort of your private space block. Dispatched in thermal-stabilized magnetic shield capsules directly through our priority Swiggy courier drones.
                   </p>
                 </div>
@@ -1809,9 +1809,9 @@ export default function App() {
                     { name: 'Smoked Truffle Tofu Capsule', desc: 'Liquid-nitrogen infused tofu', price: 890 },
                     { name: 'Nebula Citrus Elixir', desc: 'Shifting hydration nectar', price: 420 }
                   ].map((capsule, i) => (
-                    <div key={i} className="p-3.5 bg-white/3 border border-white/5 rounded-2xl flex flex-col justify-between">
+                    <div key={i} className="p-3.5 bg-white border border-gray-200 rounded-2xl flex flex-col justify-between">
                       <div>
-                        <span className="text-[9.5px] font-bold text-white block text-left">{capsule.name}</span>
+                        <span className="text-[9.5px] font-bold text-gray-800 block text-left">{capsule.name}</span>
                         <span className="text-[8.5px] text-gray-500 font-light block mt-0.5 text-left">{capsule.desc}</span>
                       </div>
                       <span className="text-[10px] font-bold text-[#FF7E00] block mt-3 text-left">₹{capsule.price}</span>
@@ -1821,7 +1821,7 @@ export default function App() {
               </div>
 
               {/* Right col - Swiggy controls */}
-              <div className="lg:col-span-5 w-full bg-black/35 rounded-2xl border border-white/5 p-5.5 space-y-4">
+              <div className="lg:col-span-5 w-full bg-white/40 rounded-2xl border border-gray-200 p-5.5 space-y-4">
                 
                 {/* Visual interface for dispatching */}
                 <div className="space-y-3">
@@ -1829,7 +1829,7 @@ export default function App() {
                     <span className="text-gray-500">Destination Coordinate</span>
                     <span className="text-accent-glow animate-pulse">Auto-Locking Grid</span>
                   </div>
-                  <div className="bg-white/5 border border-white/8 rounded-xl px-4 py-2.5 flex items-center justify-between text-xs text-white">
+                  <div className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 flex items-center justify-between text-xs text-gray-800">
                     <span className="font-mono text-[10px] tracking-widest text-[#FF7E00]">DELHI-NCR // SUITE-2045-A</span>
                     <MapPin className="w-3.5 h-3.5 text-[#FF7E00] animate-bounce" />
                   </div>
@@ -1840,7 +1840,7 @@ export default function App() {
                     <span>Drone Containment Shields</span>
                     <span>100% Calibrated</span>
                   </div>
-                  <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                  <div className="w-full bg-gray-200 h-1 rounded-full overflow-hidden">
                     <motion.div animate={{ width: ['20%', '100%'] }} transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }} className="h-full bg-gradient-to-r from-[#FF5200] to-[#FF7E00] rounded-full" />
                   </div>
                 </div>
@@ -1868,15 +1868,15 @@ export default function App() {
                       </div>
                       
                       {swiggyTimer > 0 ? (
-                        <p className="text-[10.5px] text-white font-light">
-                          Hyper-Drone Launch Complete. Flight countdown: <span className="font-mono font-bold text-[#FF7E00] bg-white/5 px-2 py-0.5 rounded ml-1">{swiggyTimer}s</span>
+                        <p className="text-[10.5px] text-gray-800 font-light">
+                          Hyper-Drone Launch Complete. Flight countdown: <span className="font-mono font-bold text-[#FF7E00] bg-white px-2 py-0.5 rounded ml-1">{swiggyTimer}s</span>
                         </p>
                       ) : (
                         <div className="space-y-1">
-                          <p className="text-[10.5px] text-green-400 font-bold uppercase tracking-wide text-center">
+                          <p className="text-[10.5px] text-green-600 font-bold uppercase tracking-wide text-center">
                             ✓ Capsule Deployed Successfully!
                           </p>
-                          <p className="text-[9px] text-gray-400 font-light text-center">
+                          <p className="text-[9px] text-gray-500 font-light text-center">
                             Atmospheric seals broke. Dispatched at New Delhi Coordinates.
                           </p>
                         </div>
@@ -1896,9 +1896,9 @@ export default function App() {
           </div>
 
           {/* BOTTOM DETAILED CO-ORDINATES INFO */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-white/5 text-xs text-gray-500 font-light">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-gray-200 text-xs text-gray-500 font-light">
             <div className="space-y-3">
-              <span className="text-[9px] uppercase tracking-widest text-white font-bold block">Physical Coordinates</span>
+              <span className="text-[9px] uppercase tracking-widest text-gray-800 font-bold block">Physical Coordinates</span>
               <p className="leading-relaxed">
                 Suite 2045, Horizon Tower,<br />
                 Vasant Kunj, New Delhi,<br />
@@ -1907,7 +1907,7 @@ export default function App() {
             </div>
             
             <div className="space-y-3">
-              <span className="text-[9px] uppercase tracking-widest text-white font-bold block">Temporal Cycles</span>
+              <span className="text-[9px] uppercase tracking-widest text-gray-800 font-bold block">Temporal Cycles</span>
               <p className="leading-relaxed">
                 Daily Operations: 18:00 - 24:00<br />
                 Reservations Lock: 2 Cycles Prior<br />
@@ -1916,18 +1916,18 @@ export default function App() {
             </div>
 
             <div className="space-y-3">
-              <span className="text-[9px] uppercase tracking-widest text-white font-bold block">Subsystems</span>
+              <span className="text-[9px] uppercase tracking-widest text-gray-800 font-bold block">Subsystems</span>
               <div className="flex flex-col gap-1.5 font-bold uppercase text-[8px] tracking-widest text-accent-glow">
-                <button onClick={() => setCurrentPage('reservations')} className="hover:text-white text-left transition-colors cursor-pointer">DOME STATUS</button>
-                <button onClick={() => setCurrentPage('about-chef')} className="hover:text-white text-left transition-colors cursor-pointer">THE CREATIVE HEARTH</button>
-                <button onClick={() => setCurrentPage('menu')} className="hover:text-white text-left transition-colors cursor-pointer">MOLECULAR CATALOG</button>
+                <button onClick={() => setCurrentPage('reservations')} className="hover:text-gray-800 text-left transition-colors cursor-pointer">DOME STATUS</button>
+                <button onClick={() => setCurrentPage('about-chef')} className="hover:text-gray-800 text-left transition-colors cursor-pointer">THE CREATIVE HEARTH</button>
+                <button onClick={() => setCurrentPage('menu')} className="hover:text-gray-800 text-left transition-colors cursor-pointer">MOLECULAR CATALOG</button>
               </div>
             </div>
 
             <div className="space-y-3 flex flex-col justify-between items-start">
               <div>
-                <span className="text-[9px] uppercase tracking-widest text-white font-bold block mb-1">Accréditation</span>
-                <span className="px-2.5 py-0.5 border border-white/10 rounded-full text-[8.5px] uppercase tracking-widest text-gray-400 block w-fit">
+                <span className="text-[9px] uppercase tracking-widest text-gray-800 font-bold block mb-1">Accréditation</span>
+                <span className="px-2.5 py-0.5 border border-gray-200 rounded-full text-[8.5px] uppercase tracking-widest text-gray-500 block w-fit">
                   Security Checked
                 </span>
               </div>
@@ -1949,15 +1949,15 @@ export default function App() {
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} exit={{ opacity: 0 }} onClick={() => setAdminOpen(false)} className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 pointer-events-auto cursor-pointer" />
             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="fixed top-[10%] left-[5%] right-[5%] bottom-[10%] rounded-3xl luxury-glass border border-white/10 z-50 flex flex-col pointer-events-auto shadow-2xl overflow-hidden" style={{ position: 'fixed' }}>
-              <div className="p-6 border-b border-white/5 flex items-center justify-between bg-black/20">
+              <div className="p-6 border-b border-gray-200 flex items-center justify-between bg-black/20">
                 <div className="flex items-center gap-3">
                   <Terminal className="w-6 h-6 text-accent-glow animate-pulse" />
                   <div className="text-left">
-                    <h3 className="font-serif text-lg tracking-wider text-white">Administration Terminal</h3>
+                    <h3 className="font-serif text-lg tracking-wider text-gray-800">Administration Terminal</h3>
                     <p className="text-[9px] tracking-widest text-accent-glow uppercase font-bold">Horizon Command Vault</p>
                   </div>
                 </div>
-                <button onClick={() => setAdminOpen(false)} className="p-2 rounded-full hover:bg-white/5 text-gray-400 hover:text-white cursor-pointer"><X className="w-5 h-5" /></button>
+                <button onClick={() => setAdminOpen(false)} className="p-2 rounded-full hover:bg-white/60 text-gray-400 hover:text-gray-800 cursor-pointer"><X className="w-5 h-5" /></button>
               </div>
               
               <div className="flex-1 p-6 overflow-y-auto no-scrollbar grid grid-cols-1 md:grid-cols-2 gap-8 text-left bg-black/10">
@@ -1968,9 +1968,9 @@ export default function App() {
                   ) : (
                     <div className="space-y-2">
                       {adminBookings.map((b) => (
-                        <div key={b._id} className="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+                        <div key={b._id} className="p-3.5 rounded-xl bg-white/5 border border-gray-200 flex items-center justify-between">
                           <div>
-                            <span className="font-serif text-sm text-white block">{b.name}</span>
+                            <span className="font-serif text-sm text-gray-800 block">{b.name}</span>
                             <span className="text-[8px] text-gray-400">Table {b.tableId} ✧ Party of {b.guests}</span>
                           </div>
                           {b.status === 'confirmed' && (
@@ -1989,17 +1989,17 @@ export default function App() {
 
                 <form onSubmit={handleCreateDishAdmin} className="space-y-3.5">
                   <span className="text-[10px] uppercase tracking-widest text-gray-500 font-bold block mb-1">Catalog a New Piece</span>
-                  <input type="text" required placeholder="Masterpiece Name" value={newDish.name} onChange={(e) => setNewDish({ ...newDish, name: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-600 outline-none" />
-                  <textarea required placeholder="Sensory details..." value={newDish.description} onChange={(e) => setNewDish({ ...newDish, description: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-600 outline-none h-16 resize-none" />
+                  <input type="text" required placeholder="Masterpiece Name" value={newDish.name} onChange={(e) => setNewDish({ ...newDish, name: e.target.value })} className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 placeholder-gray-400 outline-none" />
+                  <textarea required placeholder="Sensory details..." value={newDish.description} onChange={(e) => setNewDish({ ...newDish, description: e.target.value })} className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 placeholder-gray-400 outline-none h-16 resize-none" />
                   
                   <div className="grid grid-cols-2 gap-2">
-                    <input type="number" required placeholder="Tasting Price (₹)" value={newDish.price} onChange={(e) => setNewDish({ ...newDish, price: parseInt(e.target.value) })} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none" />
-                    <input type="number" placeholder="Calorie Metric" value={newDish.calories} onChange={(e) => setNewDish({ ...newDish, calories: parseInt(e.target.value) })} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none" />
+                    <input type="number" required placeholder="Tasting Price (₹)" value={newDish.price} onChange={(e) => setNewDish({ ...newDish, price: parseInt(e.target.value) })} className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 outline-none" />
+                    <input type="number" placeholder="Calorie Metric" value={newDish.calories} onChange={(e) => setNewDish({ ...newDish, calories: parseInt(e.target.value) })} className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 outline-none" />
                   </div>
 
                   <div className="grid grid-cols-2 gap-2">
-                    <input type="text" placeholder="Pairings (comma)" value={newDish.pairingsStr} onChange={(e) => setNewDish({ ...newDish, pairingsStr: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none" />
-                    <input type="text" placeholder="Ingredients (comma)" value={newDish.ingredientsStr} onChange={(e) => setNewDish({ ...newDish, ingredientsStr: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none" />
+                    <input type="text" placeholder="Pairings (comma)" value={newDish.pairingsStr} onChange={(e) => setNewDish({ ...newDish, pairingsStr: e.target.value })} className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 outline-none" />
+                    <input type="text" placeholder="Ingredients (comma)" value={newDish.ingredientsStr} onChange={(e) => setNewDish({ ...newDish, ingredientsStr: e.target.value })} className="w-full bg-gray-50/80 border border-gray-200 rounded-xl px-4 py-2.5 text-xs text-gray-800 outline-none" />
                   </div>
 
                   <button type="submit" className="w-full py-3.5 bg-gradient-to-r from-accent-glow/85 to-accent-glow text-black rounded-xl text-[9px] font-bold uppercase tracking-widest shadow-lg shadow-accent-glow/10">
