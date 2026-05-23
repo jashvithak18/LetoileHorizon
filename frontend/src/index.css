@@ -38,7 +38,8 @@ body {
   background-color: var(--bg-glow-color-2) !important;
   color: #e6e8ea !important;
   font-family: 'Outfit', sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   transition: background-color 1.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
