@@ -428,7 +428,7 @@ export default function App() {
 
           {/* Router Nav tabs */}
           <div className="hidden lg:flex items-center gap-7 text-[12px] uppercase tracking-[0.20em] font-bold text-neutral-600">
-            {['home', 'ai-concierge', 'table-atmosphere', 'build-plate', 'story', 'menu'].map((tab) => (
+            {['home', 'ai-concierge', 'table-atmosphere', 'build-plate', 'menu'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setCurrentPage(tab)}
@@ -489,8 +489,7 @@ export default function App() {
                   { page: 'home', label: 'HOME', code: '01' },
                   { page: 'ai-concierge', label: 'AI CHEF', code: '02' },
                   { page: 'table-atmosphere', label: 'LIVE MAP', code: '03' },
-                  { page: 'build-plate', label: 'BUILD PLATE', code: '04' },
-                  { page: 'story', label: 'STORY', code: '05' }
+                  { page: 'build-plate', label: 'BUILD PLATE', code: '04' }
                 ].map((item, idx) => (
                   <button
                     key={idx}
@@ -516,12 +515,8 @@ export default function App() {
                   Step into a world where culinary art meets futuristic imagination. Every detail. Every flavor. Crafted beyond limits.
                 </p>
                 <div className="flex gap-4 items-center mt-2 pointer-events-auto">
-                  <button onClick={() => setCurrentPage('table-atmosphere')} className="flex items-center gap-2 bg-gradient-to-r from-accent-glow to-accent-glow/90 text-white px-6 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] shadow-2xl transition-all hover:scale-105 cursor-pointer hover:shadow-accent-glow/20">
+                  <button onClick={() => setCurrentPage('table-atmosphere')} className="flex items-center gap-2.5 bg-gradient-to-r from-accent-glow to-accent-glow/90 text-white px-8 py-4.5 rounded-full font-extrabold uppercase tracking-widest text-[11px] shadow-2xl transition-all hover:scale-105 cursor-pointer hover:shadow-accent-glow/20">
                     Explore Experience
-                  </button>
-                  <button onClick={() => setCurrentPage('story')} className="flex items-center gap-2 bg-white/60 text-accent-glow border border-accent-glow/20 hover:border-accent-glow px-6 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] backdrop-blur-md transition-all hover:scale-105 cursor-pointer shadow-sm hover:bg-white/80">
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                    Begin Story
                   </button>
                 </div>
               </div>
@@ -664,8 +659,8 @@ export default function App() {
               <div className="lg:col-span-7 luxury-glass neon-purple-glow p-6 rounded-[32px] flex flex-col gap-6 text-left relative overflow-hidden">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div className="space-y-1">
-                    <span className="text-[8px] uppercase tracking-[0.25em] text-cosmic-purple font-black block">03 Live Seating Blueprint</span>
-                    <h2 className="font-serif text-xl sm:text-2xl text-neutral-900 font-medium tracking-wide">Choose Your Vibe</h2>
+                    <span className="text-[11px] uppercase tracking-[0.25em] text-cosmic-purple font-black block">03 Live Seating Blueprint</span>
+                    <h2 className="font-serif text-2xl sm:text-3xl text-neutral-900 font-medium tracking-wide">Choose Your Vibe</h2>
                   </div>
 
                   <div className="flex flex-wrap gap-1">
@@ -679,7 +674,7 @@ export default function App() {
                       <button
                         key={v.id}
                         onClick={() => setSelectedTable(null, v.id)}
-                        className={`px-3 py-1.5 rounded-full border text-[7.5px] uppercase tracking-widest font-extrabold cursor-pointer transition-all ${
+                        className={`px-3 py-1.5 rounded-full border text-[11px] uppercase tracking-widest font-extrabold cursor-pointer transition-all ${
                           selectedZone === v.id
                             ? 'bg-cosmic-purple/15 border-cosmic-purple text-cosmic-purple shadow-sm shadow-cosmic-purple/5'
                             : 'bg-white/60 border-white/80 text-neutral-500 hover:text-neutral-900 shadow-sm'
@@ -709,7 +704,7 @@ export default function App() {
                           <g key={t.id} onClick={() => !taken && handleSeatClick(t.id, t.zone)}>
                             {selected && <circle cx={t.x} cy={t.y} r="22" className="fill-cosmic-purple/10 stroke-cosmic-purple/20 animate-pulse animate-duration-1000" />}
                             <circle cx={t.x} cy={t.y} r="16" className={`transition-all duration-300 ${color}`} />
-                            <text x={t.x} y={t.y + 3} textAnchor="middle" fill={taken ? '#ef4444' : selected ? '#b53cfe' : '#555'} fontSize="8" className="font-extrabold pointer-events-none">{t.id}</text>
+                            <text x={t.x} y={t.y + 3} textAnchor="middle" fill={taken ? '#ef4444' : selected ? '#b53cfe' : '#555'} fontSize="11" className="font-extrabold pointer-events-none">{t.id}</text>
                           </g>
                         );
                       })}
@@ -718,7 +713,7 @@ export default function App() {
                 </div>
 
                 {/* Noise meters logs */}
-                <div className="p-3 bg-white/60 rounded-xl border border-white/80 flex items-center justify-between text-[8px] shadow-sm">
+                <div className="p-3 bg-white/60 rounded-xl border border-white/80 flex items-center justify-between text-[11px] shadow-sm">
                   <span className="uppercase text-neutral-600 font-extrabold tracking-wider">Atmosphere noise</span>
                   <span className="text-cosmic-purple font-black uppercase">{activeZoneTable.decibels} DB ({activeZoneTable.crowd})</span>
                 </div>
@@ -729,16 +724,16 @@ export default function App() {
                 {selectedTable ? (
                   <div className="p-6 bg-white/60 rounded-[32px] border border-white/80 space-y-4 shadow-sm">
                     <div className="space-y-1">
-                      <h4 className="font-serif text-lg text-neutral-900 font-medium">Coordinate Seating {selectedTable}</h4>
-                      <p className="text-[7.5px] uppercase tracking-widest text-cosmic-purple font-extrabold">Atmosphere: {activeZoneTable.name}</p>
+                      <h4 className="font-serif text-xl sm:text-2xl text-neutral-900 font-medium">Coordinate Seating {selectedTable}</h4>
+                      <p className="text-[11px] uppercase tracking-widest text-cosmic-purple font-extrabold">Atmosphere: {activeZoneTable.name}</p>
                     </div>
 
                     {reservedTables[selectedTable] ? (
-                      <div className="p-4 bg-red-50 border border-red-500/20 rounded-xl text-center text-red-600 text-[8px] uppercase tracking-wider font-extrabold">
+                      <div className="p-4 bg-red-50 border border-red-500/20 rounded-xl text-center text-red-600 text-[11px] uppercase tracking-wider font-extrabold">
                         ✧ Seated dome occupied at {reservedTables[selectedTable].time}
                       </div>
                     ) : isBooked ? (
-                      <div className="p-4 bg-cosmic-purple/10 border border-cosmic-purple/30 rounded-xl text-center text-cosmic-purple text-[8.5px] uppercase tracking-wider font-black">
+                      <div className="p-4 bg-cosmic-purple/10 border border-cosmic-purple/30 rounded-xl text-center text-cosmic-purple text-[11px] uppercase tracking-wider font-black">
                         ✓ Seating coordinate synced live
                       </div>
                     ) : (
@@ -749,7 +744,7 @@ export default function App() {
                           placeholder="Registered Name"
                           value={bookingFormData.name}
                           onChange={(e) => setBookingFormData({ ...bookingFormData, name: e.target.value })}
-                          className="w-full bg-white/80 border border-white/80 rounded-xl px-3 py-2 text-[10px] text-neutral-800 placeholder-neutral-400 outline-none focus:border-cosmic-purple/40 shadow-inner"
+                          className="w-full bg-white/80 border border-white/80 rounded-xl px-4 py-3 text-[12px] text-neutral-800 placeholder-neutral-400 outline-none focus:border-cosmic-purple/40 shadow-inner"
                         />
                         <div className="grid grid-cols-2 gap-2">
                           <input
@@ -757,12 +752,12 @@ export default function App() {
                             required
                             value={bookingFormData.time}
                             onChange={(e) => setBookingFormData({ ...bookingFormData, time: e.target.value })}
-                            className="bg-white/80 border border-white/80 rounded-xl px-3 py-2 text-[10px] text-neutral-800 outline-none shadow-inner"
+                            className="bg-white/80 border border-white/80 rounded-xl px-4 py-3 text-[12px] text-neutral-800 outline-none shadow-inner"
                           />
                           <select
                             value={bookingFormData.guests}
                             onChange={(e) => setBookingFormData({ ...bookingFormData, guests: parseInt(e.target.value) })}
-                            className="bg-white/80 border border-white/80 rounded-xl px-3 py-2 text-[10px] text-neutral-800 outline-none shadow-inner"
+                            className="bg-white/80 border border-white/80 rounded-xl px-4 py-3 text-[12px] text-neutral-800 outline-none shadow-inner"
                           >
                             <option value="2">2 Guests</option>
                             <option value="4">4 Guests</option>
@@ -770,7 +765,7 @@ export default function App() {
                           </select>
                         </div>
                         
-                        <button type="submit" className="w-full py-3 bg-gradient-to-r from-cosmic-purple to-cosmic-purple/90 text-white rounded-xl text-[8.5px] font-extrabold uppercase tracking-widest shadow-lg shadow-cosmic-purple/20 transition-all hover:scale-103 duration-300 cursor-pointer">
+                        <button type="submit" className="w-full py-4 bg-gradient-to-r from-cosmic-purple to-cosmic-purple/90 text-white rounded-xl text-[11px] font-extrabold uppercase tracking-widest shadow-lg shadow-cosmic-purple/20 transition-all hover:scale-103 duration-300 cursor-pointer">
                           Confirm Seating Vibe
                         </button>
                       </form>
@@ -779,8 +774,8 @@ export default function App() {
                 ) : (
                   <div className="p-8 bg-white/60 rounded-[32px] border border-dashed border-accent-glow/20 text-center text-neutral-500 space-y-3 shadow-sm">
                     <Users className="w-8 h-8 mx-auto text-cosmic-purple/40" />
-                    <h4 className="text-[10px] uppercase tracking-widest text-cosmic-purple/70 font-extrabold">No Seating Selected</h4>
-                    <p className="text-[10.5px] text-neutral-600 font-light">Click any coordinate in the blueprint floor map on the left to initialize live reservation.</p>
+                    <h4 className="text-[12px] uppercase tracking-widest text-cosmic-purple/70 font-extrabold">No Seating Selected</h4>
+                    <p className="text-[12.5px] text-neutral-600 font-light">Click any coordinate in the blueprint floor map on the left to initialize live reservation.</p>
                   </div>
                 )}
               </div>
@@ -798,8 +793,8 @@ export default function App() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between border-b border-white/10 pb-3">
                     <div>
-                      <span className="text-[8px] uppercase tracking-[0.25em] text-neon-pink font-black block">04 Build Your Plate Wizard</span>
-                      <h3 className="font-serif text-xl sm:text-2xl text-neutral-900 font-medium tracking-wide">Step {customizerStep} of 6: {
+                      <span className="text-[11px] uppercase tracking-[0.25em] text-neon-pink font-black block">04 Build Your Plate Wizard</span>
+                      <h3 className="font-serif text-2xl sm:text-3xl text-neutral-900 font-medium tracking-wide">Step {customizerStep} of 6: {
                         customizerStep === 1 && 'Base Dish Selection' ||
                         customizerStep === 2 && 'Custom toppings' ||
                         customizerStep === 3 && 'Aromatic Sauces' ||
@@ -819,13 +814,13 @@ export default function App() {
                   {/* STEP 1: Base Dish selection */}
                   {customizerStep === 1 && (
                     <div className="space-y-3 animate-fade-in">
-                      <p className="text-[10px] text-neutral-600 font-light">Select the master base molecular course from our current catalog:</p>
+                      <p className="text-[13px] text-neutral-700 font-medium">Select the master base molecular course from our current catalog:</p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {['Luminescent Truffle Sphere', 'Saffron Solar Cod', 'Hyperbaric Szechuan Duck'].map((dish) => (
                           <button
                             key={dish}
                             onClick={() => setPlateBase(dish)}
-                            className={`p-4 rounded-xl border text-[10.5px] text-left cursor-pointer transition-all ${
+                            className={`p-4 rounded-xl border text-[13px] text-left cursor-pointer transition-all ${
                               plateBase === dish
                                 ? 'bg-neon-pink/10 border-neon-pink text-neutral-800 font-extrabold shadow-sm'
                                 : 'bg-white/60 border-white/80 text-neutral-500 hover:text-neutral-900 shadow-sm'
@@ -844,7 +839,7 @@ export default function App() {
                   {/* STEP 2: Toppings */}
                   {customizerStep === 2 && (
                     <div className="space-y-3 animate-fade-in">
-                      <p className="text-[10px] text-neutral-600 font-light">Choose custom toppings. Checked items drop dynamically onto the plate:</p>
+                      <p className="text-[13px] text-neutral-700 font-medium">Choose custom toppings. Checked items drop dynamically onto the plate:</p>
                       <div className="grid grid-cols-2 gap-2">
                         {TOPPINGS_CATALOG.map((item) => {
                           const active = plateToppings.includes(item.name);
@@ -852,7 +847,7 @@ export default function App() {
                             <button
                               key={item.id}
                               onClick={() => handlePlateToppingToggle(item.name)}
-                              className={`p-3 rounded-xl border text-[9.5px] text-left cursor-pointer transition-all ${
+                              className={`p-3.5 rounded-xl border text-[12px] text-left cursor-pointer transition-all ${
                                 active
                                   ? 'bg-neon-pink/10 border-neon-pink text-neutral-800 font-extrabold shadow-sm'
                                   : 'bg-white/60 border-white/80 text-neutral-500 hover:text-neutral-900 shadow-sm'
@@ -860,7 +855,7 @@ export default function App() {
                             >
                               <div className="flex justify-between items-center">
                                 <span>{item.name}</span>
-                                <span className="text-[8px] text-neon-pink font-extrabold">+₹120</span>
+                                <span className="text-[10px] text-neon-pink font-extrabold">+₹120</span>
                               </div>
                             </button>
                           );
@@ -872,13 +867,13 @@ export default function App() {
                   {/* STEP 3: Sauces */}
                   {customizerStep === 3 && (
                     <div className="space-y-3 animate-fade-in">
-                      <p className="text-[10px] text-neutral-600 font-light">Choose a molecular sauce base to complement the flavors:</p>
+                      <p className="text-[13px] text-neutral-700 font-medium">Choose a molecular molecular sauce base to complement the flavors:</p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {['Cream Sauce', 'Pesto Sauce', 'Spicy Arrabbiata'].map((sauce) => (
                           <button
                             key={sauce}
                             onClick={() => setPlateSauce(sauce)}
-                            className={`p-3.5 rounded-xl border text-[10px] text-left cursor-pointer transition-all ${
+                            className={`p-4 rounded-xl border text-[13px] text-left cursor-pointer transition-all ${
                               plateSauce === sauce
                                 ? 'bg-neon-pink/10 border-neon-pink text-neutral-800 font-extrabold shadow-sm'
                                 : 'bg-white/60 border-white/80 text-neutral-500 hover:text-neutral-900 shadow-sm'
@@ -894,11 +889,11 @@ export default function App() {
                   {/* STEP 4: Spice level */}
                   {customizerStep === 4 && (
                     <div className="space-y-4 animate-fade-in">
-                      <p className="text-[10px] text-neutral-600 font-light">Adjust capsaicin heat monitors on volcanic stone beds:</p>
+                      <p className="text-[13px] text-neutral-700 font-medium">Adjust capsaicin heat monitors on volcanic stone beds:</p>
                       <div className="flex justify-between items-center p-5 bg-white/60 rounded-2xl border border-white/80 shadow-sm">
                         <div className="text-left space-y-1">
-                          <span className="text-[8px] uppercase tracking-widest text-neutral-500 font-bold">Capsaicin fire</span>
-                          <span className="text-sm font-bold text-neutral-900 uppercase block">
+                          <span className="text-[11px] uppercase tracking-widest text-neutral-500 font-bold">Capsaicin fire</span>
+                          <span className="text-base font-extrabold text-neutral-900 uppercase block">
                             {plateSpice === 0 && 'Whisper of pepper'}
                             {plateSpice === 1 && 'Solar warmth'}
                             {plateSpice === 2 && 'Nitrogen shock'}
@@ -920,13 +915,13 @@ export default function App() {
                   {/* STEP 5: Sides */}
                   {customizerStep === 5 && (
                     <div className="space-y-3 animate-fade-in">
-                      <p className="text-[10px] text-neutral-600 font-light">Select extra sides to expand taste parameters:</p>
+                      <p className="text-[13px] text-neutral-700 font-medium">Select extra sides to expand taste parameters:</p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {['None', 'Garlic Bread', 'Truffle Fries', 'Shiso Salad'].map((side) => (
                           <button
                             key={side}
                             onClick={() => setPlateSide(side)}
-                            className={`p-3.5 rounded-xl border text-[10px] text-left cursor-pointer transition-all ${
+                            className={`p-4 rounded-xl border text-[13px] text-left cursor-pointer transition-all ${
                               plateSide === side
                                 ? 'bg-neon-pink/10 border-neon-pink text-neutral-800 font-extrabold shadow-sm'
                                 : 'bg-white/60 border-white/80 text-neutral-500 hover:text-neutral-900 shadow-sm'
@@ -934,7 +929,7 @@ export default function App() {
                           >
                             <div className="flex justify-between items-center">
                               <span>{side}</span>
-                              {side !== 'None' && <span className="text-[8px] text-neon-pink font-extrabold">+₹120</span>}
+                              {side !== 'None' && <span className="text-[10px] text-neon-pink font-extrabold">+₹120</span>}
                             </div>
                           </button>
                         ))}
@@ -945,13 +940,13 @@ export default function App() {
                   {/* STEP 6: Drink Pairing */}
                   {customizerStep === 6 && (
                     <div className="space-y-3 animate-fade-in">
-                      <p className="text-[10px] text-neutral-600 font-light">Combine with a paired molecular drink infusion:</p>
+                      <p className="text-[13px] text-neutral-700 font-medium">Combine with a paired molecular drink infusion:</p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {['None', 'Cold Brew Coffee', 'Citrus Mocktail', 'Jasmine Tea'].map((drink) => (
                           <button
                             key={drink}
                             onClick={() => setPlateDrink(drink)}
-                            className={`p-3.5 rounded-xl border text-[10px] text-left cursor-pointer transition-all ${
+                            className={`p-4 rounded-xl border text-[13px] text-left cursor-pointer transition-all ${
                               plateDrink === drink
                                 ? 'bg-neon-pink/10 border-neon-pink text-neutral-800 font-extrabold shadow-sm'
                                 : 'bg-white/60 border-white/80 text-neutral-500 hover:text-neutral-900 shadow-sm'
@@ -959,7 +954,7 @@ export default function App() {
                           >
                             <div className="flex justify-between items-center">
                               <span>{drink}</span>
-                              {drink !== 'None' && <span className="text-[8px] text-neon-pink font-extrabold">+₹250</span>}
+                              {drink !== 'None' && <span className="text-[10px] text-neon-pink font-extrabold">+₹250</span>}
                             </div>
                           </button>
                         ))}
@@ -974,7 +969,7 @@ export default function App() {
                   <button
                     disabled={customizerStep === 1}
                     onClick={() => setCustomizerStep(prev => Math.max(1, prev - 1))}
-                    className="flex items-center gap-1 bg-white/60 hover:bg-white/80 text-neutral-800 px-4 py-2.5 rounded-full font-extrabold uppercase tracking-widest text-[8px] disabled:opacity-30 border border-white/60 cursor-pointer shadow-sm"
+                    className="flex items-center gap-1 bg-white/60 hover:bg-white/80 text-neutral-800 px-5 py-3 rounded-full font-extrabold uppercase tracking-widest text-[11px] disabled:opacity-30 border border-white/60 cursor-pointer shadow-sm"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
                     Back
@@ -983,7 +978,7 @@ export default function App() {
                   {customizerStep < 6 ? (
                     <button
                       onClick={() => setCustomizerStep(prev => Math.min(6, prev + 1))}
-                      className="flex items-center gap-1 bg-neutral-900 text-white hover:bg-neutral-800 px-5 py-2.5 rounded-full font-extrabold uppercase tracking-widest text-[8px] cursor-pointer shadow-md"
+                      className="flex items-center gap-1 bg-neutral-900 text-white hover:bg-neutral-800 px-6 py-3 rounded-full font-extrabold uppercase tracking-widest text-[11px] cursor-pointer shadow-md"
                     >
                       Next Step
                       <ChevronRight className="w-3.5 h-3.5" />
@@ -997,7 +992,7 @@ export default function App() {
                           setCurrentPage('profile');
                         }, 2000);
                       }}
-                      className="flex items-center gap-1 bg-gradient-to-r from-neon-pink to-accent-glow text-white px-6 py-2.5 rounded-full font-extrabold uppercase tracking-widest text-[8px] cursor-pointer shadow-lg hover:scale-103 transition-all"
+                      className="flex items-center gap-1 bg-gradient-to-r from-neon-pink to-accent-glow text-white px-7 py-3 rounded-full font-extrabold uppercase tracking-widest text-[11px] cursor-pointer shadow-lg hover:scale-103 transition-all"
                     >
                       {isCustomSaved ? 'Plate Synced!' : 'Complete Plate'}
                     </button>
@@ -1008,14 +1003,14 @@ export default function App() {
 
               {/* Right Customizer Presentation Plate */}
               <div className="lg:col-span-5 flex flex-col justify-between gap-5 text-left">
-                <span className="text-[9px] uppercase tracking-widest text-neutral-600 font-bold block mb-1">Visual Plate Assembler</span>
+                <span className="text-[12px] uppercase tracking-widest text-neutral-600 font-bold block mb-1">Visual Plate Assembler</span>
                 
                 {/* 3D styled plate render */}
                 <div className="relative w-full aspect-[4/3] rounded-[32px] border border-white/60 bg-gradient-to-b from-white to-[#faf6f0] overflow-hidden flex items-center justify-center shadow-sm">
                   <div className="absolute w-[70%] h-[70%] rounded-full border border-dashed border-neon-pink/30 animate-spin-slow" />
                   
-                  <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative z-10 w-36 h-36 rounded-full bg-gradient-to-b from-white via-[#faf6f0] to-[#ecdcc9] border border-neon-pink/40 flex flex-col items-center justify-center text-center p-3 text-[9.5px] uppercase font-extrabold tracking-widest text-neutral-800 shadow-xl">
-                    <span className="text-[7px] text-neon-pink mb-1">Base dish</span>
+                  <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative z-10 w-36 h-36 rounded-full bg-gradient-to-b from-white via-[#faf6f0] to-[#ecdcc9] border border-neon-pink/40 flex flex-col items-center justify-center text-center p-3 text-[12px] uppercase font-extrabold tracking-widest text-neutral-800 shadow-xl">
+                    <span className="text-[9.5px] text-neon-pink mb-1">Base dish</span>
                     <span className="leading-tight">{plateBase}</span>
                   </motion.div>
 
@@ -1048,11 +1043,11 @@ export default function App() {
                 {/* Itemized Order summary */}
                 <div className="p-5 bg-white/60 rounded-3xl border border-white/80 space-y-3 shadow-sm">
                   <div className="flex justify-between items-center border-b border-white/10 pb-2.5">
-                    <span className="text-[9px] uppercase tracking-widest text-neutral-500 font-black">Your Order</span>
-                    <span className="text-base text-neutral-900 font-black">₹{calculateCustomPlatePrice()}</span>
+                    <span className="text-[12px] uppercase tracking-widest text-neutral-500 font-black">Your Order</span>
+                    <span className="text-lg text-neutral-900 font-black">₹{calculateCustomPlatePrice()}</span>
                   </div>
 
-                  <div className="space-y-1.5 text-[10px] text-neutral-600 font-light max-h-[100px] overflow-y-auto no-scrollbar">
+                  <div className="space-y-1.5 text-[12px] text-neutral-600 font-light max-h-[100px] overflow-y-auto no-scrollbar">
                     <div className="flex justify-between"><span>Base: {plateBase}</span></div>
                     {plateToppings.length > 0 && <div className="flex justify-between"><span>Toppings: {plateToppings.join(', ')}</span></div>}
                     <div className="flex justify-between"><span>Sauce: {plateSauce}</span></div>
@@ -1069,126 +1064,7 @@ export default function App() {
 
 
 
-          {/* PAGE 6: OUR STORY (CINEMATIC SCROLLYTELLING OVERLAY) */}
-          {currentPage === 'story' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="w-full min-h-[75vh] flex flex-col justify-center items-center relative overflow-hidden luxury-glass border border-white/80 p-8 shadow-sm"
-              onWheel={handleStoryScroll}
-            >
-              
-              {/* horizontal glide story chapters */}
-              <div className="w-full h-full flex items-center relative min-h-[460px]">
-                
-                {/* CHAPTER 1: Philosophy */}
-                <div
-                  style={{
-                    opacity: storyScroll === 0 ? 1 : 0,
-                    transform: `translate3d(${(0 - storyScroll) * 350}px, 0, 0)`,
-                    pointerEvents: storyScroll === 0 ? 'auto' : 'none',
-                    transition: 'opacity 0.8s ease, transform 0.8s ease'
-                  }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <div className="max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-left">
-                    <div className="md:col-span-7 space-y-5 text-left">
-                      <span className="text-[8.5px] uppercase tracking-[0.4em] text-accent-glow font-bold">Chapter I: Cosmic Rhythm</span>
-                      <h3 className="font-serif text-4xl sm:text-6xl text-neutral-900 font-extralight leading-tight">
-                        Sustenance Meets <br />
-                        <span className="italic text-accent-glow font-light">Meteorology</span>
-                      </h3>
-                      <p className="text-[11px] sm:text-xs text-neutral-600 font-light leading-relaxed">
-                        At L'Étoile Horizon, we don't just plate food. When solar coordinates shift, our molecular spheres realign. Each drop captures a volumetric atmospheric rainfall logic.
-                      </p>
-                    </div>
-                    
-                    <div className="md:col-span-5 flex justify-center">
-                      <div className="w-56 h-72 rounded-[24px] overflow-hidden border border-white/80 shadow-2xl bg-neutral-100 group">
-                        <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600&q=80" alt="chef" className="w-full h-full object-cover grayscale contrast-110 opacity-95 hover:grayscale-0 transition-all duration-700" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                {/* CHAPTER 2: Molecular Shards */}
-                <div
-                  style={{
-                    opacity: storyScroll === 1 ? 1 : 0,
-                    transform: `translate3d(${(1 - storyScroll) * 350}px, 0, 0)`,
-                    pointerEvents: storyScroll === 1 ? 'auto' : 'none',
-                    transition: 'opacity 0.8s ease, transform 0.8s ease'
-                  }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <div className="max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-left">
-                    <div className="md:col-span-5 flex justify-center">
-                      <div className="relative w-64 h-64 flex items-center justify-center">
-                        <div className="absolute inset-0 rounded-full border border-dashed border-accent-glow/15 animate-spin-slow" />
-                        <div className="w-44 h-44 rounded-full overflow-hidden border border-white/80 shadow-2xl bg-neutral-100">
-                          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="ingredient" className="w-full h-full object-cover opacity-95" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="md:col-span-7 space-y-5 text-left">
-                      <span className="text-[8.5px] uppercase tracking-[0.4em] text-accent-glow font-bold">Chapter II: Saffron Nets</span>
-                      <h3 className="font-serif text-4xl sm:text-6xl text-neutral-900 font-extralight leading-tight">
-                        Forged as <br />
-                        <span className="italic text-accent-glow font-light">Digital Shards</span>
-                      </h3>
-                      <p className="text-[11px] sm:text-xs text-neutral-600 font-light leading-relaxed">
-                        Spherified winter truffle cores encased in stardust Veils. Our saffron net tuiles are glided with blood orange mist particles, transforming heat profiles on volcanic stones.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* CHAPTER 3: Molecular Plating */}
-                <div
-                  style={{
-                    opacity: storyScroll === 2 ? 1 : 0,
-                    transform: `translate3d(${(2 - storyScroll) * 350}px, 0, 0)`,
-                    pointerEvents: storyScroll === 2 ? 'auto' : 'none',
-                    transition: 'opacity 0.8s ease, transform 0.8s ease'
-                  }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <div className="max-w-2xl text-center space-y-5 mx-auto flex flex-col items-center">
-                    <span className="text-[8.5px] uppercase tracking-[0.4em] text-accent-glow font-bold">Chapter III: Gastronomic Climax</span>
-                    <h3 className="font-serif text-5xl sm:text-6xl text-neutral-900 font-extralight leading-tight">
-                      Beyond <br />
-                      <span className="italic text-accent-glow font-light">Sustenance</span>
-                    </h3>
-                    <p className="text-[11px] sm:text-xs text-neutral-600 font-light leading-relaxed max-w-md">
-                      Explore our molecular catalog and reserve your dining dome. Seamless real-time sync ensures your seating coordinates are instantly saved.
-                    </p>
-                    <button onClick={() => setCurrentPage('home')} className="bg-gradient-to-r from-accent-glow to-accent-glow/90 text-white px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[8px] shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 cursor-pointer transition-all hover:scale-105">
-                      Return to Spatial Console
-                    </button>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Bottom indicators */}
-              <div className="absolute bottom-6 left-8 flex gap-4 items-center">
-                {[0, 1, 2].map((idx) => (
-                  <button key={idx} onClick={() => setStoryScroll(idx)} className="flex items-center gap-2 text-left cursor-pointer border-none bg-transparent">
-                    <span className={`w-2.5 h-2.5 rounded-full ${storyScroll === idx ? 'bg-accent-glow scale-125' : 'bg-neutral-300'} transition-all`} />
-                    <span className={`text-[10px] font-bold tracking-widest uppercase ${storyScroll === idx ? 'text-neutral-800' : 'text-neutral-500'}`}>0{idx + 1}</span>
-                  </button>
-                ))}
-              </div>
-
-              <div className="absolute bottom-6 right-8 text-right hidden sm:block">
-                <span className="text-[7px] uppercase tracking-[0.35em] text-accent-glow/50 block">Cinematic Scrollytelling</span>
-                <span className="text-[7.5px] text-neutral-500 font-medium">Scroll mouse wheel to glide chambers</span>
-              </div>
-
-            </motion.div>
-          )}
 
           {/* PAGE 7: GOURMET MENU */}
           {currentPage === 'menu' && (
